@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Root-only worker for the SSH-authenticated two-node installer.
+"""Root-only node operations shared by SSH and offline console pairing.
 
 RPC stdout is a private SSH protocol, never a user log. Private WG, CA and
 REALITY keys stay on the node that generated them; only WG public keys and

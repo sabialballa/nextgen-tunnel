@@ -12,7 +12,7 @@ else:
     from easy_node import Node
 
 ROOT=Path(__file__).resolve().parents[1]
-DEPENDENCIES={'ssh':'openssh-client','curl':'curl','ip':'iproute2','ss':'iproute2','wg':'wireguard-tools','openssl':'openssl'}
+DEPENDENCIES={'ssh':'openssh-client','curl':'curl','ip':'iproute2','ss':'iproute2','wg':'wireguard-tools','openssl':'openssl','ping':'iputils-ping'}
 PRELUDE=r'''set -eu
 [ "$(id -u)" = 0 ] || { echo 'Root SSH access is required.' >&2; exit 1; }
 [ "$(uname -s)" = Linux ] && [ "$(uname -m)" = x86_64 ] || { echo 'Linux amd64 is required.' >&2; exit 1; }
@@ -20,7 +20,7 @@ if [ -e /var/lib/nextgen-stack-installer/ownership.json ] && [ ! -e /var/lib/nex
     echo 'Existing installation was preserved; use the advanced management menu.' >&2; exit 1
 fi
 missing=''
-for item in python3:python3 curl:curl ip:iproute2 ss:iproute2 wg:wireguard-tools openssl:openssl; do
+for item in python3:python3 curl:curl ip:iproute2 ss:iproute2 wg:wireguard-tools openssl:openssl ping:iputils-ping; do
     command -v "${item%%:*}" >/dev/null 2>&1 || missing="$missing ${item#*:}"
 done
 [ -s /etc/ssl/certs/ca-certificates.crt ] || missing="$missing ca-certificates"
@@ -60,7 +60,7 @@ print(json.dumps({'source':str(target),'identity':identity}))
 '''
 
 def source_archive(root):
-    names=['easy_install.py','easy_node.py','menu.py','verify_bundle.py','host_install.py','stack_install.py','stack_prepare.py','site.py','site_watchdog.py','overlay.py','overlay_service.py']
+    names=['easy_install.py','easy_node.py','code_install.py','menu.py','verify_bundle.py','host_install.py','stack_install.py','stack_prepare.py','site.py','site_watchdog.py','overlay.py','overlay_service.py']
     files=[Path('scripts')/n for n in names]+[p.relative_to(root) for p in (root/'systemd').glob('*') if p.suffix in ('.service','.timer')]
     out=io.BytesIO()
     with tarfile.open(fileobj=out,mode='w:gz') as t:
@@ -70,11 +70,11 @@ def source_archive(root):
             data=source.read_bytes();m=tarfile.TarInfo(path.as_posix());m.size=len(data);m.mode=0o600;t.addfile(m,io.BytesIO(data))
     return out.getvalue()
 
-def dependencies():
-    missing=sorted({pkg for tool,pkg in DEPENDENCIES.items() if not shutil.which(tool)})
+def dependencies(require_ssh=True):
+    missing=sorted({pkg for tool,pkg in DEPENDENCIES.items() if (require_ssh or tool!='ssh') and not shutil.which(tool)})
     if not Path('/etc/ssl/certs/ca-certificates.crt').is_file():missing.append('ca-certificates')
     if missing:
-        if not shutil.which('apt-get'):raise ValueError('Python3, curl, OpenSSH, iproute2 and wireguard-tools are required.')
+        if not shutil.which('apt-get'):raise ValueError('Install the required tools first: '+', '.join(missing))
         print('Installing missing tools from the system repository; no full system upgrade...')
         subprocess.run(['apt-get','update','-qq'],check=True,timeout=300)
         subprocess.run(['apt-get','install','-y','--no-upgrade','--no-install-recommends',*missing],check=True,timeout=300,env={**os.environ,'DEBIAN_FRONTEND':'noninteractive'})

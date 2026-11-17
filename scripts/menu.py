@@ -264,10 +264,19 @@ class Menu:
             from easy_install import install_pair
         install_pair(role,peer,self.root)
 
+    def console_pair(self):
+        self.root_required()
+        if __package__:
+            from .code_install import run
+        else:
+            from code_install import run
+        run(ask=self.ask)
+
     def run(self):
         actions={'1':self.easy,'2':self.prepare,'3':self.stack,'4':self.overlays,'5':self.status,'6':self.test,'7':lambda:self.command(['journalctl','--no-pager','-n','60',*sum((['-u',u] for u in UNITS),[])],check=False),'8':self.core,'9':lambda:print('Prebuilt binaries: '+str(self.runtime()))}
+        actions['10']=self.console_pair
         while True:
-            print('\n=== NEXTGEN TUNNEL | Management Menu ===\n1) Easy install on both servers: role and peer IP only\n2) Advanced: prepare keys and configs\n3) Advanced: install / update engine and Site-to-Site\n4) Manage GRE / VXLAN / IPIP\n5) Service status\n6) Test connectivity\n7) View logs\n8) Manage standalone core\n9) Download / verify prebuilt bundle\n0) Exit')
+            print('\n=== NEXTGEN TUNNEL | Management Menu ===\n1) Easy install on both servers over SSH\n2) Advanced: prepare keys and configs\n3) Advanced: install / update engine and Site-to-Site\n4) Manage GRE / VXLAN / IPIP\n5) Service status\n6) Test connectivity\n7) View logs\n8) Manage standalone core\n9) Download / verify prebuilt bundle\n10) Install separately without SSH: pairing codes\n0) Exit')
             try:
                 choice=self.prompt('Select an option')
                 if choice=='0':return

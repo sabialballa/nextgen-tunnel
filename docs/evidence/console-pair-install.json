@@ -1,0 +1,20 @@
+{
+  "environment": "two fresh isolated Debian 12 amd64 VMs",
+  "inter_server_ssh_prohibited_both_directions": true,
+  "root_ssh_keys_exchanged": false,
+  "menu_listener_invitation": true,
+  "menu_initiator_import_and_reply": true,
+  "menu_listener_reply_acceptance": true,
+  "permanent_units_active_enabled_per_node": 6,
+  "connectivity_checks_passed_per_node": [
+    "ipv4",
+    "ipv6",
+    "gre",
+    "vxlan",
+    "ipip"
+  ],
+  "repeat_preserves_engine_pid_private_keys_and_host_routes": true,
+  "private_pairing_state_and_wg_key_mode": "0600",
+  "production_servers_modified": false,
+  "udp_stability_certified": false
+}
