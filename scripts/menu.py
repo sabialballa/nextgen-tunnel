@@ -15,6 +15,7 @@ import subprocess
 import sys
 import tarfile
 import tempfile
+import time
 import urllib.request
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -23,6 +24,7 @@ BUNDLE='nextgen-tunnel-0.3.0-rc3-linux-amd64-full.tar.gz'
 BUNDLE_SHA='85ac53b1e0e94e15ad53a92c2d33490321c4793aae8c52075de14b314106cc4f'
 CORE_SHA='96cec972279a1d7a02f13aed4dd6fd3029b581576edd8f48bc598abb9726433f'
 ENGINE_SHA='606f883d1aa3c624f38aa3f99bf0df02e3999f9aa0ff5826e0dd9c1b9f964baf'
+BUNDLE_BYTES=109378369
 UNITS=['nextgen-engine.service','nextgen-site.service','nextgen-site-watchdog.timer']+['nextgen-overlay-ngo-'+k+'.service' for k in ['gre','vxlan','ipip']]
 
 def user_id():return os.geteuid() if hasattr(os,'geteuid') else -1
@@ -48,6 +50,50 @@ def safe_directory(path):
     if st.st_uid!=user_id() or st.st_mode&0o077:raise ValueError('The data directory must be owned by you with mode 700: '+str(path))
     return path
 
+def fetch_bundle(cache):
+    """Keep partial bytes for a bounded, visible, resumable HTTPS download."""
+    local=cache/BUNDLE;partial=cache/(BUNDLE+'.part')
+    for path in (local,partial):
+        if path.is_symlink():raise ValueError('Unsafe download cache path.')
+    if local.is_file():
+        print('Using uploaded bundle: '+str(local),flush=True)
+        return local
+    offset=partial.stat().st_size if partial.exists() else 0
+    if offset>BUNDLE_BYTES:raise ValueError('Partial download exceeds the expected size; check '+str(partial))
+    if offset==BUNDLE_BYTES:return partial
+    print(f'Downloading full Linux x64 bundle: {offset/1024**2:.1f} / {BUNDLE_BYTES/1024**2:.1f} MiB. Partial downloads resume on retry.',flush=True)
+    headers={'User-Agent':'nextgen-menu/2','Accept-Encoding':'identity'}
+    if offset:headers['Range']=f'bytes={offset}-'
+    started=last=time.monotonic();received=0
+    try:
+        with urllib.request.urlopen(urllib.request.Request(RELEASE+BUNDLE,headers=headers),timeout=15) as response:
+            status=getattr(response,'status',200)
+            if status==206:
+                expected=f'bytes {offset}-'
+                content_range=response.headers.get('Content-Range','')
+                if not content_range.startswith(expected) or not content_range.endswith('/'+str(BUNDLE_BYTES)):raise ValueError('Invalid resume response; download refused.')
+            elif status==200:
+                if offset:print('Server did not support resume; restarting this download.',flush=True)
+                offset=0
+            else:raise ValueError('Unexpected download HTTP status: '+str(status))
+            with partial.open('ab' if offset else 'wb') as out:
+                read=getattr(response,'read1',response.read)
+                while True:
+                    if time.monotonic()-started>=180:raise TimeoutError('Download reached its 3-minute limit.')
+                    chunk=read(64*1024)
+                    if not chunk:break
+                    offset+=len(chunk);received+=len(chunk)
+                    if offset>BUNDLE_BYTES:raise ValueError('Download exceeds the expected bundle size.')
+                    out.write(chunk)
+                    now=time.monotonic()
+                    if now-last>=2:
+                        print(f'Download progress: {offset/1024**2:.1f}/{BUNDLE_BYTES/1024**2:.1f} MiB ({100*offset/BUNDLE_BYTES:.1f}%), {received/1024/max(now-started,0.01):.0f} KiB/s',flush=True);last=now
+        if offset<BUNDLE_BYTES:raise ValueError('Incomplete download; SHA256 cannot be verified yet. Run this option again to resume.')
+    except OSError as exc:
+        raise ValueError('Download stopped: '+str(exc)+'. Run this option again to resume. If GitHub is unreachable, download '+RELEASE+BUNDLE+' on another network and upload it to '+str(local)) from None
+    print('Download complete. Checking SHA256 and extracting the bundle...',flush=True)
+    return partial
+
 def download_bundle(cache):
     """Pinned archive plus manifest, safe extraction, publish cache atomically."""
     if __package__:
@@ -58,19 +104,25 @@ def download_bundle(cache):
     if ready.exists():
         if ready.is_symlink() or digest(ready/'bin/nextgen-tunnel')!=CORE_SHA or digest(ready/'bin/sing-box')!=ENGINE_SHA:raise ValueError('The cached bundle has changed; check the cache directory.')
         return ready
+    # Also used outside the node installer (menu option 9): serialize this cache.
+    lock_path=cache/'download.lock'
+    if lock_path.is_symlink():raise ValueError('Unsafe download lock.')
+    with lock_path.open('a+b') as lock:
+        if os.name=='posix':
+            import fcntl
+            try:fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
+            except BlockingIOError:raise ValueError('Another bundle download is running; retry after it finishes.')
+        return _download_bundle_locked(cache,ready)
+
+def _download_bundle_locked(cache,ready):
+    if ready.exists():return ready
+    archive=fetch_bundle(cache)
+    if archive.stat().st_size>BUNDLE_BYTES:raise ValueError('Bundle exceeds the expected size.')
     with tempfile.TemporaryDirectory(prefix='download-',dir=cache) as temp:
-        work=Path(temp);archive=work/BUNDLE
-        print('Downloading full Linux x64 bundle (about 104 MiB)...')
-        request=urllib.request.Request(RELEASE+BUNDLE,headers={'User-Agent':'nextgen-menu/1'})
-        with urllib.request.urlopen(request,timeout=30) as response,archive.open('xb') as out:
-            size=0
-            while True:
-                chunk=response.read(1<<20)
-                if not chunk:break
-                size+=len(chunk)
-                if size>160*1024**2:raise ValueError('Download exceeds the size limit.')
-                out.write(chunk)
-        if digest(archive)!=BUNDLE_SHA:raise ValueError('Bundle SHA256 mismatch; execution refused.')
+        work=Path(temp)
+        if digest(archive)!=BUNDLE_SHA:
+            if archive==cache/(BUNDLE+'.part'):archive.unlink()
+            raise ValueError('Bundle SHA256 mismatch; execution refused. Retry the download or replace the uploaded archive.')
         verify(archive)
         extracted=work/'runtime';extracted.mkdir(mode=0o700)
         with tarfile.open(archive,'r:gz') as bundle:

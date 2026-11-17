@@ -10,6 +10,46 @@ from unittest import mock
 from scripts import menu
 
 class MenuTests(unittest.TestCase):
+    def response(self,data,status=200,headers=None):
+        response=io.BytesIO(data);response.status=status;response.headers=headers or {};return response
+
+    def test_interrupted_download_resumes_with_validated_range(self):
+        with tempfile.TemporaryDirectory() as directory,contextlib.redirect_stdout(io.StringIO()):
+            cache=Path(directory)
+            with mock.patch.object(menu,'BUNDLE_BYTES',6),mock.patch('urllib.request.urlopen',return_value=self.response(b'ab')):
+                with self.assertRaisesRegex(ValueError,'resume'):menu.fetch_bundle(cache)
+            self.assertEqual((cache/(menu.BUNDLE+'.part')).read_bytes(),b'ab')
+            with mock.patch.object(menu,'BUNDLE_BYTES',6),mock.patch('urllib.request.urlopen',return_value=self.response(b'cdef',206,{'Content-Range':'bytes 2-5/6'})) as network:
+                self.assertEqual(menu.fetch_bundle(cache).read_bytes(),b'abcdef')
+                self.assertEqual(network.call_args.args[0].get_header('Range'),'bytes=2-')
+
+    def test_wrong_resume_offset_is_rejected_without_appending(self):
+        with tempfile.TemporaryDirectory() as directory,contextlib.redirect_stdout(io.StringIO()):
+            cache=Path(directory);partial=cache/(menu.BUNDLE+'.part');partial.write_bytes(b'ab')
+            with mock.patch.object(menu,'BUNDLE_BYTES',6),mock.patch('urllib.request.urlopen',return_value=self.response(b'cdef',206,{'Content-Range':'bytes 0-3/6'})):
+                with self.assertRaisesRegex(ValueError,'resume response'):menu.fetch_bundle(cache)
+            self.assertEqual(partial.read_bytes(),b'ab')
+
+    def test_server_ignoring_range_restarts_instead_of_corrupting_file(self):
+        with tempfile.TemporaryDirectory() as directory,contextlib.redirect_stdout(io.StringIO()):
+            cache=Path(directory);(cache/(menu.BUNDLE+'.part')).write_bytes(b'ab')
+            with mock.patch.object(menu,'BUNDLE_BYTES',6),mock.patch('urllib.request.urlopen',return_value=self.response(b'abcdef')):
+                self.assertEqual(menu.fetch_bundle(cache).read_bytes(),b'abcdef')
+
+    def test_download_deadline_keeps_partial_for_retry(self):
+        with tempfile.TemporaryDirectory() as directory,contextlib.redirect_stdout(io.StringIO()):
+            cache=Path(directory)
+            with mock.patch('urllib.request.urlopen',return_value=self.response(b'abcdef')),mock.patch('scripts.menu.time.monotonic',side_effect=[0,181]):
+                with self.assertRaisesRegex(ValueError,'3-minute limit'):menu.fetch_bundle(cache)
+            self.assertTrue((cache/(menu.BUNDLE+'.part')).exists())
+
+    def test_uploaded_archive_avoids_network_but_still_requires_hash(self):
+        with tempfile.TemporaryDirectory() as directory,contextlib.redirect_stdout(io.StringIO()):
+            cache=Path(directory);(cache/menu.BUNDLE).write_bytes(b'wrong bundle')
+            with mock.patch.object(menu,'safe_directory',return_value=cache),mock.patch('urllib.request.urlopen') as network,mock.patch('scripts.verify_bundle.verify') as verify:
+                with self.assertRaisesRegex(ValueError,'SHA256'):menu.download_bundle(cache)
+            network.assert_not_called();verify.assert_not_called()
+
     def test_open_and_exit_has_no_network_commands_or_writes(self):
         with mock.patch('urllib.request.urlopen') as network,mock.patch('subprocess.run') as command,mock.patch.object(Path,'mkdir') as mkdir,contextlib.redirect_stdout(io.StringIO()) as output:
             menu.Menu(ask=lambda _: '0').run()

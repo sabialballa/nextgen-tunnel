@@ -106,7 +106,7 @@ class SSH:
                 finally:self.messages.put(None)
             def drain():
                 for line in self.process.stderr:
-                    if line.startswith('Downloading full Linux x64 bundle'):print('Peer: '+line.strip(),flush=True)
+                    if line.startswith(('Downloading full Linux x64 bundle','Download progress:','Download complete.','Using uploaded bundle:','Server did not support resume')):print('Peer: '+line.strip(),flush=True)
             threading.Thread(target=reader,daemon=True).start();threading.Thread(target=drain,daemon=True).start()
             ready=self.messages.get(timeout=30)
             if not ready or not ready.get('ready'):raise ValueError((ready or {}).get('error','Invalid response from the peer installer.'))
