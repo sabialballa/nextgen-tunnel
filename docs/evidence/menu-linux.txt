@@ -1,0 +1,14 @@
+TLS1.3 certificate/name validation: OK
+test_apply_uses_the_same_reviewed_arguments (tests.test_menu.MenuTests.test_apply_uses_the_same_reviewed_arguments) ... ok
+test_arm_cannot_download_or_execute_amd64_runtime (tests.test_menu.MenuTests.test_arm_cannot_download_or_execute_amd64_runtime) ... ok
+test_cancel_does_not_apply (tests.test_menu.MenuTests.test_cancel_does_not_apply) ... ok
+test_eof_leaves_menu_without_commands (tests.test_menu.MenuTests.test_eof_leaves_menu_without_commands) ... ok
+test_invalid_handshake_never_creates_profile (tests.test_menu.MenuTests.test_invalid_handshake_never_creates_profile) ... ok
+test_open_and_exit_has_no_network_commands_or_writes (tests.test_menu.MenuTests.test_open_and_exit_has_no_network_commands_or_writes) ... ok
+test_site_wizard_keeps_private_config_and_only_loopback_carrier (tests.test_menu.MenuTests.test_site_wizard_keeps_private_config_and_only_loopback_carrier) ... ok
+test_wrong_download_is_rejected_before_archive_parsing (tests.test_menu.MenuTests.test_wrong_download_is_rejected_before_archive_parsing) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.298s
+
+OK

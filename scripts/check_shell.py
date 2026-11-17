@@ -20,7 +20,7 @@ def main():
     if "GNU bash" not in version:
         raise ValueError("rendered legacy scripts require GNU Bash for syntax validation")
     count = 0
-    for path in (ROOT / "scripts").glob("*.sh"):
+    for path in [ROOT / 'menu.sh', *(ROOT / "scripts").glob("*.sh")]:
         subprocess.run([a.shell, "-n"], input=path.read_text(), text=True, check=True, capture_output=True)
         count += 1
     config = json.loads((ROOT / "deployment.example.json").read_text())

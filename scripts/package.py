@@ -11,7 +11,7 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 DIRECTORIES = ("cmd", "internal", "scripts", "systemd", "configs/examples", "tests", "docs")
-TOP = ("go.mod", "go.sum", "README.md", "NEXTGEN.md", "LICENSE", "THIRD_PARTY_NOTICES.md", "agent.py", "model.py", "tunnelctl.py", "deployment.example.json", ".gitignore", ".gitattributes", ".github/workflows/checks.yml", ".github/workflows/nextgen.yml", "patches/sing-box-v1.14.4-dependencies.patch")
+TOP = ("menu.sh", "go.mod", "go.sum", "README.md", "NEXTGEN.md", "LICENSE", "THIRD_PARTY_NOTICES.md", "agent.py", "model.py", "tunnelctl.py", "deployment.example.json", ".gitignore", ".gitattributes", ".github/workflows/checks.yml", ".github/workflows/nextgen.yml", "patches/sing-box-v1.14.4-dependencies.patch")
 
 def sources():
     paths = [ROOT / p for p in TOP]
