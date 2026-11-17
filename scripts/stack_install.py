@@ -32,6 +32,21 @@ PRE_REDUNDANCY_FILES=set(FILES)
 FILES=FILES+(str(ETC/'redundancy.json'),)
 
 def run(args,check=True):return subprocess.run([str(v) for v in args],capture_output=True,text=True,check=check,timeout=60)
+
+def start_unit(unit):
+    try:run(['systemctl','start',unit])
+    except subprocess.CalledProcessError:
+        if unit!='nextgen-site.service':raise
+        # Capture the child diagnostic before transaction rollback removes files.
+        detail='See journalctl -u nextgen-site.service -b --no-pager -n 40'
+        try:
+            journal=run(['journalctl','-u',unit,'-b','--no-pager','-n','40','-o','cat'],check=False)
+            lines=[line for line in journal.stdout.splitlines() if line.startswith('site operation failed:')]
+            if lines:detail=lines[-1]
+        except (OSError,subprocess.SubprocessError):pass
+        detail=re.sub(r'(?im)((?:PrivateKey|PresharedKey)\s*=)\s*[^\r\n]*',r'\1 [redacted]',detail)
+        detail=re.sub(r'[A-Za-z0-9+/]{43}=', '[redacted-key]', detail)
+        raise ValueError('nextgen-site.service: '+detail[-2000:]) from None
 def digest(data):return hashlib.sha256(data).hexdigest()
 def hashes(files):return {k:digest(v) for k,v in files.items()}
 def load(path):
@@ -245,7 +260,7 @@ def main():
                 run(['systemctl','daemon-reload'])
                 for u in UNITS:
                     if not u.endswith('watchdog.service'):run(['systemctl','enable',u])
-                    run(['systemctl','start',u])
+                    start_unit(u)
                 health(wait=25);atomic(MARKER,json.dumps(dict(hashes=hashes(files),backup=journal['backup'])).encode())
             JOURNAL.unlink()
         except BaseException:

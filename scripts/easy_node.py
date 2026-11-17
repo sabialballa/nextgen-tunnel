@@ -82,7 +82,8 @@ class Node:
             else:
                 from host_install import atomic
             atomic(STATE/'last-error.log',r.stdout+b'\n'+r.stderr)
-            raise ValueError('Installation step failed; private log: '+str(STATE/'last-error.log'))
+            detail=[line for line in r.stderr.decode(errors='replace').splitlines() if line.startswith('stack operation failed: nextgen-site.service:')]
+            raise ValueError('Installation step failed; private log: '+str(STATE/'last-error.log')+(' | '+detail[-1] if detail else ''))
         return r.stdout.decode().strip()
 
     def metadata(self,data):

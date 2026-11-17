@@ -18,7 +18,16 @@ import subprocess
 import sys
 
 STATE=Path('/var/lib/nextgen-sites')
-def run(args,data=None):return subprocess.run(args,input=data,check=True,capture_output=True,text=True).stdout
+def safe_error(text):
+    text=re.sub(r'(?im)((?:PrivateKey|PresharedKey)\s*=)\s*[^\r\n]*',r'\1 [redacted]',text)
+    return re.sub(r'[A-Za-z0-9+/]{43}=', '[redacted-key]', text).strip()[-2000:]
+
+def run(args,data=None):
+    result=subprocess.run(args,input=data,capture_output=True,text=True)
+    if result.returncode:
+        detail=safe_error(result.stderr or 'No error details returned.')
+        raise ValueError(f'{Path(args[0]).name} {args[1] if len(args)>1 else ""} failed (exit {result.returncode}): {detail}')
+    return result.stdout
 def key(value):
     if len(base64.b64decode(value,validate=True))!=32:raise ValueError('invalid WireGuard key')
     return value
@@ -88,4 +97,7 @@ def main():
         if namespace_created and ns.exists():subprocess.run(['ip','netns','del',name],capture_output=True)
         config.unlink(missing_ok=True);marker.unlink(missing_ok=True);path.rmdir();raise
     print('site namespace ready; peer handshake requires the loopback carrier')
-if __name__=='__main__':main()
+if __name__=='__main__':
+    try:main()
+    except (ValueError,OSError,KeyError,subprocess.SubprocessError) as exc:
+        print('site operation failed: '+safe_error(str(exc)),file=sys.stderr);raise SystemExit(1)
