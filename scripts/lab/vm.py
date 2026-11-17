@@ -21,7 +21,7 @@ LAB=ROOT/".private/linux-lab"
 def hidden():
     return {"creationflags":subprocess.CREATE_NO_WINDOW} if os.name=="nt" else {"start_new_session":True}
 
-def start(name,ssh_port,seed_port,accelerator):
+def start(name,ssh_port,seed_port,accelerator,memory=3072,pair_listen=None,pair_connect=None):
     directory=LAB/name
     directory.mkdir(parents=True,exist_ok=True)
     if (directory/"running.json").exists():raise ValueError("existing VM state; inspect before restarting")
@@ -48,13 +48,18 @@ def start(name,ssh_port,seed_port,accelerator):
     for name_log in ("http.stdout","http.stderr","qemu.stdout","qemu.stderr"):
         logs.append(open(directory/name_log,"ab"))
     http=subprocess.Popen([sys.executable,str(Path(__file__).resolve()),"serve","--directory",str(seed),"--port",str(seed_port)],stdout=logs[0],stderr=logs[1],**hidden())
-    args=[str(qemu),"-name","nextgen-lab-"+name,"-machine","q35","-accel","whpx","-accel","tcg,thread=multi","-smp","2","-m","3072","-drive",f"file={disk},if=virtio,format=qcow2","-netdev",f"user,id=n0,hostfwd=tcp:127.0.0.1:{ssh_port}-:22","-device","virtio-net-pci,netdev=n0","-display","none","-monitor","none","-serial","file:"+str(directory/"serial.log"),"-smbios",f"type=1,serial=ds=nocloud-net;s=http://10.0.2.2:{seed_port}/"]
+    args=[str(qemu),"-name","nextgen-lab-"+name,"-machine","q35","-accel","whpx","-accel","tcg,thread=multi","-smp","2","-m",str(memory),"-drive",f"file={disk},if=virtio,format=qcow2","-netdev",f"user,id=n0,hostfwd=tcp:127.0.0.1:{ssh_port}-:22","-device","virtio-net-pci,netdev=n0","-display","none","-monitor","none","-serial","file:"+str(directory/"serial.log"),"-smbios",f"type=1,serial=ds=nocloud-net;s=http://10.0.2.2:{seed_port}/"]
+    if pair_listen or pair_connect:
+        import hashlib
+        mac='52:54:01:'+':'.join(f'{v:02x}' for v in hashlib.sha256(name.encode()).digest()[:3])
+        endpoint='listen' if pair_listen else 'connect';port=pair_listen or pair_connect
+        args+=['-netdev',f'socket,id=pair,{endpoint}=127.0.0.1:{port}','-device',f'virtio-net-pci,netdev=pair,mac={mac}']
     if accelerator=='tcg':args[args.index('-accel'):args.index('-smp')]=['-accel','tcg,thread=multi']
     try:
         vm=subprocess.Popen(args,stdout=logs[2],stderr=logs[3],**hidden())
         time.sleep(1)
         if vm.poll() is not None:raise RuntimeError("QEMU exited; inspect private qemu.stderr")
-        (directory/"running.json").write_text(json.dumps(dict(vm_pid=vm.pid,http_pid=http.pid,ssh_port=ssh_port,seed_port=seed_port,started=time.time())))
+        (directory/"running.json").write_text(json.dumps(dict(vm_pid=vm.pid,http_pid=http.pid,ssh_port=ssh_port,seed_port=seed_port,started=time.time(),memory_mib=memory,pair_port=pair_listen or pair_connect)))
     except BaseException:
         http.terminate();http.wait();raise
     finally:
@@ -68,6 +73,7 @@ def ssh_args(name):
 def main():
     p=argparse.ArgumentParser(description=__doc__);sp=p.add_subparsers(dest="action",required=True)
     s=sp.add_parser("start");s.add_argument("--name",default="debian12");s.add_argument("--ssh-port",type=int,default=22287);s.add_argument("--seed-port",type=int,default=18083);s.add_argument('--accelerator',choices=('whpx','tcg'),default='whpx')
+    s.add_argument('--memory',type=int,default=3072);pair=s.add_mutually_exclusive_group();pair.add_argument('--pair-listen',type=int);pair.add_argument('--pair-connect',type=int)
     s=sp.add_parser("serve");s.add_argument("--directory",required=True);s.add_argument("--port",type=int,required=True)
     s=sp.add_parser("ssh");s.add_argument("--name",default="debian12");s.add_argument("command",nargs="?",default="uname -a; systemctl is-system-running")
     for action in ("push","pull"):
@@ -75,7 +81,8 @@ def main():
     a=p.parse_args()
     if a.action=="start":
         if not a.name.replace("-","").isalnum():p.error("invalid name")
-        start(a.name,a.ssh_port,a.seed_port,a.accelerator)
+        if not 512<=a.memory<=8192 or any(v is not None and not 1024<=v<=65535 for v in (a.pair_listen,a.pair_connect)):p.error('bounded lab memory/loopback pair port required')
+        start(a.name,a.ssh_port,a.seed_port,a.accelerator,a.memory,a.pair_listen,a.pair_connect)
     elif a.action=="serve":
         handler=functools.partial(http.server.SimpleHTTPRequestHandler,directory=a.directory)
         http.server.ThreadingHTTPServer(("127.0.0.1",a.port),handler).serve_forever()

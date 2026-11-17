@@ -252,10 +252,22 @@ class Menu:
         if action in ('install','update'):args+=['--binary',str(self.runtime()/'nextgen-tunnel'),'--sha256',CORE_SHA,'--config',str(self.path('تنظیم server.json یا client.json همین سمت'))]
         self.apply(args,'این گزینه فقط سرویس مستقل nextgen-tunnel را مدیریت می‌کند؛ '+action)
 
+    def easy(self):
+        self.root_required()
+        print('\nنصب خودکار روی هر دو سرور؛ اتصال SSH به حساب root طرف مقابل لازم است.\nکلیدها و تنظیمات ساخته و مبادله می‌شوند؛ نیازی به فایل JSON نیست.\nSSH ممکن است یک‌بار رمز یا تأیید اثرانگشت بخواهد؛ رمز ذخیره نمی‌شود.')
+        role={'1':'listener','2':'initiator'}.get(self.prompt('نقش همین سرور: 1=ایران / listener، 2=خارج / initiator'))
+        if not role:raise ValueError('نقش نامعتبر است.')
+        peer=str(ipaddress.IPv4Address(self.prompt('IP طرف مقابل')))
+        if __package__:
+            from .easy_install import install_pair
+        else:
+            from easy_install import install_pair
+        install_pair(role,peer,self.root)
+
     def run(self):
-        actions={'1':lambda:print('باینری آماده: '+str(self.runtime())),'2':self.prepare,'3':self.stack,'4':self.overlays,'5':self.status,'6':self.test,'7':lambda:self.command(['journalctl','--no-pager','-n','60',*sum((['-u',u] for u in UNITS),[])],check=False),'8':self.core}
+        actions={'1':self.easy,'2':self.prepare,'3':self.stack,'4':self.overlays,'5':self.status,'6':self.test,'7':lambda:self.command(['journalctl','--no-pager','-n','60',*sum((['-u',u] for u in UNITS),[])],check=False),'8':self.core,'9':lambda:print('باینری آماده: '+str(self.runtime()))}
         while True:
-            print('\n=== NEXTGEN TUNNEL | منوی مدیریت ===\n1) دریافت / بررسی بستهٔ آماده\n2) آماده‌سازی کلید و تنظیمات\n3) نصب / به‌روزرسانی engine و Site-to-Site\n4) مدیریت GRE / VXLAN / IPIP\n5) وضعیت سرویس‌ها\n6) تست اتصال\n7) گزارش خطاها\n8) مدیریت هستهٔ مستقل\n0) خروج')
+            print('\n=== NEXTGEN TUNNEL | منوی مدیریت ===\n1) نصب سادهٔ هر دو سرور؛ فقط نقش و IP\n2) پیشرفته: آماده‌سازی کلید و تنظیمات\n3) پیشرفته: نصب / به‌روزرسانی engine و Site-to-Site\n4) مدیریت GRE / VXLAN / IPIP\n5) وضعیت سرویس‌ها\n6) تست اتصال\n7) گزارش خطاها\n8) مدیریت هستهٔ مستقل\n9) دریافت / بررسی بستهٔ آماده\n0) خروج')
             try:
                 choice=self.prompt('انتخاب')
                 if choice=='0':return

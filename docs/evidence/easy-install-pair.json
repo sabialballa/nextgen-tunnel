@@ -1,0 +1,22 @@
+{
+  "environment": "two fresh isolated Debian 12 amd64 local VMs",
+  "production_servers_modified": false,
+  "first_install_both_nodes": true,
+  "permanent_units_active_enabled_per_node": 6,
+  "connectivity_checks_passed_per_node": [
+    "ipv4",
+    "ipv6",
+    "gre",
+    "vxlan",
+    "ipip"
+  ],
+  "repeat_listener": true,
+  "repeat_initiator": true,
+  "repeat_preserves_engine_pid": true,
+  "repeat_preserves_private_keys": true,
+  "repeat_preserves_host_routes": true,
+  "wrong_role_refused_without_changes": true,
+  "private_state_directory_mode": "0700",
+  "private_state_and_wireguard_keys_mode": "0600",
+  "performance_or_udp_stability_certified": false
+}
