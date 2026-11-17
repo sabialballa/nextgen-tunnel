@@ -96,8 +96,8 @@ def preflight():
         raise ValueError("installation requires Linux with systemd")
     release = dict(line.split("=", 1) for line in Path("/etc/os-release").read_text().splitlines() if "=" in line)
     distro, version = (release.get(k, "").strip('"') for k in ("ID", "VERSION_ID"))
-    if (distro, version) not in (("ubuntu", "22.04"), ("ubuntu", "24.04"), ("debian", "12"), ("debian", "13")):
-        raise ValueError("unsupported distribution/version")
+    if (distro, version) not in (("ubuntu", "22.04"), ("ubuntu", "24.04"), ("ubuntu", "26.04"), ("debian", "12"), ("debian", "13")):
+        raise ValueError(f"unsupported distribution/version: {distro or 'unknown'} {version or 'unknown'}; supported: Ubuntu 22.04/24.04/26.04, Debian 12/13")
     if not Path("/run/systemd/system").exists():
         raise ValueError("systemd is not running")
     for tool in ("systemctl", "ss", "ip", "runuser", "useradd"):

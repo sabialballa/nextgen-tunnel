@@ -10,6 +10,25 @@ installer = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(installer)
 
 class InstallerSafetyTests(unittest.TestCase):
+    def test_ubuntu_2604_passes_preflight_without_mutating_system(self):
+        release='ID=ubuntu\nVERSION_ID="26.04"\nPRETTY_NAME="Ubuntu 26.04.1 LTS"\n'
+        fake=SimpleNamespace(returncode=0,stdout='test inventory')
+        with patch.object(installer.sys,'platform','linux'),patch.object(installer.Path,'read_text',return_value=release),patch.object(installer.Path,'exists',return_value=True),patch.object(installer.shutil,'which',return_value='/usr/bin/tool'),patch.object(installer,'run',return_value=fake) as run:
+            report=installer.preflight()
+        self.assertEqual((report['distribution'],report['version']),('ubuntu','26.04'))
+        self.assertFalse(report['firewall_changes']);self.assertFalse(report['route_changes'])
+        self.assertEqual([c.args[0][0] for c in run.call_args_list],['ss','ip','systemctl','systemctl','nft'])
+
+    def test_unknown_release_still_stops_before_commands(self):
+        with patch.object(installer.sys,'platform','linux'),patch.object(installer.Path,'read_text',return_value='ID=ubuntu\nVERSION_ID="27.04"\n'),patch.object(installer,'run') as run:
+            with self.assertRaisesRegex(ValueError,'unsupported distribution/version: ubuntu 27.04'):installer.preflight()
+        run.assert_not_called()
+
+    def test_ubuntu_2604_still_requires_system_tools(self):
+        with patch.object(installer.sys,'platform','linux'),patch.object(installer.Path,'read_text',return_value='ID=ubuntu\nVERSION_ID="26.04"\n'),patch.object(installer.Path,'exists',return_value=True),patch.object(installer.shutil,'which',return_value=None),patch.object(installer,'run') as run:
+            with self.assertRaisesRegex(ValueError,'missing prerequisite: systemctl'):installer.preflight()
+        run.assert_not_called()
+
     def test_atomic_replacement_and_rollback_of_partial_install(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
