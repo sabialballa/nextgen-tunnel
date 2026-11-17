@@ -16,8 +16,10 @@ import secrets
 import shutil
 import subprocess
 import sys
+import tempfile
 
 STATE=Path('/var/lib/nextgen-sites')
+WIREGUARD_DIR=Path('/etc/wireguard')
 def safe_error(text):
     text=re.sub(r'(?im)((?:PrivateKey|PresharedKey)\s*=)\s*[^\r\n]*',r'\1 [redacted]',text)
     return re.sub(r'[A-Za-z0-9+/]{43}=', '[redacted-key]', text).strip()[-2000:]
@@ -31,6 +33,30 @@ def run(args,data=None):
 def key(value):
     if len(base64.b64decode(value,validate=True))!=32:raise ValueError('invalid WireGuard key')
     return value
+
+def wireguard_directory():
+    """Use the standard path permitted by distribution WireGuard profiles."""
+    directory=WIREGUARD_DIR
+    if any(p.is_symlink() for p in (directory,*directory.parents)):raise ValueError('symlink in WireGuard configuration path')
+    directory.mkdir(mode=0o700,exist_ok=True)
+    st=directory.stat()
+    if st.st_uid!=0 or st.st_mode&0o022:raise ValueError('WireGuard configuration directory must be root-owned and not writable by other users')
+    return directory
+
+def apply_wireguard_config(interface,text):
+    # Ubuntu's wg AppArmor profile permits /etc/wireguard, not arbitrary state
+    # paths. Do not disable confinement, broaden permissions, or pass keys in argv.
+    directory=wireguard_directory()
+    fd,name=tempfile.mkstemp(prefix='nextgen-site-',suffix='.conf',dir=directory)
+    config=Path(name)
+    try:
+        with os.fdopen(fd,'w') as handle:
+            if hasattr(os,'fchmod'):os.fchmod(handle.fileno(),0o600)
+            else:config.chmod(0o600)
+            handle.write(text)
+        run(['wg','setconf',interface,str(config)])
+    finally:
+        config.unlink(missing_ok=True)
 def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('action',choices=('keygen','create','status','remove'));p.add_argument('--config',type=Path);p.add_argument('--directory',type=Path);p.add_argument('--name');p.add_argument('--apply',action='store_true');p.add_argument('--recover-boot',action='store_true',help='recreate owned state after a different boot, never an unknown namespace');a=p.parse_args()
     if sys.platform!='linux' or not shutil.which('wg') or not shutil.which('ip'):p.error('Linux, iproute2 and wireguard-tools are required')
@@ -83,11 +109,11 @@ def main():
     path.mkdir(mode=0o700);text=f'[Interface]\nPrivateKey = {private}\nListenPort = {port}\n[Peer]\nPublicKey = {peer}\nAllowedIPs = '+', '.join(routes)+f'\nPersistentKeepalive = {keepalive}\n'
     if psk:text+='PresharedKey = '+psk+'\n'
     if endpoint:text+='Endpoint = '+endpoint+'\n'
-    config=path/'wg.conf';config.write_text(text);config.chmod(0o600)
+    config=path/'wg.conf' # Legacy cleanup only; private config is now ephemeral.
     temporary='ngw'+secrets.token_hex(4);created=False;in_ns=False;namespace_created=False
     try:
         run(['ip','netns','add',name]);namespace_created=True;inode=ns.stat().st_ino;marker.write_text(json.dumps(dict(inode=inode,config=cfg,boot_id=boot_id)));marker.chmod(0o600)
-        run(['ip','link','add',temporary,'type','wireguard']);created=True;run(['wg','setconf',temporary,str(config)])
+        run(['ip','link','add',temporary,'type','wireguard']);created=True;apply_wireguard_config(temporary,text)
         run(['ip','link','set',temporary,'netns',name]);in_ns=True;run(['ip','-n',name,'link','set',temporary,'name','wg0']);run(['ip','-n',name,'link','set','lo','up'])
         for address in addresses:run(['ip','-n',name,'address','add',address,'dev','wg0'])
         run(['ip','-n',name,'link','set','wg0','mtu',str(mtu),'up'])

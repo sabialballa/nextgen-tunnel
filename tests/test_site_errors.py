@@ -1,7 +1,7 @@
 import importlib.util
 from pathlib import Path
 from types import SimpleNamespace
-import subprocess,sys,unittest
+import os,subprocess,sys,tempfile,unittest
 from unittest import mock
 
 SCRIPTS=Path(__file__).resolve().parents[1]/'scripts'
@@ -14,6 +14,33 @@ site=module('nextgen_site_errors','site.py')
 stack=module('nextgen_stack_errors','stack_install.py')
 
 class SiteDiagnosticTests(unittest.TestCase):
+    def test_config_uses_allowed_directory_and_private_mode_then_is_removed(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);other=root/'existing-vpn.conf';other.write_text('untouched')
+            text='[Interface]\nPrivateKey = '+'A'*43+'=\n'
+            def execute(args):
+                config=Path(args[-1]);self.assertEqual(config.parent,root)
+                self.assertEqual(config.read_text(),text)
+                if os.name=='posix':self.assertEqual(config.stat().st_mode&0o777,0o600)
+                self.assertNotIn(text,args)
+            with mock.patch.object(site,'wireguard_directory',return_value=root),mock.patch.object(site,'run',side_effect=execute):site.apply_wireguard_config('test-interface',text)
+            self.assertEqual(list(root.iterdir()),[other]);self.assertEqual(other.read_text(),'untouched')
+
+    def test_failed_setconf_removes_only_its_own_private_temporary_file(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);other=root/'existing-vpn.conf';other.write_text('untouched')
+            with mock.patch.object(site,'wireguard_directory',return_value=root),mock.patch.object(site,'run',side_effect=ValueError('test failure')):
+                with self.assertRaises(ValueError):site.apply_wireguard_config('test-interface','private test config')
+            self.assertEqual(list(root.iterdir()),[other])
+
+    @unittest.skipUnless(os.name=='posix','POSIX ownership and modes')
+    def test_insecure_directory_is_refused_without_changing_existing_mode(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);root.chmod(0o777)
+            with mock.patch.object(site,'WIREGUARD_DIR',root):
+                with self.assertRaisesRegex(ValueError,'root-owned'):site.wireguard_directory()
+            self.assertEqual(root.stat().st_mode&0o777,0o777)
+
     def test_wireguard_error_retains_reason_but_redacts_key(self):
         secret='A'*43+'='
         result=SimpleNamespace(returncode=1,stdout='',stderr='Unable to modify interface: Address already in use\nPrivateKey = '+secret)
