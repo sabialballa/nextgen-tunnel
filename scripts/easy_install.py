@@ -8,8 +8,10 @@ from pathlib import Path,PurePosixPath
 import platform,queue,shlex,shutil,subprocess,sys,tarfile,tempfile,threading,uuid
 if __package__:
     from .easy_node import Node
+    from .menu import progress_line
 else:
     from easy_node import Node
+    from menu import progress_line
 
 ROOT=Path(__file__).resolve().parents[1]
 DEPENDENCIES={'ssh':'openssh-client','curl':'curl','ip':'iproute2','ss':'iproute2','wg':'wireguard-tools','openssl':'openssl','ping':'iputils-ping'}
@@ -106,7 +108,8 @@ class SSH:
                 finally:self.messages.put(None)
             def drain():
                 for line in self.process.stderr:
-                    if line.startswith(('Downloading full Linux x64 bundle','Download progress:','Download complete.','Using uploaded bundle:','Server did not support resume')):print('Peer: '+line.strip(),flush=True)
+                    if line.startswith(('Downloading full Linux x64 bundle','Download progress:','Download complete.','Using uploaded bundle:','Server did not support resume')):
+                        progress_line('Peer: '+line.strip(),finish=line.startswith(('Download complete.','Using uploaded bundle:')))
             threading.Thread(target=reader,daemon=True).start();threading.Thread(target=drain,daemon=True).start()
             ready=self.messages.get(timeout=30)
             if not ready or not ready.get('ready'):raise ValueError((ready or {}).get('error','Invalid response from the peer installer.'))

@@ -50,6 +50,11 @@ def safe_directory(path):
     if st.st_uid!=user_id() or st.st_mode&0o077:raise ValueError('The data directory must be owned by you with mode 700: '+str(path))
     return path
 
+def progress_line(message,finish=False):
+    """Update one terminal row; keep piped output readable as normal lines."""
+    if sys.stdout.isatty():print('\r\033[2K'+message,end='\n' if finish else '',flush=True)
+    else:print(message,flush=True)
+
 def fetch_bundle(cache):
     """Keep partial bytes for a bounded, visible, resumable HTTPS download."""
     local=cache/BUNDLE;partial=cache/(BUNDLE+'.part')
@@ -61,7 +66,7 @@ def fetch_bundle(cache):
     offset=partial.stat().st_size if partial.exists() else 0
     if offset>BUNDLE_BYTES:raise ValueError('Partial download exceeds the expected size; check '+str(partial))
     if offset==BUNDLE_BYTES:return partial
-    print(f'Downloading full Linux x64 bundle: {offset/1024**2:.1f} / {BUNDLE_BYTES/1024**2:.1f} MiB. Partial downloads resume on retry.',flush=True)
+    progress_line(f'Downloading full Linux x64 bundle: {100*offset/BUNDLE_BYTES:.1f}% | {offset/1024**2:.1f}/{BUNDLE_BYTES/1024**2:.1f} MiB | connecting...')
     headers={'User-Agent':'nextgen-menu/2','Accept-Encoding':'identity'}
     if offset:headers['Range']=f'bytes={offset}-'
     started=last=time.monotonic();received=0
@@ -73,7 +78,7 @@ def fetch_bundle(cache):
                 content_range=response.headers.get('Content-Range','')
                 if not content_range.startswith(expected) or not content_range.endswith('/'+str(BUNDLE_BYTES)):raise ValueError('Invalid resume response; download refused.')
             elif status==200:
-                if offset:print('Server did not support resume; restarting this download.',flush=True)
+                if offset:progress_line('Server did not support resume; restarting this download.')
                 offset=0
             else:raise ValueError('Unexpected download HTTP status: '+str(status))
             with partial.open('ab' if offset else 'wb') as out:
@@ -87,10 +92,13 @@ def fetch_bundle(cache):
                     out.write(chunk)
                     now=time.monotonic()
                     if now-last>=2:
-                        print(f'Download progress: {offset/1024**2:.1f}/{BUNDLE_BYTES/1024**2:.1f} MiB ({100*offset/BUNDLE_BYTES:.1f}%), {received/1024/max(now-started,0.01):.0f} KiB/s',flush=True);last=now
+                        progress_line(f'Download progress: {100*offset/BUNDLE_BYTES:.1f}% | {offset/1024**2:.1f}/{BUNDLE_BYTES/1024**2:.1f} MiB | {received/1024/max(now-started,0.01):.0f} KiB/s');last=now
         if offset<BUNDLE_BYTES:raise ValueError('Incomplete download; SHA256 cannot be verified yet. Run this option again to resume.')
+        progress_line(f'Download progress: 100.0% | {BUNDLE_BYTES/1024**2:.1f}/{BUNDLE_BYTES/1024**2:.1f} MiB | complete')
     except OSError as exc:
         raise ValueError('Download stopped: '+str(exc)+'. Run this option again to resume. If GitHub is unreachable, download '+RELEASE+BUNDLE+' on another network and upload it to '+str(local)) from None
+    finally:
+        if sys.stdout.isatty():print(flush=True)
     print('Download complete. Checking SHA256 and extracting the bundle...',flush=True)
     return partial
 
