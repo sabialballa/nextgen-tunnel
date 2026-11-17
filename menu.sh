@@ -6,8 +6,13 @@ if [[ "$(uname -s)" != Linux ]]; then
     echo 'Run this menu on a Linux server.' >&2; exit 1
 fi
 NEXTGEN_SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]:-.}")" && pwd)"
-if [[ -f "$NEXTGEN_SCRIPT_DIR/scripts/menu.py" ]]; then
+NEXTGEN_REQUESTED_REVISION="${NEXTGEN_REVISION:-}"
+if [[ -n "$NEXTGEN_REQUESTED_REVISION" && ! "$NEXTGEN_REQUESTED_REVISION" =~ ^[0-9a-f]{40}$ ]]; then
+    echo 'NEXTGEN_REVISION must be a full 40-character commit SHA.' >&2; exit 1
+fi
+if [[ -z "$NEXTGEN_REQUESTED_REVISION" && -f "$NEXTGEN_SCRIPT_DIR/scripts/menu.py" ]]; then
     NEXTGEN_SOURCE="$NEXTGEN_SCRIPT_DIR"
+    echo "Menu source: local checkout $NEXTGEN_SOURCE"
 else
     command -v curl >/dev/null || { echo 'Install curl first.' >&2; exit 1; }
     NEXTGEN_TMP="$(mktemp -d /tmp/nextgen-menu.XXXXXXXX)"
@@ -18,9 +23,14 @@ else
     trap 'exit 130' INT
     trap 'exit 143' TERM
     echo 'Downloading the menu from sabialballa/nextgen-tunnel ...'
-    NEXTGEN_COMMIT="$(curl -fsSL --connect-timeout 15 --max-time 60 \
-        https://api.github.com/repos/sabialballa/nextgen-tunnel/commits/main |
-        python3 -c 'import json,re,sys; s=json.load(sys.stdin)["sha"]; assert re.fullmatch("[0-9a-f]{40}",s); print(s)')"
+    if [[ -n "$NEXTGEN_REQUESTED_REVISION" ]]; then
+        NEXTGEN_COMMIT="$NEXTGEN_REQUESTED_REVISION"
+    else
+        NEXTGEN_COMMIT="$(curl -fsSL --connect-timeout 15 --max-time 60 -H 'Cache-Control: no-cache' \
+            "https://api.github.com/repos/sabialballa/nextgen-tunnel/commits/main?nextgen=$(date +%s)" |
+            python3 -c 'import json,re,sys; s=json.load(sys.stdin)["sha"]; assert re.fullmatch("[0-9a-f]{40}",s); print(s)')"
+    fi
+    echo "Menu source revision: $NEXTGEN_COMMIT"
     curl -fsSL --connect-timeout 15 --max-time 180 --max-filesize 16777216 \
         "https://github.com/sabialballa/nextgen-tunnel/archive/$NEXTGEN_COMMIT.tar.gz" \
         -o "$NEXTGEN_TMP/source.tar.gz"
