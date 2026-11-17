@@ -1,15 +1,39 @@
 import contextlib
 import base64
 import io
+import hashlib
+import importlib.util
 import json
 import os
+import sys
 from pathlib import Path
 import tempfile
+import tarfile
 import unittest
 from unittest import mock
 from scripts import menu
 
 class MenuTests(unittest.TestCase):
+    def test_complete_download_verifies_extracts_and_reuses_cache(self):
+        # Exercise both import styles used by tests and by `python scripts/menu.py`.
+        spec=importlib.util.spec_from_file_location('standalone_menu',menu.ROOT/'scripts/menu.py')
+        standalone=importlib.util.module_from_spec(spec);spec.loader.exec_module(standalone)
+        contents={'bin/nextgen-tunnel':b'test core','bin/sing-box':b'test engine'}
+        contents['SHA256SUMS']=''.join(hashlib.sha256(data).hexdigest()+'  '+name+'\n' for name,data in contents.items()).encode()
+        raw=io.BytesIO()
+        with tarfile.open(fileobj=raw,mode='w:gz') as archive:
+            for name,data in contents.items():
+                member=tarfile.TarInfo('test-bundle/'+name);member.size=len(data);archive.addfile(member,io.BytesIO(data))
+        payload=raw.getvalue()
+        for module in (menu,standalone):
+            with self.subTest(import_style=module.__name__),tempfile.TemporaryDirectory() as directory,contextlib.redirect_stdout(io.StringIO()),mock.patch('sys.path',[str(menu.ROOT/'scripts'),*sys.path]):
+                cache=Path(directory)
+                with mock.patch.object(module,'safe_directory',return_value=cache),mock.patch.object(module,'BUNDLE_BYTES',len(payload)),mock.patch.object(module,'BUNDLE_SHA',hashlib.sha256(payload).hexdigest()),mock.patch.object(module,'CORE_SHA',hashlib.sha256(contents['bin/nextgen-tunnel']).hexdigest()),mock.patch.object(module,'ENGINE_SHA',hashlib.sha256(contents['bin/sing-box']).hexdigest()),mock.patch('urllib.request.urlopen',return_value=self.response(payload)) as network:
+                    ready=module.download_bundle(cache)
+                    for name,data in contents.items():self.assertEqual((ready/name).read_bytes(),data)
+                    self.assertEqual(module.download_bundle(cache),ready)
+                    network.assert_called_once()
+
     def response(self,data,status=200,headers=None):
         response=io.BytesIO(data);response.status=status;response.headers=headers or {};return response
 

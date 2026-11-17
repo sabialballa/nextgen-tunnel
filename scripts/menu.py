@@ -104,10 +104,6 @@ def fetch_bundle(cache):
 
 def download_bundle(cache):
     """Pinned archive plus manifest, safe extraction, publish cache atomically."""
-    if __package__:
-        from .verify_bundle import verify
-    else:
-        from verify_bundle import verify
     cache=safe_directory(cache);ready=cache/'runtime-0.3.0-rc3'
     if ready.exists():
         if ready.is_symlink() or digest(ready/'bin/nextgen-tunnel')!=CORE_SHA or digest(ready/'bin/sing-box')!=ENGINE_SHA:raise ValueError('The cached bundle has changed; check the cache directory.')
@@ -123,6 +119,10 @@ def download_bundle(cache):
         return _download_bundle_locked(cache,ready)
 
 def _download_bundle_locked(cache,ready):
+    if __package__:
+        from .verify_bundle import verify
+    else:
+        from verify_bundle import verify
     if ready.exists():return ready
     archive=fetch_bundle(cache)
     if archive.stat().st_size>BUNDLE_BYTES:raise ValueError('Bundle exceeds the expected size.')
