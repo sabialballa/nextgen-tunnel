@@ -65,7 +65,7 @@ class Node:
         import fcntl
         fd=os.open(STATE/'node.lock',os.O_CREAT|os.O_RDWR|os.O_NOFOLLOW,0o600);self.lock=os.fdopen(fd,'w')
         try:fcntl.flock(self.lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
-        except BlockingIOError:self.lock.close();raise ValueError('یک نصب سادهٔ دیگر در حال اجراست.')
+        except BlockingIOError:self.lock.close();raise ValueError('Another easy installation is already running.')
         return self
 
     def __exit__(self,*_):self.lock.close()
@@ -82,12 +82,12 @@ class Node:
             else:
                 from host_install import atomic
             atomic(STATE/'last-error.log',r.stdout+b'\n'+r.stderr)
-            raise ValueError('مرحلهٔ نصب موفق نبود؛ گزارش خصوصی: '+str(STATE/'last-error.log'))
+            raise ValueError('Installation step failed; private log: '+str(STATE/'last-error.log'))
         return r.stdout.decode().strip()
 
     def metadata(self,data):
         state=self.state()
-        if not state and ((NATIVE/'ownership.json').exists() or (NATIVE/'transaction.json').exists() or Path('/run/netns/ngt-site-main').exists()):raise ValueError('نصب قبلی موجود است؛ نصب ساده آن را جایگزین نمی‌کند. از منوی وضعیت یا مدیریت پیشرفته استفاده کنید.')
+        if not state and ((NATIVE/'ownership.json').exists() or (NATIVE/'transaction.json').exists() or Path('/run/netns/ngt-site-main').exists()):raise ValueError('An existing installation was found and will not be replaced. Use the status or advanced management menu.')
         identity=Path('/etc/machine-id').read_text()+''.join(p.read_text() for p in sorted(Path('/etc/ssh').glob('ssh_host_*_key.pub')))
         route=json.loads(self.command(['ip','-j','route','get',str(ipaddress.IPv4Address(data['peer']))]))[0]
         connection=os.environ.get('SSH_CONNECTION','').split()
@@ -97,7 +97,7 @@ class Node:
         if not isinstance(s,dict):raise ValueError('pair not prepared')
         for name,expected in s.get('files',{}).items():
             p=Path(name)
-            if p.is_symlink() or not p.is_file() or digest(p)!=expected:raise ValueError('فایل ساخته‌شده خارج از نصب‌کننده تغییر کرده است؛ جایگزینی انجام نشد.')
+            if p.is_symlink() or not p.is_file() or digest(p)!=expected:raise ValueError('A generated file was modified outside the installer; replacement refused.')
 
     def record_files(self,s):
         s['files']={str(p):digest(p) for p in (STATE/'work').rglob('*') if p.is_file()};self.save(s)
@@ -107,9 +107,9 @@ class Node:
         if not marker.exists():return False
         if marker.is_symlink():raise ValueError('unsafe native marker')
         owned=json.loads(marker.read_text())
-        if not all(Path(p).is_file() and not Path(p).is_symlink() and digest(p)==v for p,v in owned['hashes'].items()):raise ValueError('نصب اصلی تغییر کرده است؛ توقف برای حفظ فایل‌ها.')
+        if not all(Path(p).is_file() and not Path(p).is_symlink() and digest(p)==v for p,v in owned['hashes'].items()):raise ValueError('The base installation has changed; stopped to preserve its files.')
         cfg=json.loads(Path('/etc/nextgen-stack/site.json').read_text())
-        if digest('/etc/nextgen-stack/wg.key')!=digest(STATE/'work/wg/private.key') or cfg['peer_public_key']!=s.get('peer_public_key'):raise ValueError('نصب اصلی متعلق به این جفت نیست.')
+        if digest('/etc/nextgen-stack/wg.key')!=digest(STATE/'work/wg/private.key') or cfg['peer_public_key']!=s.get('peer_public_key'):raise ValueError('The base installation does not belong to this pair.')
         return True
 
     def prepare(self,d):
@@ -117,13 +117,13 @@ class Node:
         peer=str(ipaddress.IPv4Address(d['peer']));listener=str(ipaddress.IPv4Address(d['listener']))
         s=self.state()
         if s:
-            if any(s[k]!=v for k,v in [('role',d['role']),('peer',peer),('pair_id',d['pair_id']),('listener',listener)]):raise ValueError('این سرور قبلاً برای جفت یا نقش دیگری آماده شده است؛ کلیدها عوض نشدند.')
+            if any(s[k]!=v for k,v in [('role',d['role']),('peer',peer),('pair_id',d['pair_id']),('listener',listener)]):raise ValueError('This server was prepared for a different pair or role; keys were not changed.')
             self.verify_files(s)
             if s['phase']!='preparing':return self.export(s)
         else:
             if (NATIVE/'ownership.json').exists() or Path('/run/netns/ngt-site-main').exists():raise ValueError('existing installation refused')
-            if d['role']=='listener' and self.command(['ss','-Hlnt','( sport = :443 )']):raise ValueError('پورت 443 در اختیار برنامهٔ دیگری است؛ آن برنامه دست‌کاری نشد.')
-            if any((Path('/etc/systemd/system')/('nextgen-overlay-ngo-'+k+'.service')).exists() for k in OVERLAYS):raise ValueError('سرویس overlay قبلی موجود است.')
+            if d['role']=='listener' and self.command(['ss','-Hlnt','( sport = :443 )']):raise ValueError('Port 443 is in use by another application; it was left unchanged.')
+            if any((Path('/etc/systemd/system')/('nextgen-overlay-ngo-'+k+'.service')).exists() for k in OVERLAYS):raise ValueError('An existing overlay service was found.')
             runtime=Menu(root=ROOT).runtime()
             s=dict(version=1,role=d['role'],peer=peer,listener=listener,pair_id=d['pair_id'],phase='preparing',runtime=str(runtime),files={});self.save(s)
         runtime=Path(s['runtime'])
@@ -144,7 +144,7 @@ class Node:
                         except (OSError,ValueError):continue
                     if target:break
                 except OSError:continue
-            if not target:raise ValueError('هیچ مقصد TLS1.3 معتبر از این سرور قابل دسترسی نبود؛ سرویس نصب نشد.')
+            if not target:raise ValueError('No valid TLS 1.3 target is reachable from this server; the service was not installed.')
             if not s.get('profile_directory'):
                 name='profile-'+uuid.uuid4().hex
                 self.command([runtime/'nextgen-tunnel','engine-init','-dir',work/name,'-server-ip',listener,'-server-name',target[0]])
@@ -169,7 +169,7 @@ class Node:
         s=self.state();self.verify_files(s);public_key(d['peer_public_key'])
         sig=hashlib.sha256(json.dumps(d,sort_keys=True).encode()).hexdigest()
         if s.get('configuration_signature'):
-            if s['configuration_signature']!=sig:raise ValueError('کلید یا تنظیم طرف مقابل با جفت قبلی متفاوت است.')
+            if s['configuration_signature']!=sig:raise ValueError('The peer key or config differs from the existing pair.')
             return dict(configured=True,unchanged=True)
         name='config-'+uuid.uuid4().hex;work=safe_directory(STATE/'work'/name)
         source=self.directory(s,'plan_directory')/'server.json' if s['role']=='listener' else work/'client-import.json'
@@ -186,7 +186,7 @@ class Node:
         if self.owned_native(s):s['phase']='installed';self.save(s);return dict(installed=True,unchanged=True)
         if (NATIVE/'transaction.json').exists():
             journal=json.loads((NATIVE/'transaction.json').read_text())
-            if s['phase']!='installing' or journal.get('previous'):raise ValueError('تراکنش ناتمام ناشناس؛ بازیابی خودکار رد شد.')
+            if s['phase']!='installing' or journal.get('previous'):raise ValueError('Unknown unfinished transaction; automatic recovery refused.')
             self.command([sys.executable,ROOT/'scripts/stack_install.py','recover','--apply'])
         runtime=Path(s['runtime']);config=self.directory(s,'configuration_directory');args=[sys.executable,ROOT/'scripts/stack_install.py','install','--binary',runtime/'nextgen-tunnel','--sha256',CORE_SHA,'--engine',runtime/'sing-box','--engine-sha256',ENGINE_SHA,'--engine-config',config/'engine.json','--site-config',config/'site.json']
         self.command(args);s.update(phase='installing',created_attempt=d['attempt']);self.save(s)

@@ -74,8 +74,8 @@ def dependencies():
     missing=sorted({pkg for tool,pkg in DEPENDENCIES.items() if not shutil.which(tool)})
     if not Path('/etc/ssl/certs/ca-certificates.crt').is_file():missing.append('ca-certificates')
     if missing:
-        if not shutil.which('apt-get'):raise ValueError('ابزارهای python3، curl، OpenSSH، iproute2 و wireguard-tools لازم‌اند.')
-        print('نصب ابزارهای لازم از مخزن سیستم؛ ارتقای کلی انجام نمی‌شود…')
+        if not shutil.which('apt-get'):raise ValueError('Python3, curl, OpenSSH, iproute2 and wireguard-tools are required.')
+        print('Installing missing tools from the system repository; no full system upgrade...')
         subprocess.run(['apt-get','update','-qq'],check=True,timeout=300)
         subprocess.run(['apt-get','install','-y','--no-upgrade','--no-install-recommends',*missing],check=True,timeout=300,env={**os.environ,'DEBIAN_FRONTEND':'noninteractive'})
 
@@ -84,7 +84,7 @@ class SSH:
     def options(self):return ['ssh','-S',str(Path(self.temp.name)/'ssh'),'--',self.peer]
     def run(self,command,input=None,timeout=600):
         r=subprocess.run([*self.options(),command],input=input,capture_output=True,timeout=timeout)
-        if r.returncode:raise ValueError('مرحلهٔ SSH موفق نبود: '+r.stderr.decode(errors='replace')[-1000:])
+        if r.returncode:raise ValueError('SSH step failed: '+r.stderr.decode(errors='replace')[-1000:])
         return r.stdout
     def __enter__(self):
         self.temp=tempfile.TemporaryDirectory(prefix='ngt-ssh-')
@@ -106,17 +106,17 @@ class SSH:
                 finally:self.messages.put(None)
             def drain():
                 for line in self.process.stderr:
-                    if line.startswith('دریافت بسته'):print('طرف مقابل: '+line.strip(),flush=True)
+                    if line.startswith('Downloading full Linux x64 bundle'):print('Peer: '+line.strip(),flush=True)
             threading.Thread(target=reader,daemon=True).start();threading.Thread(target=drain,daemon=True).start()
             ready=self.messages.get(timeout=30)
-            if not ready or not ready.get('ready'):raise ValueError((ready or {}).get('error','پاسخ نصب‌کنندهٔ طرف مقابل معتبر نبود.'))
+            if not ready or not ready.get('ready'):raise ValueError((ready or {}).get('error','Invalid response from the peer installer.'))
             return self
         except BaseException:self.__exit__();raise
     def call(self,action,data):
         self.process.stdin.write(json.dumps(dict(action=action,data=data))+'\n');self.process.stdin.flush()
         try:answer=self.messages.get(timeout=900)
-        except queue.Empty:raise ValueError('مهلت پاسخ نصب طرف مقابل تمام شد؛ وضعیت نصب خصوصی نگه‌داری شد.')
-        if not answer or not answer.get('ok'):raise ValueError((answer or {}).get('error','اتصال به نصب‌کنندهٔ طرف مقابل قطع شد.'))
+        except queue.Empty:raise ValueError('Peer installer response timed out; private installation state was retained.')
+        if not answer or not answer.get('ok'):raise ValueError((answer or {}).get('error','Connection to the peer installer was lost.'))
         return answer['data']
     def __exit__(self,*_):
         if self.process:
@@ -136,7 +136,7 @@ class Local:
     def call(self,action,data):return self.node.dispatch(action,data)
 
 def pair_identity(local,remote,role):
-    if local['host_id']==remote['host_id']:raise ValueError('IP واردشده به همین سرور اشاره می‌کند؛ نصب متوقف شد.')
+    if local['host_id']==remote['host_id']:raise ValueError('The peer IP points to this server; installation stopped.')
     listener,initiator=(local,remote) if role=='listener' else (remote,local)
     return hashlib.sha256(('nextgen-easy-1:'+listener['host_id']+':'+initiator['host_id']).encode()).hexdigest()[:32]
 
@@ -145,10 +145,10 @@ def configure_pair(local,remote,local_meta,remote_meta,role,peer):
     own=local_meta.get('route_source')
     if not own or not ipaddress.ip_address(own).is_global:own=remote_meta.get('observed_client') or own
     own=str(ipaddress.IPv4Address(own))
-    if ipaddress.ip_address(own).is_loopback:raise ValueError('IP قابل دسترسی این سرور خودکار تشخیص داده نشد.')
+    if ipaddress.ip_address(own).is_loopback:raise ValueError("Could not automatically detect this server's reachable IP.")
     listener=own if role=='listener' else peer;pair=pair_identity(local_meta,remote_meta,role)
     shared=dict(pair_id=pair,listener=listener)
-    print('ساخت یا بررسی کلیدهای مستقل هر سرور و انتخاب TLS معتبر…',flush=True)
+    print('Generating or checking independent server keys and selecting a valid TLS target...',flush=True)
     a=local.call('prepare',dict(shared,role=role,peer=peer));b=remote.call('prepare',dict(shared,role=other,peer=own))
     export=a.get('client') if role=='listener' else b.get('client')
     local.call('configure',dict(peer_public_key=b['public_key'],**({'client':export} if role=='initiator' else {})))
@@ -157,32 +157,32 @@ def configure_pair(local,remote,local_meta,remote_meta,role,peer):
 
 def install_pair(role,peer,root=ROOT):
     peer=str(ipaddress.IPv4Address(peer))
-    if role not in ('listener','initiator') or ipaddress.ip_address(peer).is_loopback or ipaddress.ip_address(peer).is_unspecified or ipaddress.ip_address(peer).is_multicast:raise ValueError('نقش یا IP طرف مقابل نامعتبر است.')
-    if sys.platform!='linux' or os.geteuid()!=0 or platform.machine()!='x86_64':raise ValueError('نصب ساده به Linux x64 و کاربر root نیاز دارد.')
+    if role not in ('listener','initiator') or ipaddress.ip_address(peer).is_loopback or ipaddress.ip_address(peer).is_unspecified or ipaddress.ip_address(peer).is_multicast:raise ValueError('Invalid role or peer IP.')
+    if sys.platform!='linux' or os.geteuid()!=0 or platform.machine()!='x86_64':raise ValueError('Easy installation requires Linux x64 and root.')
     with Node() as node:
-        if not node.state() and (Path('/var/lib/nextgen-stack-installer/ownership.json').exists() or Path('/run/netns/ngt-site-main').exists()):raise ValueError('نصب فعلی حفظ شد؛ از منوی وضعیت یا مدیریت پیشرفته استفاده کنید.')
+        if not node.state() and (Path('/var/lib/nextgen-stack-installer/ownership.json').exists() or Path('/run/netns/ngt-site-main').exists()):raise ValueError('Existing installation preserved; use the status or advanced management menu.')
         dependencies();local=Local(node)
-        print('اتصال امن SSH به طرف مقابل؛ ممکن است SSH یک‌بار تأیید اثرانگشت یا رمز بخواهد…',flush=True)
+        print('Connecting to the peer over SSH; SSH may ask for a host fingerprint confirmation or password...',flush=True)
         with SSH(peer,Path(root)) as remote:
             a=local.call('metadata',dict(peer=peer));b=remote.call('metadata',dict(peer=a.get('route_source') or peer))
             pair=configure_pair(local,remote,a,b,role,peer);attempt=uuid.uuid4().hex
             try:
-                print('نصب یکپارچهٔ هر دو سمت…',flush=True)
+                print('Installing the integrated stack on both servers...',flush=True)
                 local.call('install',dict(attempt=attempt));remote.call('install',dict(attempt=attempt))
-                if not local.call('probe',{})['healthy'] or not remote.call('probe',{})['healthy']:raise ValueError('اتصال سایت دوطرفه تأیید نشد؛ نصب تازه برگردانده می‌شود.')
-                print('نصب خودکار GRE، VXLAN و IPIP با تنظیمات همین جفت…',flush=True)
+                if not local.call('probe',{})['healthy'] or not remote.call('probe',{})['healthy']:raise ValueError('Bidirectional site connectivity was not confirmed; rolling back the new installation.')
+                print("Installing GRE, VXLAN and IPIP with this pair's generated configs...",flush=True)
                 local.call('overlays',dict(attempt=attempt));remote.call('overlays',dict(attempt=attempt))
-                if not local.call('probe',dict(overlays=True))['healthy'] or not remote.call('probe',dict(overlays=True))['healthy']:raise ValueError('آزمون اتصال overlay موفق نبود.')
+                if not local.call('probe',dict(overlays=True))['healthy'] or not remote.call('probe',dict(overlays=True))['healthy']:raise ValueError('Overlay connectivity test failed.')
             except BaseException:
-                for name,endpoint in [('طرف مقابل',remote),('همین سرور',local)]:
+                for name,endpoint in [('peer',remote),('local server',local)]:
                     try:endpoint.call('rollback',dict(attempt=attempt))
-                    except (ValueError,OSError,subprocess.SubprocessError):print('بازیابی خودکار '+name+' تأیید نشد؛ گزارش خصوصی و وضعیت نصب را بررسی کنید.',file=sys.stderr)
+                    except (ValueError,OSError,subprocess.SubprocessError):print('Automatic rollback on '+name+' was not confirmed; check the private log and installation status.',file=sys.stderr)
                 raise
-            print('نصب هر دو سرور و آزمون اتصال کامل شد. کلیدها خصوصی مانده‌اند؛ ویرایش JSON لازم نبود.',flush=True)
+            print('Both servers installed and connectivity verified. Keys remain private; no manual JSON editing required.',flush=True)
             return dict(success=True,pair_id=pair,role=role,overlays=['gre','vxlan','ipip'])
 
 def main():
     p=argparse.ArgumentParser();p.add_argument('--role',choices=['listener','initiator'],required=True);p.add_argument('--peer',required=True);a=p.parse_args()
     try:install_pair(a.role,a.peer)
-    except (ValueError,OSError,subprocess.SubprocessError) as exc:print('نصب ساده انجام نشد: '+str(exc),file=sys.stderr);raise SystemExit(1)
+    except (ValueError,OSError,subprocess.SubprocessError) as exc:print('Easy installation failed: '+str(exc),file=sys.stderr);raise SystemExit(1)
 if __name__=='__main__':main()

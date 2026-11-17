@@ -37,15 +37,15 @@ def verify_handshake(address,name,port):
     context=ssl.create_default_context();context.minimum_version=ssl.TLSVersion.TLSv1_3
     with socket.create_connection((address,port),timeout=8) as raw:
         with context.wrap_socket(raw,server_hostname=name) as peer:
-            if peer.version()!='TLSv1.3':raise ValueError('مقصد handshake باید TLS 1.3 معتبر داشته باشد.')
+            if peer.version()!='TLSv1.3':raise ValueError('The handshake target must support valid TLS 1.3.')
 
 def safe_directory(path):
     path=Path(path).expanduser().absolute()
     for parent in [path,*path.parents]:
-        if parent.is_symlink():raise ValueError('مسیر داده نباید symlink باشد.')
+        if parent.is_symlink():raise ValueError('The data path must not contain symlinks.')
     path.mkdir(mode=0o700,parents=True,exist_ok=True)
     st=path.stat()
-    if st.st_uid!=user_id() or st.st_mode&0o077:raise ValueError('پوشهٔ داده باید متعلق به شما و با مجوز 700 باشد: '+str(path))
+    if st.st_uid!=user_id() or st.st_mode&0o077:raise ValueError('The data directory must be owned by you with mode 700: '+str(path))
     return path
 
 def download_bundle(cache):
@@ -56,11 +56,11 @@ def download_bundle(cache):
         from verify_bundle import verify
     cache=safe_directory(cache);ready=cache/'runtime-0.3.0-rc3'
     if ready.exists():
-        if ready.is_symlink() or digest(ready/'bin/nextgen-tunnel')!=CORE_SHA or digest(ready/'bin/sing-box')!=ENGINE_SHA:raise ValueError('بستهٔ موجود تغییر کرده؛ مسیر cache را بررسی کنید.')
+        if ready.is_symlink() or digest(ready/'bin/nextgen-tunnel')!=CORE_SHA or digest(ready/'bin/sing-box')!=ENGINE_SHA:raise ValueError('The cached bundle has changed; check the cache directory.')
         return ready
     with tempfile.TemporaryDirectory(prefix='download-',dir=cache) as temp:
         work=Path(temp);archive=work/BUNDLE
-        print('دریافت بستهٔ کامل Linux x64 (حدود ۱۰۴ MiB)…')
+        print('Downloading full Linux x64 bundle (about 104 MiB)...')
         request=urllib.request.Request(RELEASE+BUNDLE,headers={'User-Agent':'nextgen-menu/1'})
         with urllib.request.urlopen(request,timeout=30) as response,archive.open('xb') as out:
             size=0
@@ -68,9 +68,9 @@ def download_bundle(cache):
                 chunk=response.read(1<<20)
                 if not chunk:break
                 size+=len(chunk)
-                if size>160*1024**2:raise ValueError('اندازهٔ دانلود بیش از حد است.')
+                if size>160*1024**2:raise ValueError('Download exceeds the size limit.')
                 out.write(chunk)
-        if digest(archive)!=BUNDLE_SHA:raise ValueError('SHA256 بسته تطبیق ندارد؛ اجرا نشد.')
+        if digest(archive)!=BUNDLE_SHA:raise ValueError('Bundle SHA256 mismatch; execution refused.')
         verify(archive)
         extracted=work/'runtime';extracted.mkdir(mode=0o700)
         with tarfile.open(archive,'r:gz') as bundle:
@@ -79,7 +79,7 @@ def download_bundle(cache):
                 target.parent.mkdir(mode=0o700,parents=True,exist_ok=True)
                 with bundle.extractfile(member) as src,target.open('xb') as dst:shutil.copyfileobj(src,dst)
                 target.chmod(0o755 if parts[0]=='bin' else 0o600)
-        if digest(extracted/'bin/nextgen-tunnel')!=CORE_SHA or digest(extracted/'bin/sing-box')!=ENGINE_SHA:raise ValueError('باینری بسته با نسخهٔ آزمایش‌شده یکسان نیست.')
+        if digest(extracted/'bin/nextgen-tunnel')!=CORE_SHA or digest(extracted/'bin/sing-box')!=ENGINE_SHA:raise ValueError('Bundle binaries do not match the tested version.')
         extracted.rename(ready)
     return ready
 
@@ -95,123 +95,123 @@ class Menu:
 
     def path(self,text,default='',new=False):
         value=self.prompt(text,default)
-        if not value:raise ValueError('مسیر وارد نشده است.')
+        if not value:raise ValueError('No path entered.')
         p=Path(value).expanduser().absolute()
         if new:
-            if p.exists() or p.is_symlink():raise ValueError('مسیر جدید باید هنوز وجود نداشته باشد.')
-        elif not p.is_file():raise ValueError('فایل پیدا نشد: '+str(p))
+            if p.exists() or p.is_symlink():raise ValueError('The new path must not already exist.')
+        elif not p.is_file():raise ValueError('File not found: '+str(p))
         return p
 
     def root_required(self):
-        if user_id()!=0:raise ValueError('این گزینه را با کاربر root یا sudo اجرا کنید.')
+        if user_id()!=0:raise ValueError('Run this option as root or with sudo.')
 
     def command(self,args,check=True,timeout=180,quiet=False):
         result=subprocess.run([str(x) for x in args],timeout=timeout,capture_output=quiet,text=quiet)
         if check and result.returncode:
             if quiet:print((result.stdout+result.stderr)[-4000:])
-            raise ValueError('عملیات موفق نبود؛ خروجی بالا را بررسی کنید.')
+            raise ValueError('Operation failed; check the output above.')
         return result.returncode
 
     def script(self,name,*args):return [sys.executable,str(self.root/'scripts'/name),*map(str,args)]
 
     def approve(self,description):
         print('\n'+description)
-        return self.prompt('برای اعمال yes بنویسید؛ Enter یعنی انصراف').casefold() in ('yes','بله')
+        return self.prompt('Type yes to apply; press Enter to cancel').casefold() in ('yes','\u0628\u0644\u0647')
 
     def apply(self,args,description):
         self.root_required();self.command(args,quiet=True)
         if self.approve(description):self.command([*args,'--apply'])
-        else:print('اعمال نشد.')
+        else:print('No changes applied.')
 
     def runtime(self):
-        if platform.machine().lower() not in ('x86_64','amd64'):raise ValueError('بستهٔ آماده فعلاً فقط Linux x64 است؛ روی ARM از راهنمای ساخت استفاده کنید.')
+        if platform.machine().lower() not in ('x86_64','amd64'):raise ValueError('The prebuilt bundle supports Linux x64 only; see the build guide for ARM.')
         installed=Path('/usr/local/lib/nextgen-stack')
         if all((installed/name).is_file() and digest(installed/name)==sha for name,sha in [('nextgen-tunnel',CORE_SHA),('sing-box',ENGINE_SHA)]):return installed
         return download_bundle(self.cache)/'bin'
 
     def prepare(self):
-        print('\n1) ساخت پروفایل listener و کلیدهای engine\n2) ساخت CA و کلیدهای هستهٔ مستقل\n3) ساخت carrier از تنظیم engine آماده\n4) ساخت کلید WireGuard روی همین سرور\n5) ساخت تنظیم Site-to-Site این سمت\n0) برگشت')
-        choice=self.prompt('انتخاب')
+        print("\n1) Create listener profile and engine keys\n2) Create CA and standalone core keys\n3) Create carrier from an existing engine config\n4) Generate WireGuard keys on this server\n5) Create this side's Site-to-Site config\n0) Back")
+        choice=self.prompt('Select an option')
         if choice=='0':return
         self.root_required();home=safe_directory(self.home)
         if choice=='1':
-            binary=self.runtime()/'nextgen-tunnel';directory=self.path('پوشهٔ جدید و خصوصی پروفایل',home/'profile',new=True)
-            ip=str(ipaddress.IPv4Address(self.prompt('IPv4 عمومی سرور listener')));name=self.prompt('نام واقعی TLS/SNI مقصد handshake')
-            if not name:raise ValueError('نام TLS/SNI لازم است.')
-            handshake=str(ipaddress.IPv4Address(self.prompt('IP مقصد واقعی handshake با TLS 1.3 معتبر')))
-            if ipaddress.ip_address(handshake).is_loopback:raise ValueError('مقصد handshake نباید loopback باشد.')
-            port=int(self.prompt('پورت TLS مقصد handshake','443'))
-            if not 1<=port<=65535:raise ValueError('پورت نامعتبر است.')
-            print('بررسی گواهی، نام و TLS 1.3 مقصد…');verify_handshake(handshake,name,port)
+            binary=self.runtime()/'nextgen-tunnel';directory=self.path('New private profile directory',home/'profile',new=True)
+            ip=str(ipaddress.IPv4Address(self.prompt('Listener public IPv4')));name=self.prompt('Handshake target TLS/SNI hostname')
+            if not name:raise ValueError('A TLS/SNI hostname is required.')
+            handshake=str(ipaddress.IPv4Address(self.prompt('Handshake target IP with valid TLS 1.3')))
+            if ipaddress.ip_address(handshake).is_loopback:raise ValueError('The handshake target must not be a loopback address.')
+            port=int(self.prompt('Handshake target TLS port','443'))
+            if not 1<=port<=65535:raise ValueError('Invalid port.')
+            print('Verifying the target certificate, hostname and TLS 1.3...');verify_handshake(handshake,name,port)
             self.command([binary,'engine-init','-dir',directory,'-server-ip',ip,'-server-name',name])
             profile=directory/'profile.json'
             original=json.loads(profile.read_text())
             key=next((k for k in original if k in ('handshake_server','reality_handshake_server')),None)
-            if not key:raise ValueError('فیلد handshake در نسخهٔ هسته شناخته نشد؛ profile.json را طبق راهنما تنظیم کنید.')
+            if not key:raise ValueError('Unknown handshake field in this core version; configure profile.json using the guide.')
             original[key]=handshake;original['handshake_port']=port;profile.write_text(json.dumps(original,indent=2)+'\n');profile.chmod(0o600)
             output=directory/'configs';self.command([binary,'engine-plan','-profile',profile,'-output',output])
-            print('پروفایل در '+str(directory)+' ساخته شد. فقط فایل‌های سمت client و CA عمومی را امن منتقل کنید؛ CA.key و کلید سرور را منتقل نکنید.')
-            print('TLS مقصد با نام واردشده تأیید شد؛ تست اتصال واقعی دو سرور همچنان لازم است. راهنما: https://github.com/sabialballa/nextgen-tunnel/blob/main/docs/engine-site.md')
+            print('Profile created in '+str(directory)+'. Securely transfer only client files and the public CA; do not transfer CA.key or the server private key.')
+            print('Target TLS and hostname verified; an actual two-server connectivity test is still required. Guide: https://github.com/sabialballa/nextgen-tunnel/blob/main/docs/engine-site.md')
         elif choice=='2':
-            binary=self.runtime()/'nextgen-tunnel';directory=self.path('پوشهٔ جدید PKI',home/'pki',new=True)
-            self.command([binary,'pki','-dir',directory,'-server-name',self.prompt('نام TLS سرور','tunnel.internal'),'-client-name',self.prompt('نام کلاینت','entry')])
+            binary=self.runtime()/'nextgen-tunnel';directory=self.path('New PKI directory',home/'pki',new=True)
+            self.command([binary,'pki','-dir',directory,'-server-name',self.prompt('Server TLS name','tunnel.internal'),'-client-name',self.prompt('Client name','entry')])
         elif choice=='3':
-            role={'1':'listener','2':'initiator'}.get(self.prompt('نقش: 1=listener، 2=initiator'))
-            if not role:raise ValueError('نقش نامعتبر است.')
-            source=self.path('مسیر server.json یا client.json آماده');target=self.path('فایل جدید carrier',home/'carrier.json',new=True)
-            port=int(self.prompt('پورت TCP عمومی listener؛ در هر دو سمت یکسان','443'))
-            if not 1<=port<=65535:raise ValueError('پورت نامعتبر است.')
+            role={'1':'listener','2':'initiator'}.get(self.prompt('Role: 1=listener, 2=initiator'))
+            if not role:raise ValueError('Invalid role.')
+            source=self.path('Existing server.json or client.json path');target=self.path('New carrier config file',home/'carrier.json',new=True)
+            port=int(self.prompt('Listener public TCP port; use the same port on both sides','443'))
+            if not 1<=port<=65535:raise ValueError('Invalid port.')
             self.command(self.script('stack_prepare.py','--role',role,'--redundant','--public-port',port,'--source',source,'--output',target))
-            print('carrier ساخته شد. برای نصب، site.json و کلید عمومی peer را طبق راهنمای engine/site آماده کنید.')
+            print('Carrier created. Prepare site.json and the peer public key using the engine/site guide before installation.')
         elif choice=='4':
-            directory=self.path('پوشهٔ جدید کلید WireGuard',home/'wg',new=True)
-            self.command(self.script('site.py','keygen','--directory',directory));print('فقط public.key را با طرف مقابل مبادله کنید.')
+            directory=self.path('New WireGuard key directory',home/'wg',new=True)
+            self.command(self.script('site.py','keygen','--directory',directory));print('Exchange only public.key with the peer.')
         elif choice=='5':self.site_config(home)
-        else:print('گزینه نامعتبر است.')
+        else:print('Invalid option.')
 
     def site_config(self,home):
-        role=self.prompt('نقش: 1=listener، 2=initiator')
-        if role not in ('1','2'):raise ValueError('نقش نامعتبر است.')
+        role=self.prompt('Role: 1=listener, 2=initiator')
+        if role not in ('1','2'):raise ValueError('Invalid role.')
         own='1' if role=='1' else '2';other='2' if own=='1' else '1'
-        private=self.path('کلید خصوصی WireGuard همین سرور',home/'wg/private.key')
-        peer=self.prompt('کلید عمومی WireGuard طرف مقابل')
-        if len(base64.b64decode(peer,validate=True))!=32:raise ValueError('کلید عمومی باید ۳۲ بایت base64 باشد.')
-        local4=str(ipaddress.IPv4Interface(self.prompt('آدرس IPv4 این سمت',f'10.77.240.{own}/30')))
-        remote4=str(ipaddress.IPv4Address(self.prompt('IPv4 طرف مقابل',f'10.77.240.{other}')))
-        local6=str(ipaddress.IPv6Interface(self.prompt('آدرس IPv6 این سمت',f'fd77:240::{own}/126')))
-        remote6=str(ipaddress.IPv6Address(self.prompt('IPv6 طرف مقابل',f'fd77:240::{other}')))
+        private=self.path("This server's WireGuard private key file",home/'wg/private.key')
+        peer=self.prompt('Peer WireGuard public key')
+        if len(base64.b64decode(peer,validate=True))!=32:raise ValueError('The public key must be 32 bytes encoded as base64.')
+        local4=str(ipaddress.IPv4Interface(self.prompt('Local IPv4 address',f'10.77.240.{own}/30')))
+        remote4=str(ipaddress.IPv4Address(self.prompt('Peer IPv4 address',f'10.77.240.{other}')))
+        local6=str(ipaddress.IPv6Interface(self.prompt('Local IPv6 address',f'fd77:240::{own}/126')))
+        remote6=str(ipaddress.IPv6Address(self.prompt('Peer IPv6 address',f'fd77:240::{other}')))
         cfg=dict(name='ngt-site-main',private_key_file=str(private),peer_public_key=peer,addresses=[local4,local6],remote_routes=[remote4+'/32',remote6+'/128'],listen_port=51850 if role=='1' else 51860,mtu=1280)
         if role=='1':cfg['redundant_listener_port']=51851
         else:cfg.update(endpoint='127.0.0.1:51811',persistent_keepalive=1)
-        target=self.path('فایل جدید تنظیم سایت',home/'site.json',new=True);safe_directory(target.parent)
+        target=self.path('New site config file',home/'site.json',new=True);safe_directory(target.parent)
         fd=os.open(target,os.O_WRONLY|os.O_CREAT|os.O_EXCL|os.O_NOFOLLOW,0o600)
         with os.fdopen(fd,'w') as out:json.dump(cfg,out,indent=2)
-        print('تنظیم این سمت ساخته شد: '+str(target)+'؛ همین مراحل را با نقش مخالف و کلید مستقل روی سرور دیگر انجام دهید.')
+        print('Local config created: '+str(target)+'; repeat these steps on the other server with the opposite role and independent keys.')
 
     def stack(self):
         self.root_required()
-        print('\n1) نصب engine/site\n2) به‌روزرسانی\n3) بازیابی تراکنش ناتمام\n0) برگشت')
-        choice=self.prompt('انتخاب');action={'1':'install','2':'update','3':'recover'}.get(choice)
+        print('\n1) Install engine/site\n2) Update\n3) Recover an unfinished transaction\n0) Back')
+        choice=self.prompt('Select an option');action={'1':'install','2':'update','3':'recover'}.get(choice)
         if not action:return
         args=self.script('stack_install.py',action)
         if action!='recover':
-            binary=self.runtime();engine=self.path('فایل carrier/engine آماده','/etc/nextgen-stack/engine.json');site=self.path('فایل site.json آماده','/etc/nextgen-stack/site.json')
+            binary=self.runtime();engine=self.path('Existing carrier/engine config file','/etc/nextgen-stack/engine.json');site=self.path('Existing site.json file','/etc/nextgen-stack/site.json')
             args+=['--binary',str(binary/'nextgen-tunnel'),'--sha256',CORE_SHA,'--engine',str(binary/'sing-box'),'--engine-sha256',ENGINE_SHA,'--engine-config',str(engine),'--site-config',str(site)]
-        self.apply(args,'این عملیات فقط نصب مدیریت‌شدهٔ engine/site را تغییر می‌دهد؛ برای نصب روی هر سرور تنظیمات همان سمت لازم است.')
+        self.apply(args,"This changes only the managed engine/site installation. Each server requires its own side's config.")
 
     def overlays(self):
-        self.root_required();kind={'1':'gre','2':'vxlan','3':'ipip'}.get(self.prompt('نوع تونل: 1=GRE، 2=VXLAN، 3=IPIP'))
-        if not kind:raise ValueError('نوع تونل نامعتبر است.')
-        action={'1':'install','2':'status','3':'remove'}.get(self.prompt('1=نصب، 2=وضعیت، 3=حذف'))
-        if not action:raise ValueError('گزینه نامعتبر است.')
+        self.root_required();kind={'1':'gre','2':'vxlan','3':'ipip'}.get(self.prompt('Tunnel type: 1=GRE, 2=VXLAN, 3=IPIP'))
+        if not kind:raise ValueError('Invalid tunnel type.')
+        action={'1':'install','2':'status','3':'remove'}.get(self.prompt('1=Install, 2=Status, 3=Remove'))
+        if not action:raise ValueError('Invalid option.')
         installed=Path('/etc/nextgen-overlays')/('ngo-'+kind+'.json')
         if action=='install' and not installed.exists():
-            local=str(ipaddress.IPv4Address(self.prompt('IP خصوصی همین سمت روی wg0','10.77.240.1')));remote=str(ipaddress.IPv4Address(self.prompt('IP خصوصی سمت مقابل روی wg0','10.77.240.2')))
-            side=self.prompt('شمارهٔ این سمت: 1 یا 2','1' if local.endswith('.1') else '2')
-            if side not in ('1','2'):raise ValueError('سمت باید 1 یا 2 باشد.')
+            local=str(ipaddress.IPv4Address(self.prompt('Local private IP on wg0','10.77.240.1')));remote=str(ipaddress.IPv4Address(self.prompt('Peer private IP on wg0','10.77.240.2')))
+            side=self.prompt('Local side: 1 or 2','1' if local.endswith('.1') else '2')
+            if side not in ('1','2'):raise ValueError('Side must be 1 or 2.')
             subnet={'gre':250,'vxlan':251,'ipip':252}[kind]
-            address=str(ipaddress.IPv4Interface(self.prompt('آدرس جدید overlay',f'10.78.{subnet}.{side}/30')))
-            cfg=dict(name='ngo-'+kind,namespace=self.prompt('namespace سایت موجود','ngt-site-main'),kind=kind,local=local,remote=remote,address=address,mtu=1200)
+            address=str(ipaddress.IPv4Interface(self.prompt('New overlay address',f'10.78.{subnet}.{side}/30')))
+            cfg=dict(name='ngo-'+kind,namespace=self.prompt('Existing site namespace','ngt-site-main'),kind=kind,local=local,remote=remote,address=address,mtu=1200)
             if kind=='vxlan':cfg.update(vni=10771,port=4789)
             if __package__:
                 from .overlay import validate
@@ -221,43 +221,43 @@ class Menu:
             fd,filename=tempfile.mkstemp(prefix=kind+'-',suffix='.json',dir=directory)
             with os.fdopen(fd,'w') as out:json.dump(cfg,out)
             config=Path(filename)
-        else:config=self.path('فایل تنظیم همان تونل',installed)
+        else:config=self.path('Config file for this tunnel',installed)
         args=self.script('overlay_service.py',action,'--config',config)
         if action=='status':self.command(args)
-        else:self.apply(args,'تونل '+kind.upper()+(' نصب می‌شود.' if action=='install' else ' و سرویس متعلق به همین تنظیم حذف می‌شوند.'))
+        else:self.apply(args,'Tunnel '+kind.upper()+(' will be installed.' if action=='install' else ' and the service owned by this config will be removed.'))
 
     def status(self):
-        print('\nوضعیت سرویس‌ها:')
-        names=['موتور TCP','سایت خصوصی','بازیابی خودکار','GRE','VXLAN','IPIP','هستهٔ مستقل']
+        print('\nService status:')
+        names=['TCP engine','Private site','Automatic recovery','GRE','VXLAN','IPIP','Standalone core']
         for unit,label in zip([*UNITS,'nextgen-tunnel.service'],names):
             result=subprocess.run(['systemctl','is-active',unit],capture_output=True,text=True,timeout=5)
-            state=result.stdout.strip();print(label+': '+{'active':'فعال','inactive':'غیرفعال','failed':'خطا','unknown':'نصب نشده'}.get(state,state or 'نامشخص'))
+            state=result.stdout.strip();print(label+': '+{'active':'Active','inactive':'Inactive','failed':'Failed','unknown':'Not installed'}.get(state,state or 'Unknown'))
 
     def test(self):
-        print('\n1) تست مسیرهای هسته با client.json\n2) Ping محدود روی سایت/overlay\n0) برگشت')
-        choice=self.prompt('انتخاب')
-        if choice=='1':self.command([self.runtime()/'nextgen-tunnel','probe','-config',self.path('فایل client.json')])
+        print('\n1) Probe core paths using client.json\n2) Run a bounded site/overlay ping\n0) Back')
+        choice=self.prompt('Select an option')
+        if choice=='1':self.command([self.runtime()/'nextgen-tunnel','probe','-config',self.path('client.json file')])
         elif choice=='2':
             self.root_required();namespace=self.prompt('namespace','ngt-site-main')
             import re
-            if not re.fullmatch(r'ngt-site-[a-z0-9_-]{1,18}',namespace):raise ValueError('namespace نامعتبر است.')
-            target=str(ipaddress.ip_address(self.prompt('IP خصوصی مقصد','10.78.252.2')))
+            if not re.fullmatch(r'ngt-site-[a-z0-9_-]{1,18}',namespace):raise ValueError('Invalid namespace.')
+            target=str(ipaddress.ip_address(self.prompt('Target private IP','10.78.252.2')))
             self.command(['ip','netns','exec',namespace,'ping','-n','-c','5','-W','2',target],timeout=20)
 
     def core(self):
-        self.root_required();print('\n1) نصب هستهٔ مستقل\n2) به‌روزرسانی\n3) بازیابی تراکنش\n4) حذف هستهٔ مستقل\n0) برگشت')
-        action={'1':'install','2':'update','3':'recover','4':'uninstall'}.get(self.prompt('انتخاب'))
+        self.root_required();print('\n1) Install standalone core\n2) Update\n3) Recover transaction\n4) Uninstall standalone core\n0) Back')
+        action={'1':'install','2':'update','3':'recover','4':'uninstall'}.get(self.prompt('Select an option'))
         if not action:return
         args=self.script('host_install.py',action)
-        if action in ('install','update'):args+=['--binary',str(self.runtime()/'nextgen-tunnel'),'--sha256',CORE_SHA,'--config',str(self.path('تنظیم server.json یا client.json همین سمت'))]
-        self.apply(args,'این گزینه فقط سرویس مستقل nextgen-tunnel را مدیریت می‌کند؛ '+action)
+        if action in ('install','update'):args+=['--binary',str(self.runtime()/'nextgen-tunnel'),'--sha256',CORE_SHA,'--config',str(self.path("This side's server.json or client.json config"))]
+        self.apply(args,'This option manages only the standalone nextgen-tunnel service: '+action)
 
     def easy(self):
         self.root_required()
-        print('\nنصب خودکار روی هر دو سرور؛ اتصال SSH به حساب root طرف مقابل لازم است.\nکلیدها و تنظیمات ساخته و مبادله می‌شوند؛ نیازی به فایل JSON نیست.\nSSH ممکن است یک‌بار رمز یا تأیید اثرانگشت بخواهد؛ رمز ذخیره نمی‌شود.')
-        role={'1':'listener','2':'initiator'}.get(self.prompt('نقش همین سرور: 1=ایران / listener، 2=خارج / initiator'))
-        if not role:raise ValueError('نقش نامعتبر است.')
-        peer=str(ipaddress.IPv4Address(self.prompt('IP طرف مقابل')))
+        print('\nAutomatic installation on both servers; root SSH access to the peer is required.\nKeys and configs are generated and exchanged automatically; no manual JSON editing.\nSSH may ask for a password or host fingerprint confirmation; passwords are not stored.')
+        role={'1':'listener','2':'initiator'}.get(self.prompt('Local server role: 1=Iran / listener, 2=Outside Iran / initiator'))
+        if not role:raise ValueError('Invalid role.')
+        peer=str(ipaddress.IPv4Address(self.prompt('Peer IPv4 address')))
         if __package__:
             from .easy_install import install_pair
         else:
@@ -265,19 +265,19 @@ class Menu:
         install_pair(role,peer,self.root)
 
     def run(self):
-        actions={'1':self.easy,'2':self.prepare,'3':self.stack,'4':self.overlays,'5':self.status,'6':self.test,'7':lambda:self.command(['journalctl','--no-pager','-n','60',*sum((['-u',u] for u in UNITS),[])],check=False),'8':self.core,'9':lambda:print('باینری آماده: '+str(self.runtime()))}
+        actions={'1':self.easy,'2':self.prepare,'3':self.stack,'4':self.overlays,'5':self.status,'6':self.test,'7':lambda:self.command(['journalctl','--no-pager','-n','60',*sum((['-u',u] for u in UNITS),[])],check=False),'8':self.core,'9':lambda:print('Prebuilt binaries: '+str(self.runtime()))}
         while True:
-            print('\n=== NEXTGEN TUNNEL | منوی مدیریت ===\n1) نصب سادهٔ هر دو سرور؛ فقط نقش و IP\n2) پیشرفته: آماده‌سازی کلید و تنظیمات\n3) پیشرفته: نصب / به‌روزرسانی engine و Site-to-Site\n4) مدیریت GRE / VXLAN / IPIP\n5) وضعیت سرویس‌ها\n6) تست اتصال\n7) گزارش خطاها\n8) مدیریت هستهٔ مستقل\n9) دریافت / بررسی بستهٔ آماده\n0) خروج')
+            print('\n=== NEXTGEN TUNNEL | Management Menu ===\n1) Easy install on both servers: role and peer IP only\n2) Advanced: prepare keys and configs\n3) Advanced: install / update engine and Site-to-Site\n4) Manage GRE / VXLAN / IPIP\n5) Service status\n6) Test connectivity\n7) View logs\n8) Manage standalone core\n9) Download / verify prebuilt bundle\n0) Exit')
             try:
-                choice=self.prompt('انتخاب')
+                choice=self.prompt('Select an option')
                 if choice=='0':return
-                if choice not in actions:print('گزینه نامعتبر است.');continue
+                if choice not in actions:print('Invalid option.');continue
                 actions[choice]()
-            except (EOFError,KeyboardInterrupt):print('\nخروج.');return
-            except (ValueError,OSError,subprocess.SubprocessError,KeyError) as exc:print('خطا: '+str(exc))
+            except (EOFError,KeyboardInterrupt):print('\nExiting.');return
+            except (ValueError,OSError,subprocess.SubprocessError,KeyError) as exc:print('Error: '+str(exc))
 
 def main():
-    parser=argparse.ArgumentParser(description='منوی نصب و مدیریت Nextgen Tunnel روی Linux');parser.parse_args()
-    if sys.platform!='linux':raise SystemExit('این منو را روی سرور Linux اجرا کنید.')
+    parser=argparse.ArgumentParser(description='Nextgen Tunnel installation and management menu for Linux');parser.parse_args()
+    if sys.platform!='linux':raise SystemExit('Run this menu on a Linux server.')
     Menu().run()
 if __name__=='__main__':main()
