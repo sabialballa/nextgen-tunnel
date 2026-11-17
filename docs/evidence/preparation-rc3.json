@@ -1,0 +1,8 @@
+{
+  "success": true,
+  "default_two_carriers": true,
+  "explicit_four_independent_carriers": true,
+  "listener_and_initiator_destination_match": true,
+  "real_core_engine_check_passed": true,
+  "core_sha256": "96cec972279a1d7a02f13aed4dd6fd3029b581576edd8f48bc598abb9726433f"
+}

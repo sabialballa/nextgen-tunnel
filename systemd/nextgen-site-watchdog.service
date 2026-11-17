@@ -1,0 +1,17 @@
+[Unit]
+Description=Nextgen bounded initiating-peer recovery
+After=nextgen-site.service nextgen-engine.service
+Requires=nextgen-site.service
+PartOf=nextgen-site.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 /usr/local/lib/nextgen-stack/site_watchdog.py
+TimeoutStartSec=30
+NoNewPrivileges=yes
+CapabilityBoundingSet=CAP_SYS_ADMIN CAP_NET_ADMIN CAP_NET_RAW
+ProtectHome=yes
+ProtectSystem=strict
+ReadWritePaths=/var/lib/nextgen-stack-watchdog
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX AF_NETLINK
+UMask=0077

@@ -1,0 +1,1022 @@
+{
+  "schema_version": 1,
+  "scope": "two authorized Ubuntu 24.04 VPSs, both initiation directions, bounded bidirectional echo",
+  "management_iran_vpn_bypassed": true,
+  "reverse_site_checks_passed": true,
+  "production_acceptance": false,
+  "dpi_bypass_proven": false,
+  "maximum_throughput_measured": false,
+  "notes": [
+    "Initiating the outer connection in Iran failed sustained tests; the exact cause is not established.",
+    "Initiating REALITY in Turkey carried bidirectional WireGuard site TCP/UDP and IPv4/IPv6 successfully.",
+    "Direct reverse TCP measurements completed, but direct UDP still lost 99.8336 percent in that run.",
+    "Benchmark success denotes completed measurement, not an acceptable loss/latency budget or production acceptance.",
+    "Site under 5 Mbps offered TCP plus 1 Mbps UDP had 2.7904 percent UDP loss; at 0.5/0.1 Mbps it received all 1563 UDP echoes. These are different load conditions.",
+    "The 2000-round dual-stack site run lasted about 254 seconds and is not a multi-hour stability test.",
+    "The real carrier stop/replacement test preserved one established inner TCP connection.",
+    "Early benchmarks stopped on first TCP error; final direct/native runs attempt UDP independently.",
+    "Gecko retry is the actual running-carrier measurement; the earlier stopped-service attempt is excluded.",
+    "Reverse WireGuard baseline changed only the test peer endpoint temporarily; host routes stayed unchanged."
+  ],
+  "measurements": [
+    {
+      "source": "iran-direct.json",
+      "sha256": "25c725451fa809dd6d9a393c481b6e260889aff6739d671ab84e5ebd267e9094",
+      "result": {
+        "label": "direct",
+        "started": 1794862095.3922596,
+        "scope": "fixed-rate bidirectional payload echo; not maximum capacity",
+        "success": false,
+        "error": "timed out",
+        "finished": 1794862105.8420622
+      }
+    },
+    {
+      "source": "iran-native.json",
+      "sha256": "5f9321709c33b3cfcba0c5394a4fc96940c902f501278690c9a6612203cef120",
+      "result": {
+        "label": "native-auto",
+        "started": 1794862117.0195878,
+        "scope": "fixed-rate bidirectional payload echo; not maximum capacity",
+        "success": false,
+        "error": "timed out",
+        "finished": 1794862132.334643
+      }
+    },
+    {
+      "source": "iran-hy2.json",
+      "sha256": "26e87abe4bc61b79713557400ba037cc3877f26313c194c723098b55c9dc4dc3",
+      "result": {
+        "label": "hysteria2",
+        "started": 1794862132.6967816,
+        "scope": "fixed-rate bidirectional payload echo; not maximum capacity",
+        "success": false,
+        "error": "timed out",
+        "finished": 1794862142.7104323
+      }
+    },
+    {
+      "source": "iran-reality.json",
+      "sha256": "db5adbc1b5ce397354bc09fb7ebd2fc8576cd3e5e98709c851a3ff4649eb7c7b",
+      "result": {
+        "label": "reality",
+        "started": 1794862169.398041,
+        "scope": "fixed-rate bidirectional payload echo; not maximum capacity",
+        "success": false,
+        "error": "timed out",
+        "finished": 1794862184.7237933
+      }
+    },
+    {
+      "source": "iran-obfs.json",
+      "sha256": "35c8a78ef53cfb1459e035e7c4ab03c77fc8d0c26482c72c0297368610cca668",
+      "result": {
+        "label": "hysteria2-salamander",
+        "started": 1794862624.398345,
+        "scope": "fixed-rate bidirectional payload echo; not maximum capacity",
+        "success": false,
+        "errors": {
+          "tcp_single": "timed out",
+          "tcp_four": "timed out",
+          "udp_under_tcp_load": "timed out",
+          "tcp_during_udp": "setup EOF"
+        },
+        "finished": 1794862650.1284752
+      }
+    },
+    {
+      "source": "iran-gecko-retry.json",
+      "sha256": "73b772822acf7fe418ae234ffedbe24c05411102d342361891af71c1eb6fa835",
+      "result": {
+        "label": "hysteria2-gecko",
+        "started": 1794862890.684514,
+        "scope": "fixed-rate bidirectional payload echo; not maximum capacity",
+        "success": false,
+        "errors": {
+          "tcp_single": "timed out",
+          "tcp_four": "timed out",
+          "udp_under_tcp_load": "timed out",
+          "tcp_during_udp": "timed out"
+        },
+        "finished": 1794862925.8518193
+      }
+    },
+    {
+      "source": "iran-direct-final.json",
+      "sha256": "dd2a15f129c64227a34bda0058eef11d7c0e6fc683335d00b4996d62b015816e",
+      "result": {
+        "label": "direct-final",
+        "started": 1794862702.524397,
+        "scope": "fixed-rate bidirectional payload echo; not maximum capacity",
+        "udp_under_tcp_load": {
+          "sent": 15625,
+          "received": 26,
+          "lost": 15599,
+          "loss_percent": 99.8336,
+          "reordered": 0,
+          "duplicates": 0,
+          "corrupted": 0,
+          "rate_mbit_s": 1,
+          "seconds": 20,
+          "warmup_rtt_ms": 77.44450599784614,
+          "rtt_avg_ms": 77.53971838461538,
+          "rtt_p50_ms": 77.532568,
+          "rtt_p95_ms": 78.039774,
+          "rtt_p99_ms": 78.057665,
+          "adjacent_rtt_difference_mean_ms": 0.16359664000000124
+        },
+        "success": false,
+        "errors": {
+          "tcp_single": "timed out",
+          "tcp_four": "timed out",
+          "tcp_during_udp": "timed out"
+        },
+        "finished": 1794862746.295141
+      }
+    },
+    {
+      "source": "iran-native-final.json",
+      "sha256": "8760b454f046e7cfedacd7cdea250fd1d7fbc470894bb777937aea66d9a79a85",
+      "result": {
+        "label": "native-final",
+        "started": 1794863023.4833245,
+        "scope": "fixed-rate bidirectional payload echo; not maximum capacity",
+        "udp_under_tcp_load": {
+          "sent": 15625,
+          "received": 88,
+          "lost": 15537,
+          "loss_percent": 99.4368,
+          "reordered": 0,
+          "duplicates": 0,
+          "corrupted": 0,
+          "rate_mbit_s": 1,
+          "seconds": 20,
+          "warmup_rtt_ms": 357.12092900212156,
+          "rtt_avg_ms": 129.15920861363637,
+          "rtt_p50_ms": 122.687522,
+          "rtt_p95_ms": 269.046861,
+          "rtt_p99_ms": 274.137115,
+          "adjacent_rtt_difference_mean_ms": 4.262382816091955
+        },
+        "success": false,
+        "errors": {
+          "tcp_single": "timed out",
+          "tcp_four": "stream mismatch or receive failure ['timed out']",
+          "tcp_during_udp": "timed out"
+        },
+        "finished": 1794863090.9838533
+      }
+    },
+    {
+      "source": "iran-udp-sizes.json",
+      "sha256": "b620738c574dbef44ce4b85395f5bc823e52fc8fcc141e8dd94f37cafba191ad",
+      "result": [
+        {
+          "size": 64,
+          "sent": 30,
+          "received": 28
+        },
+        {
+          "size": 512,
+          "sent": 30,
+          "received": 30
+        },
+        {
+          "size": 1024,
+          "sent": 30,
+          "received": 17
+        },
+        {
+          "size": 1200,
+          "sent": 30,
+          "received": 30
+        },
+        {
+          "size": 1400,
+          "sent": 30,
+          "received": 30
+        }
+      ]
+    },
+    {
+      "source": "iran-site-bidirectional.json",
+      "sha256": "0001cbfdfa8b067850a76822f3a806a2b4f7f41ed317ac6fe21c1cf633e4d33c",
+      "result": {
+        "started": 1794862220.243503,
+        "checks": [
+          {
+            "protocol": "tcp",
+            "success": false,
+            "error": "timed out",
+            "family": "ipv4"
+          },
+          {
+            "protocol": "udp",
+            "success": false,
+            "error": "timed out",
+            "family": "ipv4"
+          },
+          {
+            "protocol": "tcp",
+            "success": false,
+            "error": "timed out",
+            "family": "ipv6"
+          },
+          {
+            "protocol": "udp",
+            "success": false,
+            "error": "timed out",
+            "family": "ipv6"
+          }
+        ],
+        "finished": 1794862253.3752177,
+        "success": false
+      }
+    },
+    {
+      "source": "turkey-site-bidirectional.json",
+      "sha256": "ee6bb464839eaa5b63bde346ff585acb2a51b49c5630e221c562b8d2baf5fc3f",
+      "result": {
+        "started": 1794862221.5311852,
+        "checks": [
+          {
+            "protocol": "tcp",
+            "success": false,
+            "error": "timed out",
+            "family": "ipv4"
+          },
+          {
+            "protocol": "udp",
+            "success": false,
+            "error": "timed out",
+            "family": "ipv4"
+          },
+          {
+            "protocol": "tcp",
+            "success": false,
+            "error": "timed out",
+            "family": "ipv6"
+          },
+          {
+            "protocol": "udp",
+            "success": false,
+            "error": "timed out",
+            "family": "ipv6"
+          }
+        ],
+        "finished": 1794862253.564797,
+        "success": false
+      }
+    },
+    {
+      "source": "iran-site-obfs.json",
+      "sha256": "d2ea892878145f49641c2da8aaac680c0261331881b7c01872b6536086ad8fef",
+      "result": {
+        "started": 1794862624.3363123,
+        "checks": [
+          {
+            "protocol": "tcp",
+            "success": false,
+            "error": "timed out",
+            "family": "ipv4"
+          },
+          {
+            "protocol": "udp",
+            "success": false,
+            "error": "timed out",
+            "family": "ipv4"
+          },
+          {
+            "protocol": "tcp",
+            "success": false,
+            "error": "timed out",
+            "family": "ipv6"
+          },
+          {
+            "protocol": "udp",
+            "success": false,
+            "error": "timed out",
+            "family": "ipv6"
+          }
+        ],
+        "finished": 1794862657.2412918,
+        "success": false
+      }
+    },
+    {
+      "source": "iran-site-gecko.json",
+      "sha256": "f304b3c8266791d4323b2930553099e0f5eb8acfaed00239e0febd812d186d64",
+      "result": {
+        "started": 1794862890.6398108,
+        "checks": [
+          {
+            "protocol": "tcp",
+            "success": false,
+            "error": "timed out",
+            "family": "ipv4"
+          },
+          {
+            "protocol": "udp",
+            "success": false,
+            "error": "timed out",
+            "family": "ipv4"
+          },
+          {
+            "protocol": "tcp",
+            "success": false,
+            "error": "timed out",
+            "family": "ipv6"
+          },
+          {
+            "protocol": "udp",
+            "success": false,
+            "error": "timed out",
+            "family": "ipv6"
+          }
+        ],
+        "finished": 1794862923.0257044,
+        "success": false
+      }
+    },
+    {
+      "source": "iran-site-wg-direct.json",
+      "sha256": "dc6e8bb8e3911534e3d287f3a0c0aade0ee60181a494e80d916e23380e838610",
+      "result": {
+        "started": 1794862734.7442992,
+        "checks": [
+          {
+            "protocol": "tcp",
+            "success": true,
+            "rounds": 20,
+            "payload_bytes": 1024,
+            "rtt_min_ms": 77.52596999853267,
+            "rtt_mean_ms": 79.09292069980438,
+            "rtt_max_ms": 91.96800399877247,
+            "family": "ipv4"
+          },
+          {
+            "protocol": "udp",
+            "success": false,
+            "error": "timed out",
+            "family": "ipv4"
+          },
+          {
+            "protocol": "tcp",
+            "success": false,
+            "error": "timed out",
+            "family": "ipv6"
+          },
+          {
+            "protocol": "udp",
+            "success": false,
+            "error": "timed out",
+            "family": "ipv6"
+          }
+        ],
+        "finished": 1794862760.5080185,
+        "success": false
+      }
+    },
+    {
+      "source": "turkey-site-reverse-direct.json",
+      "sha256": "4547e0a9f08bd879ae8b18a742a76adf8e9b2d9e4b1a45ebdb467502e4cacdf0",
+      "result": {
+        "started": 1794862926.0737097,
+        "checks": [
+          {
+            "protocol": "tcp",
+            "success": false,
+            "error": "timed out",
+            "family": "ipv4"
+          },
+          {
+            "protocol": "udp",
+            "success": false,
+            "error": "timed out",
+            "family": "ipv4"
+          },
+          {
+            "protocol": "tcp",
+            "success": false,
+            "error": "timed out",
+            "family": "ipv6"
+          },
+          {
+            "protocol": "udp",
+            "success": false,
+            "error": "timed out",
+            "family": "ipv6"
+          }
+        ],
+        "finished": 1794862959.7266498,
+        "success": false
+      }
+    },
+    {
+      "source": "turkey-reverse-direct.json",
+      "sha256": "424954bfa978f9641cbcb97f5142a0dc7015af91e92875c2ab6a72e327871847",
+      "result": {
+        "label": "reverse-direct",
+        "started": 1794863491.9917128,
+        "scope": "fixed-rate bidirectional payload echo; not maximum capacity",
+        "tcp_single": {
+          "sent": 5472256,
+          "received": 5472256,
+          "elapsed_seconds": 22.180392587000824,
+          "echo_payload_mbit_s": 1.9737273733223653,
+          "configured_mbit_s": 5,
+          "connection_and_first_response_ms": 157.47685699898284
+        },
+        "tcp_four": [
+          {
+            "sent": 3145728,
+            "received": 3145728,
+            "elapsed_seconds": 20.222970897000778,
+            "echo_payload_mbit_s": 1.2444177528699447,
+            "configured_mbit_s": 1.25,
+            "connection_and_first_response_ms": 181.44282700086478
+          },
+          {
+            "sent": 3145728,
+            "received": 3145728,
+            "elapsed_seconds": 20.22335484600262,
+            "echo_payload_mbit_s": 1.244394127069096,
+            "configured_mbit_s": 1.25,
+            "connection_and_first_response_ms": 185.410657999455
+          },
+          {
+            "sent": 3145728,
+            "received": 3145728,
+            "elapsed_seconds": 20.214854941998055,
+            "echo_payload_mbit_s": 1.244917367560026,
+            "configured_mbit_s": 1.25,
+            "connection_and_first_response_ms": 162.55301699857228
+          },
+          {
+            "sent": 3145728,
+            "received": 3145728,
+            "elapsed_seconds": 20.308520417002,
+            "echo_payload_mbit_s": 1.239175650577259,
+            "configured_mbit_s": 1.25,
+            "connection_and_first_response_ms": 158.8571510001202
+          }
+        ],
+        "udp_under_tcp_load": {
+          "sent": 15625,
+          "received": 26,
+          "lost": 15599,
+          "loss_percent": 99.8336,
+          "reordered": 0,
+          "duplicates": 0,
+          "corrupted": 0,
+          "rate_mbit_s": 1,
+          "seconds": 20,
+          "warmup_rtt_ms": 80.81683300042641,
+          "rtt_avg_ms": 77.37905561538462,
+          "rtt_p50_ms": 77.348909,
+          "rtt_p95_ms": 77.72367,
+          "rtt_p99_ms": 77.889837,
+          "adjacent_rtt_difference_mean_ms": 0.14057459999999936
+        },
+        "tcp_during_udp": {
+          "sent": 5636096,
+          "received": 5636096,
+          "elapsed_seconds": 22.225425942000584,
+          "echo_payload_mbit_s": 2.028702087314931,
+          "configured_mbit_s": 5,
+          "connection_and_first_response_ms": 155.93314099896816
+        },
+        "success": true,
+        "errors": {},
+        "finished": 1794863557.1850984
+      }
+    },
+    {
+      "source": "turkey-reverse-reality.json",
+      "sha256": "ca0f0a0ace12a26ccd41fed1a07d95e00ad09d9f000c2b3466e6fdc337ae82e0",
+      "result": {
+        "label": "reverse-reality",
+        "started": 1794863657.7040498,
+        "scope": "fixed-rate bidirectional payload echo; not maximum capacity",
+        "tcp_four": [
+          {
+            "sent": 3145728,
+            "received": 3145728,
+            "elapsed_seconds": 20.133498822000547,
+            "echo_payload_mbit_s": 1.249947871579105,
+            "configured_mbit_s": 1.25,
+            "connection_and_first_response_ms": 581.6808340023272
+          },
+          {
+            "sent": 3145728,
+            "received": 3145728,
+            "elapsed_seconds": 20.133379046998016,
+            "echo_payload_mbit_s": 1.2499553076140166,
+            "configured_mbit_s": 1.25,
+            "connection_and_first_response_ms": 876.1066440019931
+          },
+          {
+            "sent": 3145728,
+            "received": 3145728,
+            "elapsed_seconds": 20.13374839700191,
+            "echo_payload_mbit_s": 1.2499323774080444,
+            "configured_mbit_s": 1.25,
+            "connection_and_first_response_ms": 579.5648769999389
+          },
+          {
+            "sent": 3145728,
+            "received": 3145728,
+            "elapsed_seconds": 20.133340342999873,
+            "echo_payload_mbit_s": 1.2499577105072812,
+            "configured_mbit_s": 1.25,
+            "connection_and_first_response_ms": 1568.868416998157
+          }
+        ],
+        "udp_under_tcp_load": {
+          "sent": 15625,
+          "received": 15432,
+          "lost": 193,
+          "loss_percent": 1.2352,
+          "reordered": 0,
+          "duplicates": 0,
+          "corrupted": 0,
+          "rate_mbit_s": 1,
+          "seconds": 20,
+          "warmup_rtt_ms": 555.9251829981804,
+          "rtt_avg_ms": 117.09653858981338,
+          "rtt_p50_ms": 101.899105,
+          "rtt_p95_ms": 202.976296,
+          "rtt_p99_ms": 244.766223,
+          "adjacent_rtt_difference_mean_ms": 2.1712191445790943
+        },
+        "success": false,
+        "errors": {
+          "tcp_single": "echo drain deadline",
+          "tcp_during_udp": "stream mismatch or receive failure []"
+        },
+        "finished": 1794863739.214018
+      }
+    },
+    {
+      "source": "turkey-reverse-low.json",
+      "sha256": "f644adbf51faa949f7f223497950fbf1e477ccd4eb7bf03229d47081cf52d487",
+      "result": {
+        "label": "reverse-reality-low",
+        "started": 1794863887.9971027,
+        "scope": "fixed-rate bidirectional payload echo; completion is not production acceptance or maximum capacity",
+        "tcp_offered_mbit_s": 0.5,
+        "udp_offered_mbit_s": 0.1,
+        "tcp_single": {
+          "sent": 1277952,
+          "received": 1277952,
+          "elapsed_seconds": 20.44799012600197,
+          "echo_payload_mbit_s": 0.499981462089983,
+          "configured_mbit_s": 0.5,
+          "connection_and_first_response_ms": 587.0561760020792
+        },
+        "tcp_four": [
+          {
+            "sent": 327680,
+            "received": 327680,
+            "elapsed_seconds": 20.972162938996917,
+            "echo_payload_mbit_s": 0.12499616790243102,
+            "configured_mbit_s": 0.125,
+            "connection_and_first_response_ms": 563.4532230033074
+          },
+          {
+            "sent": 327680,
+            "received": 327680,
+            "elapsed_seconds": 20.972261080001772,
+            "echo_payload_mbit_s": 0.1249955829750608,
+            "configured_mbit_s": 0.125,
+            "connection_and_first_response_ms": 608.3211910008686
+          },
+          {
+            "sent": 327680,
+            "received": 327680,
+            "elapsed_seconds": 20.97230987399962,
+            "echo_payload_mbit_s": 0.12499529216140016,
+            "configured_mbit_s": 0.125,
+            "connection_and_first_response_ms": 552.8695570028503
+          },
+          {
+            "sent": 327680,
+            "received": 327680,
+            "elapsed_seconds": 20.97217524900043,
+            "echo_payload_mbit_s": 0.12499609453363415,
+            "configured_mbit_s": 0.125,
+            "connection_and_first_response_ms": 558.7775690000854
+          }
+        ],
+        "udp_under_tcp_load": {
+          "sent": 1563,
+          "received": 1563,
+          "lost": 0,
+          "loss_percent": 0.0,
+          "reordered": 0,
+          "duplicates": 0,
+          "corrupted": 0,
+          "rate_mbit_s": 0.1,
+          "seconds": 20,
+          "warmup_rtt_ms": 561.5779340005247,
+          "rtt_avg_ms": 79.73094294689699,
+          "rtt_p50_ms": 77.855482,
+          "rtt_p95_ms": 81.99005,
+          "rtt_p99_ms": 140.344158,
+          "adjacent_rtt_difference_mean_ms": 1.3631761459667093
+        },
+        "tcp_during_udp": {
+          "sent": 1277952,
+          "received": 1277952,
+          "elapsed_seconds": 20.44810940000025,
+          "echo_payload_mbit_s": 0.49997854569380756,
+          "configured_mbit_s": 0.5,
+          "connection_and_first_response_ms": 562.099719998514
+        },
+        "success": true,
+        "errors": {},
+        "finished": 1794863953.2616272
+      }
+    },
+    {
+      "source": "iran-site-reverse-reality.json",
+      "sha256": "616ba79868666054558a9804caaac1279aa1dbc0aeba412595970d71d7fc4023",
+      "result": {
+        "started": 1794863672.2414963,
+        "checks": [
+          {
+            "protocol": "tcp",
+            "success": true,
+            "rounds": 20,
+            "payload_bytes": 1024,
+            "rtt_min_ms": 77.98371099852375,
+            "rtt_mean_ms": 79.34478910028702,
+            "rtt_max_ms": 81.85312800196698,
+            "family": "ipv4"
+          },
+          {
+            "protocol": "udp",
+            "success": true,
+            "rounds": 20,
+            "payload_bytes": 1024,
+            "rtt_min_ms": 78.63677999921492,
+            "rtt_mean_ms": 80.42499640032474,
+            "rtt_max_ms": 84.50477799851797,
+            "family": "ipv4"
+          },
+          {
+            "protocol": "tcp",
+            "success": true,
+            "rounds": 20,
+            "payload_bytes": 1024,
+            "rtt_min_ms": 78.3120650012279,
+            "rtt_mean_ms": 79.39558175021375,
+            "rtt_max_ms": 80.93982900027186,
+            "family": "ipv6"
+          },
+          {
+            "protocol": "udp",
+            "success": true,
+            "rounds": 20,
+            "payload_bytes": 1024,
+            "rtt_min_ms": 78.07152900204528,
+            "rtt_mean_ms": 94.03489525029727,
+            "rtt_max_ms": 363.50176199994166,
+            "family": "ipv6"
+          }
+        ],
+        "finished": 1794863679.0691056,
+        "success": true
+      }
+    },
+    {
+      "source": "turkey-site-reverse-reality.json",
+      "sha256": "652c5f9bd403d786165bb7bd7176d14a2229701bf303ca98689f9190f3bdf3ef",
+      "result": {
+        "started": 1794863671.2091706,
+        "checks": [
+          {
+            "protocol": "tcp",
+            "success": true,
+            "rounds": 20,
+            "payload_bytes": 1024,
+            "rtt_min_ms": 78.15162499900907,
+            "rtt_mean_ms": 79.92660634918138,
+            "rtt_max_ms": 86.39591700193705,
+            "family": "ipv4"
+          },
+          {
+            "protocol": "udp",
+            "success": true,
+            "rounds": 20,
+            "payload_bytes": 1024,
+            "rtt_min_ms": 78.48483099951409,
+            "rtt_mean_ms": 80.21244529991236,
+            "rtt_max_ms": 84.39106899822946,
+            "family": "ipv4"
+          },
+          {
+            "protocol": "tcp",
+            "success": true,
+            "rounds": 20,
+            "payload_bytes": 1024,
+            "rtt_min_ms": 78.316208000615,
+            "rtt_mean_ms": 80.08332685003552,
+            "rtt_max_ms": 84.68713299953379,
+            "family": "ipv6"
+          },
+          {
+            "protocol": "udp",
+            "success": true,
+            "rounds": 20,
+            "payload_bytes": 1024,
+            "rtt_min_ms": 78.34465600171825,
+            "rtt_mean_ms": 79.57079239986342,
+            "rtt_max_ms": 82.49555200018222,
+            "family": "ipv6"
+          }
+        ],
+        "finished": 1794863677.7704089,
+        "success": true
+      }
+    },
+    {
+      "source": "iran-site-load.json",
+      "sha256": "a47e007d777ba6860f8782286a3341ce89f046ef62358dc513b020f379df3e48",
+      "result": {
+        "label": "site-reverse-reality",
+        "started": 1794863774.2427278,
+        "scope": "fixed-rate bidirectional payload echo; not maximum capacity",
+        "tcp_single": {
+          "sent": 6094848,
+          "received": 6094848,
+          "elapsed_seconds": 28.88791171699995,
+          "echo_payload_mbit_s": 1.687861153747103,
+          "configured_mbit_s": 5,
+          "connection_and_first_response_ms": 172.11879899696214
+        },
+        "tcp_four": [
+          {
+            "sent": 2523136,
+            "received": 2523136,
+            "elapsed_seconds": 26.04494281100051,
+            "echo_payload_mbit_s": 0.7750098799016942,
+            "configured_mbit_s": 1.25,
+            "connection_and_first_response_ms": 184.41459400128224
+          },
+          {
+            "sent": 1736704,
+            "received": 1736704,
+            "elapsed_seconds": 24.594958310000948,
+            "echo_payload_mbit_s": 0.564897562536241,
+            "configured_mbit_s": 1.25,
+            "connection_and_first_response_ms": 184.71098400186747
+          },
+          {
+            "sent": 1146880,
+            "received": 1146880,
+            "elapsed_seconds": 25.329372528998647,
+            "echo_payload_mbit_s": 0.3622292652333113,
+            "configured_mbit_s": 1.25,
+            "connection_and_first_response_ms": 184.95569999868167
+          },
+          {
+            "sent": 2490368,
+            "received": 2490368,
+            "elapsed_seconds": 25.63604158599992,
+            "echo_payload_mbit_s": 0.7771458761745849,
+            "configured_mbit_s": 1.25,
+            "connection_and_first_response_ms": 182.93491499935044
+          }
+        ],
+        "udp_under_tcp_load": {
+          "sent": 15625,
+          "received": 15189,
+          "lost": 436,
+          "loss_percent": 2.7904,
+          "reordered": 0,
+          "duplicates": 0,
+          "corrupted": 0,
+          "rate_mbit_s": 1,
+          "seconds": 20,
+          "warmup_rtt_ms": 79.06854499742622,
+          "rtt_avg_ms": 582.0954356828626,
+          "rtt_p50_ms": 557.280373,
+          "rtt_p95_ms": 1198.300089,
+          "rtt_p99_ms": 1257.538518,
+          "adjacent_rtt_difference_mean_ms": 2.3438961461021863
+        },
+        "tcp_during_udp": {
+          "sent": 2293760,
+          "received": 2293760,
+          "elapsed_seconds": 20.616534373999457,
+          "echo_payload_mbit_s": 0.8900661802374605,
+          "configured_mbit_s": 5,
+          "connection_and_first_response_ms": 158.66985200045747
+        },
+        "success": true,
+        "errors": {},
+        "finished": 1794863851.8706203
+      }
+    },
+    {
+      "source": "iran-site-low.json",
+      "sha256": "adada711c84959059708a5b99f14746b7011e7cf6e2ae0e6a34c5f0ad6de9ffe",
+      "result": {
+        "label": "site-low",
+        "started": 1794863889.002696,
+        "scope": "fixed-rate bidirectional payload echo; completion is not production acceptance or maximum capacity",
+        "tcp_offered_mbit_s": 0.5,
+        "udp_offered_mbit_s": 0.1,
+        "tcp_single": {
+          "sent": 1277952,
+          "received": 1277952,
+          "elapsed_seconds": 20.528503800996987,
+          "echo_payload_mbit_s": 0.4980205132876503,
+          "configured_mbit_s": 0.5,
+          "connection_and_first_response_ms": 163.04084900184534
+        },
+        "tcp_four": [
+          {
+            "sent": 327680,
+            "received": 327680,
+            "elapsed_seconds": 21.05080588599958,
+            "echo_payload_mbit_s": 0.12452919922383879,
+            "configured_mbit_s": 0.125,
+            "connection_and_first_response_ms": 156.91398700073478
+          },
+          {
+            "sent": 327680,
+            "received": 327680,
+            "elapsed_seconds": 21.04963503199906,
+            "echo_payload_mbit_s": 0.12453612597154112,
+            "configured_mbit_s": 0.125,
+            "connection_and_first_response_ms": 161.0671269991144
+          },
+          {
+            "sent": 327680,
+            "received": 327680,
+            "elapsed_seconds": 21.050250534000952,
+            "echo_payload_mbit_s": 0.12453248457854585,
+            "configured_mbit_s": 0.125,
+            "connection_and_first_response_ms": 160.95956999924965
+          },
+          {
+            "sent": 327680,
+            "received": 327680,
+            "elapsed_seconds": 21.049782784000854,
+            "echo_payload_mbit_s": 0.1245352518313138,
+            "configured_mbit_s": 0.125,
+            "connection_and_first_response_ms": 161.61051600283827
+          }
+        ],
+        "udp_under_tcp_load": {
+          "sent": 1563,
+          "received": 1563,
+          "lost": 0,
+          "loss_percent": 0.0,
+          "reordered": 0,
+          "duplicates": 0,
+          "corrupted": 0,
+          "rate_mbit_s": 0.1,
+          "seconds": 20,
+          "warmup_rtt_ms": 78.57103000060306,
+          "rtt_avg_ms": 95.01522989379399,
+          "rtt_p50_ms": 79.953,
+          "rtt_p95_ms": 157.867935,
+          "rtt_p99_ms": 215.433056,
+          "adjacent_rtt_difference_mean_ms": 7.2829169884763125
+        },
+        "tcp_during_udp": {
+          "sent": 1277952,
+          "received": 1277952,
+          "elapsed_seconds": 20.526618902000337,
+          "echo_payload_mbit_s": 0.4980662450455345,
+          "configured_mbit_s": 0.5,
+          "connection_and_first_response_ms": 158.941566998692
+        },
+        "success": true,
+        "errors": {},
+        "finished": 1794863953.083892
+      }
+    },
+    {
+      "source": "iran-site-soak.json",
+      "sha256": "7c92569cf12256b78521b9e60c7d18cb1993298c9ca3d089a1f1f61fa210fd44",
+      "result": {
+        "started": 1794863774.195891,
+        "checks": [
+          {
+            "protocol": "tcp",
+            "success": true,
+            "rounds": 500,
+            "payload_bytes": 1024,
+            "rtt_min_ms": 77.93559299898334,
+            "rtt_mean_ms": 240.21659650201764,
+            "rtt_max_ms": 4352.394623001601,
+            "family": "ipv4"
+          },
+          {
+            "protocol": "udp",
+            "success": true,
+            "rounds": 500,
+            "payload_bytes": 1024,
+            "rtt_min_ms": 77.70751299904077,
+            "rtt_mean_ms": 90.27339966793079,
+            "rtt_max_ms": 438.28853800005163,
+            "family": "ipv4"
+          },
+          {
+            "protocol": "tcp",
+            "success": true,
+            "rounds": 500,
+            "payload_bytes": 1024,
+            "rtt_min_ms": 77.64727000176208,
+            "rtt_mean_ms": 93.86059513610962,
+            "rtt_max_ms": 571.0824560010224,
+            "family": "ipv6"
+          },
+          {
+            "protocol": "udp",
+            "success": true,
+            "rounds": 500,
+            "payload_bytes": 1024,
+            "rtt_min_ms": 78.08129000113695,
+            "rtt_mean_ms": 82.52700398996967,
+            "rtt_max_ms": 365.1782920023834,
+            "family": "ipv6"
+          }
+        ],
+        "finished": 1794864028.636421,
+        "success": true
+      }
+    },
+    {
+      "source": "turkey-site-recovery.json",
+      "sha256": "e426405f3ee124fc7b75fa86c7bf70af02ec8b2cb9cd7421cb5e720e87b8ece0",
+      "result": {
+        "started": 1794864066.927966,
+        "checks": [
+          {
+            "name": "before_outage",
+            "returncode": 0,
+            "stdout": "{\"started\": 1794864067.004536, \"checks\": [{\"peer\": \"10.77.240.1\", \"protocol\": \"tcp\", \"success\": true, \"rounds\": 20, \"payload_bytes\": 1024, \"rtt_min_ms\": 78.46047400016687, \"rtt_mean_ms\": 79.86049214978266, \"rtt_max_ms\": 83.46006599822431}, {\"peer\": \"10.77.240.1\", \"protocol\": \"udp\", \"success\": true, \"rounds\": 20, \"payload_bytes\": 1024, \"rtt_min_ms\": 78.17496599818696, \"rtt_mean_ms\": 78.80623224973533, \"rtt_max_ms\": 80.13290800226969}, {\"peer\": \"fd77:240::1\", \"protocol\": \"tcp\", \"success\": true, \"rounds\": 20, \"payload_bytes\": 1024, \"rtt_min_ms\": 78.41725099933683, \"rtt_mean_ms\": 93.50593654980912, \"rtt_max_ms\": 358.9182569994591}, {\"peer\": \"fd77:240::1\", \"protocol\": \"udp\", \"success\": true, \"rounds\": 20, \"payload_bytes\": 1024, \"rtt_min_ms\": 78.22739300172543, \"rtt_mean_ms\": 78.63759620013298, \"rtt_max_ms\": 79.52152600046247}], \"finished\": 1794864073.7849333, \"success\": true}\n",
+            "stderr": ""
+          },
+          {
+            "name": "stop_owned_carrier",
+            "returncode": 0,
+            "stdout": "",
+            "stderr": ""
+          },
+          {
+            "name": "outage_ping",
+            "returncode": 1,
+            "stdout": "PING 10.77.240.1 (10.77.240.1) 56(84) bytes of data.\n\n--- 10.77.240.1 ping statistics ---\n1 packets transmitted, 0 received, 100% packet loss, time 0ms\n\n",
+            "stderr": ""
+          },
+          {
+            "name": "outage_ping",
+            "returncode": 1,
+            "stdout": "PING fd77:240::1 (fd77:240::1) 56 data bytes\n\n--- fd77:240::1 ping statistics ---\n1 packets transmitted, 0 received, 100% packet loss, time 0ms\n\n",
+            "stderr": ""
+          },
+          {
+            "name": "no_underlay_default",
+            "returncode": 2,
+            "stdout": "",
+            "stderr": "RTNETLINK answers: Network is unreachable\n"
+          },
+          {
+            "name": "start_replacement_carrier",
+            "returncode": 0,
+            "stdout": "",
+            "stderr": "Running as unit: nextgen-field-recovered-carrier.service; invocation ID: c9c50c0d68084145a97eeb28b3838d5e\n"
+          },
+          {
+            "name": "recovery_ping",
+            "returncode": 1,
+            "stdout": "PING 10.77.240.1 (10.77.240.1) 56(84) bytes of data.\n\n--- 10.77.240.1 ping statistics ---\n1 packets transmitted, 0 received, 100% packet loss, time 0ms\n\n",
+            "stderr": ""
+          },
+          {
+            "name": "recovery_ping",
+            "returncode": 0,
+            "stdout": "PING 10.77.240.1 (10.77.240.1) 56(84) bytes of data.\n64 bytes from 10.77.240.1: icmp_seq=1 ttl=64 time=546 ms\n\n--- 10.77.240.1 ping statistics ---\n1 packets transmitted, 1 received, 0% packet loss, time 0ms\nrtt min/avg/max/mdev = 546.444/546.444/546.444/0.000 ms\n",
+            "stderr": ""
+          },
+          {
+            "name": "after_outage",
+            "returncode": 0,
+            "stdout": "{\"started\": 1794864080.7833233, \"checks\": [{\"peer\": \"10.77.240.1\", \"protocol\": \"tcp\", \"success\": true, \"rounds\": 20, \"payload_bytes\": 1024, \"rtt_min_ms\": 78.31818100021337, \"rtt_mean_ms\": 80.06509819970233, \"rtt_max_ms\": 83.93198599878815}, {\"peer\": \"10.77.240.1\", \"protocol\": \"udp\", \"success\": true, \"rounds\": 20, \"payload_bytes\": 1024, \"rtt_min_ms\": 78.19056800144608, \"rtt_mean_ms\": 80.08657775026222, \"rtt_max_ms\": 82.31853600227623}, {\"peer\": \"fd77:240::1\", \"protocol\": \"tcp\", \"success\": true, \"rounds\": 20, \"payload_bytes\": 1024, \"rtt_min_ms\": 77.99820199943497, \"rtt_mean_ms\": 79.538360299739, \"rtt_max_ms\": 81.52036799947382}, {\"peer\": \"fd77:240::1\", \"protocol\": \"udp\", \"success\": true, \"rounds\": 20, \"payload_bytes\": 1024, \"rtt_min_ms\": 78.05967699823668, \"rtt_mean_ms\": 107.63963579956908, \"rtt_max_ms\": 362.28066100011347}], \"finished\": 1794864087.8938537, \"success\": true}\n",
+            "stderr": ""
+          }
+        ],
+        "recovery_ping_seconds": 2.5855633370010764,
+        "existing_tcp_survived": true,
+        "success": true,
+        "finished": 1794864087.9239879
+      }
+    }
+  ]
+}

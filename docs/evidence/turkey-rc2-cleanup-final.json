@@ -1,0 +1,7 @@
+{
+  "helpers_removed": true,
+  "test_secret_removed": true,
+  "test_units_running": false,
+  "temporary_fault_table_removed": true,
+  "public_test_listeners_closed": true
+}

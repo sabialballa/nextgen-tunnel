@@ -1,0 +1,21 @@
+{
+  "role": "client",
+  "tls": {
+    "ca": "/etc/nextgen-tunnel/ca.crt",
+    "cert": "/etc/nextgen-tunnel/cert.crt",
+    "key": "/etc/nextgen-tunnel/endpoint.key",
+    "server_name": "tunnel.internal"
+  },
+  "endpoints": [
+    {"name": "primary-quic", "protocol": "quic", "address": "203.0.113.2:8443"},
+    {"name": "backup-tls", "protocol": "tls", "address": "203.0.113.2:8443"}
+  ],
+  "forwards": [
+    {"service": "web", "protocol": "tcp", "listen": "127.0.0.1:18080"},
+    {"service": "dns", "protocol": "udp", "listen": "127.0.0.1:15353"}
+  ],
+  "max_sessions": 256,
+  "idle_seconds": 60,
+  "probe_seconds": 2,
+  "status_file": "/var/lib/nextgen-tunnel/status.json"
+}

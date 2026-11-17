@@ -1,0 +1,7 @@
+{
+  "success": true,
+  "kind": "simulated probe policy regression, not a real transport recovery",
+  "isolated_success_preserves_outage": true,
+  "six_intermittent_failures_trigger_one_restart": true,
+  "three_consecutive_successes_clear_outage": true
+}

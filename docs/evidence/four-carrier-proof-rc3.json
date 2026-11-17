@@ -1,0 +1,29 @@
+{
+  "carriers": 4,
+  "counts": [
+    {
+      "label": "carrier_1",
+      "incoming": 662,
+      "outgoing": 660
+    },
+    {
+      "label": "carrier_2",
+      "incoming": 662,
+      "outgoing": 660
+    },
+    {
+      "label": "carrier_3",
+      "incoming": 662,
+      "outgoing": 660
+    },
+    {
+      "label": "carrier_4",
+      "incoming": 662,
+      "outgoing": 660
+    }
+  ],
+  "raw_sha256": "ee1af9f9181baed57c1339a24edebd255a997e2ff7d5127b3b811067e1c79ae6",
+  "kernel_capture_drop_counts": [
+    0
+  ]
+}

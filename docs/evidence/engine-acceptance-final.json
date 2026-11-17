@@ -1,0 +1,161 @@
+{
+  "started": 1794838085.848626,
+  "checks": [
+    {
+      "name": "engine_init",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "engine_plan",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "check_server",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "check_client",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "namespace_create",
+      "returncode": 0,
+      "stdout": "created; no egress until the TUN engine starts\n",
+      "stderr": ""
+    },
+    {
+      "name": "namespace_idempotent",
+      "returncode": 0,
+      "stdout": "unchanged\n",
+      "stderr": ""
+    },
+    {
+      "name": "lab_ipv4",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "lab_ipv6",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "hy2_dual_stack",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/usr/lib/python3.11/urllib/request.py\", line 1361, in do_open\n    h.request(req.get_method(), req.selector, req.data, headers,\n  File \"/usr/lib/python3.11/http/client.py\", line 1311, in request\n    self._send_request(method, url, body, headers, encode_chunked)\n  File \"/usr/lib/python3.11/http/client.py\", line 1357, in _send_request\n    self.endheaders(body, encode_chunked=encode_chunked)\n  File \"/usr/lib/python3.11/http/client.py\", line 1306, in endheaders\n    self._send_output(message_body, encode_chunked=encode_chunked)\n  File \"/usr/lib/python3.11/http/client.py\", line 1066, in _send_output\n    self.send(msg)\n  File \"/usr/lib/python3.11/http/client.py\", line 1004, in send\n    self.connect()\n  File \"/usr/lib/python3.11/http/client.py\", line 970, in connect\n    self.sock = self._create_connection(\n                ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.11/socket.py\", line 851, in create_connection\n    raise exceptions[0]\n  File \"/usr/lib/python3.11/socket.py\", line 836, in create_connection\n    sock.connect(sa)\nOSError: [Errno 101] Network is unreachable\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n  File \"/usr/lib/python3.11/urllib/request.py\", line 216, in urlopen\n    return opener.open(url, data, timeout)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.11/urllib/request.py\", line 519, in open\n    response = self._open(req, data)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.11/urllib/request.py\", line 536, in _open\n    result = self._call_chain(self.handle_open, protocol, protocol +\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.11/urllib/request.py\", line 496, in _call_chain\n    result = func(*args)\n             ^^^^^^^^^^^\n  File \"/usr/lib/python3.11/urllib/request.py\", line 1390, in http_open\n    return self.do_open(http.client.HTTPConnection, req)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.11/urllib/request.py\", line 1364, in do_open\n    raise URLError(err)\nurllib.error.URLError: <urlopen error [Errno 101] Network is unreachable>\n"
+    },
+    {
+      "name": "hy2_dual_stack",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n  File \"/usr/lib/python3.11/urllib/request.py\", line 216, in urlopen\n    return opener.open(url, data, timeout)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.11/urllib/request.py\", line 519, in open\n    response = self._open(req, data)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.11/urllib/request.py\", line 536, in _open\n    result = self._call_chain(self.handle_open, protocol, protocol +\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.11/urllib/request.py\", line 496, in _call_chain\n    result = func(*args)\n             ^^^^^^^^^^^\n  File \"/usr/lib/python3.11/urllib/request.py\", line 1390, in http_open\n    return self.do_open(http.client.HTTPConnection, req)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.11/urllib/request.py\", line 1365, in do_open\n    r = h.getresponse()\n        ^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.11/http/client.py\", line 1403, in getresponse\n    response.begin()\n  File \"/usr/lib/python3.11/http/client.py\", line 323, in begin\n    version, status, reason = self._read_status()\n                              ^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.11/http/client.py\", line 284, in _read_status\n    line = str(self.fp.readline(_MAXLINE + 1), \"iso-8859-1\")\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.11/socket.py\", line 706, in readinto\n    return self._sock.recv_into(b)\n           ^^^^^^^^^^^^^^^^^^^^^^^\nConnectionResetError: [Errno 104] Connection reset by peer\n"
+    },
+    {
+      "name": "hy2_dual_stack",
+      "returncode": 0,
+      "stdout": "IPv4/IPv6 TCP and UDP passed\n",
+      "stderr": ""
+    },
+    {
+      "name": "hy2_dns",
+      "returncode": 0,
+      "stdout": "proxied DNS passed\n",
+      "stderr": ""
+    },
+    {
+      "name": "reality_dual_stack",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/usr/lib/python3.11/urllib/request.py\", line 1361, in do_open\n    h.request(req.get_method(), req.selector, req.data, headers,\n  File \"/usr/lib/python3.11/http/client.py\", line 1311, in request\n    self._send_request(method, url, body, headers, encode_chunked)\n  File \"/usr/lib/python3.11/http/client.py\", line 1357, in _send_request\n    self.endheaders(body, encode_chunked=encode_chunked)\n  File \"/usr/lib/python3.11/http/client.py\", line 1306, in endheaders\n    self._send_output(message_body, encode_chunked=encode_chunked)\n  File \"/usr/lib/python3.11/http/client.py\", line 1066, in _send_output\n    self.send(msg)\n  File \"/usr/lib/python3.11/http/client.py\", line 1004, in send\n    self.connect()\n  File \"/usr/lib/python3.11/http/client.py\", line 970, in connect\n    self.sock = self._create_connection(\n                ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.11/socket.py\", line 851, in create_connection\n    raise exceptions[0]\n  File \"/usr/lib/python3.11/socket.py\", line 836, in create_connection\n    sock.connect(sa)\nOSError: [Errno 101] Network is unreachable\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n  File \"/usr/lib/python3.11/urllib/request.py\", line 216, in urlopen\n    return opener.open(url, data, timeout)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.11/urllib/request.py\", line 519, in open\n    response = self._open(req, data)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.11/urllib/request.py\", line 536, in _open\n    result = self._call_chain(self.handle_open, protocol, protocol +\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.11/urllib/request.py\", line 496, in _call_chain\n    result = func(*args)\n             ^^^^^^^^^^^\n  File \"/usr/lib/python3.11/urllib/request.py\", line 1390, in http_open\n    return self.do_open(http.client.HTTPConnection, req)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.11/urllib/request.py\", line 1364, in do_open\n    raise URLError(err)\nurllib.error.URLError: <urlopen error [Errno 101] Network is unreachable>\n"
+    },
+    {
+      "name": "reality_dual_stack",
+      "returncode": 0,
+      "stdout": "IPv4/IPv6 TCP and UDP passed\n",
+      "stderr": ""
+    },
+    {
+      "name": "reality_dns",
+      "returncode": 0,
+      "stdout": "proxied DNS passed\n",
+      "stderr": ""
+    },
+    {
+      "name": "adaptive_initial",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/usr/lib/python3.11/urllib/request.py\", line 1361, in do_open\n    h.request(req.get_method(), req.selector, req.data, headers,\n  File \"/usr/lib/python3.11/http/client.py\", line 1311, in request\n    self._send_request(method, url, body, headers, encode_chunked)\n  File \"/usr/lib/python3.11/http/client.py\", line 1357, in _send_request\n    self.endheaders(body, encode_chunked=encode_chunked)\n  File \"/usr/lib/python3.11/http/client.py\", line 1306, in endheaders\n    self._send_output(message_body, encode_chunked=encode_chunked)\n  File \"/usr/lib/python3.11/http/client.py\", line 1066, in _send_output\n    self.send(msg)\n  File \"/usr/lib/python3.11/http/client.py\", line 1004, in send\n    self.connect()\n  File \"/usr/lib/python3.11/http/client.py\", line 970, in connect\n    self.sock = self._create_connection(\n                ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.11/socket.py\", line 851, in create_connection\n    raise exceptions[0]\n  File \"/usr/lib/python3.11/socket.py\", line 836, in create_connection\n    sock.connect(sa)\nOSError: [Errno 101] Network is unreachable\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n  File \"/usr/lib/python3.11/urllib/request.py\", line 216, in urlopen\n    return opener.open(url, data, timeout)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.11/urllib/request.py\", line 519, in open\n    response = self._open(req, data)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.11/urllib/request.py\", line 536, in _open\n    result = self._call_chain(self.handle_open, protocol, protocol +\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.11/urllib/request.py\", line 496, in _call_chain\n    result = func(*args)\n             ^^^^^^^^^^^\n  File \"/usr/lib/python3.11/urllib/request.py\", line 1390, in http_open\n    return self.do_open(http.client.HTTPConnection, req)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.11/urllib/request.py\", line 1364, in do_open\n    raise URLError(err)\nurllib.error.URLError: <urlopen error [Errno 101] Network is unreachable>\n"
+    },
+    {
+      "name": "adaptive_initial",
+      "returncode": 0,
+      "stdout": "IPv4/IPv6 TCP and UDP passed\n",
+      "stderr": ""
+    },
+    {
+      "name": "adaptive_udp_outage",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n  File \"/usr/lib/python3.11/urllib/request.py\", line 216, in urlopen\n    return opener.open(url, data, timeout)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.11/urllib/request.py\", line 519, in open\n    response = self._open(req, data)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.11/urllib/request.py\", line 536, in _open\n    result = self._call_chain(self.handle_open, protocol, protocol +\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.11/urllib/request.py\", line 496, in _call_chain\n    result = func(*args)\n             ^^^^^^^^^^^\n  File \"/usr/lib/python3.11/urllib/request.py\", line 1390, in http_open\n    return self.do_open(http.client.HTTPConnection, req)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.11/urllib/request.py\", line 1365, in do_open\n    r = h.getresponse()\n        ^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.11/http/client.py\", line 1403, in getresponse\n    response.begin()\n  File \"/usr/lib/python3.11/http/client.py\", line 323, in begin\n    version, status, reason = self._read_status()\n                              ^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.11/http/client.py\", line 284, in _read_status\n    line = str(self.fp.readline(_MAXLINE + 1), \"iso-8859-1\")\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.11/socket.py\", line 706, in readinto\n    return self._sock.recv_into(b)\n           ^^^^^^^^^^^^^^^^^^^^^^^\nConnectionResetError: [Errno 104] Connection reset by peer\n"
+    },
+    {
+      "name": "adaptive_udp_outage",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n  File \"/usr/lib/python3.11/urllib/request.py\", line 216, in urlopen\n    return opener.open(url, data, timeout)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.11/urllib/request.py\", line 519, in open\n    response = self._open(req, data)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.11/urllib/request.py\", line 536, in _open\n    result = self._call_chain(self.handle_open, protocol, protocol +\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.11/urllib/request.py\", line 496, in _call_chain\n    result = func(*args)\n             ^^^^^^^^^^^\n  File \"/usr/lib/python3.11/urllib/request.py\", line 1390, in http_open\n    return self.do_open(http.client.HTTPConnection, req)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.11/urllib/request.py\", line 1365, in do_open\n    r = h.getresponse()\n        ^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.11/http/client.py\", line 1403, in getresponse\n    response.begin()\n  File \"/usr/lib/python3.11/http/client.py\", line 323, in begin\n    version, status, reason = self._read_status()\n                              ^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.11/http/client.py\", line 284, in _read_status\n    line = str(self.fp.readline(_MAXLINE + 1), \"iso-8859-1\")\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.11/socket.py\", line 706, in readinto\n    return self._sock.recv_into(b)\n           ^^^^^^^^^^^^^^^^^^^^^^^\nConnectionResetError: [Errno 104] Connection reset by peer\n"
+    },
+    {
+      "name": "adaptive_udp_outage",
+      "returncode": 0,
+      "stdout": "IPv4/IPv6 TCP and UDP passed\n",
+      "stderr": ""
+    },
+    {
+      "name": "namespace_links",
+      "returncode": 0,
+      "stdout": "[{\"ifindex\":1,\"ifname\":\"lo\",\"flags\":[\"LOOPBACK\",\"UP\",\"LOWER_UP\"],\"mtu\":65536,\"qdisc\":\"noqueue\",\"operstate\":\"UNKNOWN\",\"linkmode\":\"DEFAULT\",\"group\":\"default\",\"txqlen\":1000,\"link_type\":\"loopback\",\"address\":\"00:00:00:00:00:00\",\"broadcast\":\"00:00:00:00:00:00\"}]\n",
+      "stderr": ""
+    },
+    {
+      "name": "fail_closed_after_engine_exit",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\nOSError: [Errno 101] Network is unreachable\n"
+    },
+    {
+      "name": "namespace_remove",
+      "returncode": 0,
+      "stdout": "removed owned namespace\n",
+      "stderr": ""
+    },
+    {
+      "name": "namespace_remove_idempotent",
+      "returncode": 0,
+      "stdout": "absent\n",
+      "stderr": ""
+    }
+  ],
+  "engine_sha256": "606f883d1aa3c624f38aa3f99bf0df02e3999f9aa0ff5826e0dd9c1b9f964baf",
+  "new_flows_after_udp_outage_seconds": 5.9765402489999815,
+  "kill_switch_no_underlay": true,
+  "success": true,
+  "logs": {
+    "hy2-client.log": "\u001b[31mERROR\u001b[0m[0000] [\u001b[38;5;121m772524393\u001b[0m 51ms] connection: open connection to 198.18.10.1:19803 using outbound/hysteria2[hy2]: sendmsg: connection refused\n",
+    "adaptive-client.log": "\u001b[31mERROR\u001b[0m[0001] [\u001b[38;5;38m1201036310\u001b[0m 11ms] connection: open connection to 198.18.10.1:19803 using outbound/hysteria2[hy2]: sendmsg: connection refused\n\u001b[31mERROR\u001b[0m[0004] [\u001b[38;5;35m933068819\u001b[0m 9ms] connection: open connection to 198.18.10.1:19803 using outbound/hysteria2[hy2]: sendmsg: connection refused\n",
+    "reality-client.log": "",
+    "reality-server.log": "\u001b[31mERROR\u001b[0m[0008] [\u001b[38;5;30m515557390\u001b[0m 512ms] inbound/vless[reality]: process connection from 127.0.0.1:33458: mux connection closed: read frame header: EOF\n\u001b[31mERROR\u001b[0m[0008] [\u001b[38;5;37m3483076332\u001b[0m 81ms] inbound/vless[reality]: process connection from 127.0.0.1:33470: mux connection closed: read frame header: EOF\n\u001b[31mERROR\u001b[0m[0008] [\u001b[38;5;108m1879194204\u001b[0m 458ms] inbound/vless[reality]: process connection from 127.0.0.1:33468: mux connection closed: read frame header: EOF\n\u001b[31mERROR\u001b[0m[0019] [\u001b[38;5;229m4012921602\u001b[0m 98ms] inbound/vless[reality]: process connection from 127.0.0.1:38804: mux connection closed: read frame header: EOF\n\u001b[31mERROR\u001b[0m[0019] [\u001b[38;5;179m1001183395\u001b[0m 211ms] inbound/vless[reality]: process connection from 127.0.0.1:38780: mux connection closed: read frame header: EOF\n",
+    "hy2-server.log": ""
+  },
+  "finished": 1794838120.3125176
+}

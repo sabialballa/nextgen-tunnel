@@ -1,0 +1,292 @@
+{
+  "upstreams": [
+    {
+      "name": "tuic",
+      "url": "https://api.github.com/repos/tuic-protocol/tuic",
+      "archived": false,
+      "pushed_at": "2025-05-15T07:03:37Z",
+      "release": "tuic-server-1.0.0",
+      "release_published_at": "2023-06-08T07:40:51Z",
+      "source_commit": "8e118f242f24a17a9f487dc344cc50d7e63e557e",
+      "release_error": null,
+      "issues": [
+        {
+          "number": 67,
+          "url": "https://github.com/tuic-protocol/tuic/issues/67",
+          "updated_at": "2025-11-12T22:42:50Z"
+        }
+      ]
+    },
+    {
+      "name": "hysteria2",
+      "url": "https://api.github.com/repos/apernet/hysteria",
+      "archived": false,
+      "pushed_at": "2026-11-15T01:05:15Z",
+      "release": "app/v2.14.0",
+      "release_published_at": "2026-11-15T01:17:25Z",
+      "source_commit": "c2b181e0b0e72b077e4b0b7297735af14d1f9929",
+      "release_error": null,
+      "issues": [
+        {
+          "number": 1723,
+          "url": "https://github.com/HyNetworks/hysteria/pull/1723",
+          "updated_at": "2026-11-15T10:21:56Z"
+        },
+        {
+          "number": 1722,
+          "url": "https://github.com/HyNetworks/hysteria/issues/1722",
+          "updated_at": "2026-11-15T06:05:49Z"
+        },
+        {
+          "number": 1721,
+          "url": "https://github.com/HyNetworks/hysteria/issues/1721",
+          "updated_at": "2026-11-14T07:20:35Z"
+        }
+      ]
+    },
+    {
+      "name": "wireguard-go",
+      "url": "https://api.github.com/repos/WireGuard/wireguard-go",
+      "archived": false,
+      "pushed_at": "2026-10-24T22:10:38Z",
+      "release": null,
+      "release_published_at": null,
+      "source_commit": "b3bc704ef0ee21a36298601a9e1e5ff90377ac52",
+      "release_error": "HTTP Error 404: Not Found",
+      "issues": [
+        {
+          "number": 155,
+          "url": "https://github.com/WireGuard/wireguard-go/pull/155",
+          "updated_at": "2026-11-03T08:03:19Z"
+        },
+        {
+          "number": 154,
+          "url": "https://github.com/WireGuard/wireguard-go/pull/154",
+          "updated_at": "2026-09-13T15:23:51Z"
+        },
+        {
+          "number": 152,
+          "url": "https://github.com/WireGuard/wireguard-go/pull/152",
+          "updated_at": "2026-08-05T18:12:05Z"
+        }
+      ]
+    },
+    {
+      "name": "amneziawg",
+      "url": "https://api.github.com/repos/amnezia-vpn/amneziawg-go",
+      "archived": false,
+      "pushed_at": "2026-11-16T10:21:40Z",
+      "release": null,
+      "release_published_at": null,
+      "source_commit": "08fe3d33bbb116be09a6183d02609311b8b0c9e8",
+      "release_error": "HTTP Error 404: Not Found",
+      "issues": [
+        {
+          "number": 215,
+          "url": "https://github.com/amnezia-vpn/amneziawg-go/pull/215",
+          "updated_at": "2026-11-15T22:57:34Z"
+        },
+        {
+          "number": 214,
+          "url": "https://github.com/amnezia-vpn/amneziawg-go/issues/214",
+          "updated_at": "2026-11-10T11:31:10Z"
+        },
+        {
+          "number": 211,
+          "url": "https://github.com/amnezia-vpn/amneziawg-go/issues/211",
+          "updated_at": "2026-11-07T23:43:20Z"
+        }
+      ]
+    },
+    {
+      "name": "quic-go",
+      "url": "https://api.github.com/repos/quic-go/quic-go",
+      "archived": false,
+      "pushed_at": "2026-11-16T06:19:51Z",
+      "release": "v0.65.0",
+      "release_published_at": "2026-11-03T01:14:15Z",
+      "source_commit": "ebcbd4bf2bfb0f3814d9969f95fe040ba0a8ff6a",
+      "release_error": null,
+      "issues": [
+        {
+          "number": 6252,
+          "url": "https://github.com/quic-go/quic-go/pull/6252",
+          "updated_at": "2026-11-16T06:24:10Z"
+        },
+        {
+          "number": 6250,
+          "url": "https://github.com/quic-go/quic-go/issues/6250",
+          "updated_at": "2026-11-16T05:59:10Z"
+        },
+        {
+          "number": 6245,
+          "url": "https://github.com/quic-go/quic-go/pull/6245",
+          "updated_at": "2026-11-15T20:40:45Z"
+        }
+      ]
+    },
+    {
+      "name": "masque",
+      "url": "https://api.github.com/repos/quic-go/masque-go",
+      "archived": false,
+      "pushed_at": "2026-11-15T20:46:02Z",
+      "release": "v0.6.0",
+      "release_published_at": "2026-09-22T05:59:50Z",
+      "source_commit": "bb2f118a573372208527c8612b746b5fcafa3173",
+      "release_error": null,
+      "issues": [
+        {
+          "number": 151,
+          "url": "https://github.com/quic-go/masque-go/pull/151",
+          "updated_at": "2026-11-15T20:51:42Z"
+        },
+        {
+          "number": 149,
+          "url": "https://github.com/quic-go/masque-go/pull/149",
+          "updated_at": "2026-11-14T22:50:51Z"
+        },
+        {
+          "number": 148,
+          "url": "https://github.com/quic-go/masque-go/pull/148",
+          "updated_at": "2026-11-14T22:53:38Z"
+        }
+      ]
+    },
+    {
+      "name": "xray",
+      "url": "https://api.github.com/repos/XTLS/Xray-core",
+      "archived": false,
+      "pushed_at": "2026-11-16T11:57:26Z",
+      "release": "v26.11.9",
+      "release_published_at": "2026-11-09T05:31:16Z",
+      "source_commit": "f781c68715cda8a896dde7a19966980a15e53071",
+      "release_error": null,
+      "issues": [
+        {
+          "number": 7430,
+          "url": "https://github.com/XTLS/Xray-core/pull/7430",
+          "updated_at": "2026-11-16T12:24:18Z"
+        },
+        {
+          "number": 7429,
+          "url": "https://github.com/XTLS/Xray-core/pull/7429",
+          "updated_at": "2026-11-16T11:58:32Z"
+        },
+        {
+          "number": 7428,
+          "url": "https://github.com/XTLS/Xray-core/issues/7428",
+          "updated_at": "2026-11-16T10:33:13Z"
+        }
+      ]
+    },
+    {
+      "name": "anytls",
+      "url": "https://api.github.com/repos/anytls/anytls-go",
+      "archived": false,
+      "pushed_at": "2026-08-03T13:22:52Z",
+      "release": "v0.0.13",
+      "release_published_at": "2026-06-27T09:35:07Z",
+      "source_commit": "fd6167acd6d73b9fa3e607659951847fbc9e6c50",
+      "release_error": null,
+      "issues": [
+        {
+          "number": 54,
+          "url": "https://github.com/anytls/anytls-go/issues/54",
+          "updated_at": "2026-10-16T00:34:33Z"
+        },
+        {
+          "number": 52,
+          "url": "https://github.com/anytls/anytls-go/issues/52",
+          "updated_at": "2026-07-17T01:59:44Z"
+        },
+        {
+          "number": 42,
+          "url": "https://github.com/anytls/anytls-go/issues/42",
+          "updated_at": "2026-04-02T12:38:49Z"
+        }
+      ]
+    },
+    {
+      "name": "trojan",
+      "url": "https://api.github.com/repos/trojan-gfw/trojan",
+      "archived": false,
+      "pushed_at": "2024-08-21T09:27:36Z",
+      "release": "v1.16.0",
+      "release_published_at": "2020-06-10T18:50:49Z",
+      "source_commit": "3e7bb9aecdc694f9bcae8d646fae395f773d60f8",
+      "release_error": null,
+      "issues": [
+        {
+          "number": 726,
+          "url": "https://github.com/trojan-gfw/trojan/issues/726",
+          "updated_at": "2026-09-15T09:04:41Z"
+        },
+        {
+          "number": 725,
+          "url": "https://github.com/trojan-gfw/trojan/issues/725",
+          "updated_at": "2026-08-01T10:37:25Z"
+        },
+        {
+          "number": 724,
+          "url": "https://github.com/trojan-gfw/trojan/issues/724",
+          "updated_at": "2026-07-18T04:30:39Z"
+        }
+      ]
+    },
+    {
+      "name": "phantun",
+      "url": "https://api.github.com/repos/dndx/phantun",
+      "archived": false,
+      "pushed_at": "2026-08-22T03:22:33Z",
+      "release": "v0.8.1",
+      "release_published_at": "2025-08-23T03:58:10Z",
+      "source_commit": "6256f630a1e6f91489805669afc9700c1289a48e",
+      "release_error": null,
+      "issues": [
+        {
+          "number": 254,
+          "url": "https://github.com/dndx/phantun/pull/254",
+          "updated_at": "2026-09-28T04:55:53Z"
+        },
+        {
+          "number": 253,
+          "url": "https://github.com/dndx/phantun/pull/253",
+          "updated_at": "2026-08-08T12:15:49Z"
+        },
+        {
+          "number": 249,
+          "url": "https://github.com/dndx/phantun/issues/249",
+          "updated_at": "2026-01-19T02:41:05Z"
+        }
+      ]
+    },
+    {
+      "name": "udp2raw",
+      "url": "https://api.github.com/repos/wangyu-/udp2raw",
+      "archived": false,
+      "pushed_at": "2025-10-12T07:14:28Z",
+      "release": "20230206.0",
+      "release_published_at": "2023-02-07T13:52:34Z",
+      "source_commit": "4208db6e27c46f3ccec8b98722af7ec23bc62e73",
+      "release_error": null,
+      "issues": [
+        {
+          "number": 575,
+          "url": "https://github.com/wangyu-/udp2raw/pull/575",
+          "updated_at": "2026-08-27T10:47:36Z"
+        },
+        {
+          "number": 574,
+          "url": "https://github.com/wangyu-/udp2raw/pull/574",
+          "updated_at": "2026-08-26T03:20:31Z"
+        },
+        {
+          "number": 573,
+          "url": "https://github.com/wangyu-/udp2raw/pull/573",
+          "updated_at": "2026-08-15T09:09:38Z"
+        }
+      ]
+    }
+  ],
+  "captured_at": "2026-11-16T16:00:58.461418+03:30"
+}

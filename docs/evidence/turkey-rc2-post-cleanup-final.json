@@ -1,0 +1,64 @@
+{
+  "timestamp": 1794908576.347553,
+  "boot_id": "464324d3-d5e2-496a-a17c-570774ea1db6",
+  "units": {
+    "nextgen-site.service": {
+      "MainPID": "0",
+      "NRestarts": "0",
+      "User": "",
+      "DynamicUser": "no",
+      "ActiveState": "active",
+      "SubState": "exited",
+      "enabled": true
+    },
+    "nextgen-engine.service": {
+      "MainPID": "55026",
+      "NRestarts": "0",
+      "User": "nextgen-engine",
+      "DynamicUser": "yes",
+      "ActiveState": "active",
+      "SubState": "running",
+      "enabled": true
+    },
+    "nextgen-site-watchdog.timer": {
+      "ActiveState": "active",
+      "SubState": "running",
+      "enabled": true
+    }
+  },
+  "ownership_verified": true,
+  "binary_sha256": {
+    "nextgen-tunnel": "a3a808352cf6a5942796bec535743e54a70d386b4e0002ddb71ef30872050b42",
+    "sing-box": "606f883d1aa3c624f38aa3f99bf0df02e3999f9aa0ff5826e0dd9c1b9f964baf"
+  },
+  "private_material_root_only": true,
+  "host_routes_unchanged": true,
+  "host_firewall_unchanged": true,
+  "host_forwarding_unchanged": true,
+  "site_interfaces": [
+    "lo",
+    "wg0"
+  ],
+  "peer_endpoint_loopback": true,
+  "handshake_present": true,
+  "test_helpers_removed": true,
+  "probe": {
+    "checks": [
+      {
+        "family": "ipv4",
+        "protocol": "icmp",
+        "payload_bytes": 1152,
+        "success": true
+      },
+      {
+        "family": "ipv6",
+        "protocol": "icmp",
+        "payload_bytes": 1152,
+        "success": true
+      }
+    ],
+    "success": true
+  },
+  "boot_id_changed": true,
+  "success": true
+}

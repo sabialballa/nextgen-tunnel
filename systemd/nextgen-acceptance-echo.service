@@ -1,0 +1,25 @@
+[Unit]
+Description=Temporary nextgen acceptance echo inside owned site
+After=nextgen-site.service
+Requires=nextgen-site.service
+PartOf=nextgen-site.service
+
+[Service]
+DynamicUser=yes
+User=nextgen-acceptance
+NetworkNamespacePath=/run/netns/ngt-site-main
+ExecStart=/usr/bin/python3 /usr/local/lib/nextgen-stack-test/site_probe.py server
+Restart=on-failure
+RestartSec=2
+NoNewPrivileges=yes
+CapabilityBoundingSet=
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+PrivateDevices=yes
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+TasksMax=32
+MemoryMax=64M
+
+[Install]
+WantedBy=multi-user.target

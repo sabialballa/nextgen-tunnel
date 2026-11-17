@@ -1,0 +1,7 @@
+{
+  "before_boot_id": "488435b4-7ee8-4eb6-a9ed-0bcb73b46d53",
+  "verified": true,
+  "after_boot_id": "136eb321-01f4-4da2-8aa3-9a13f49a7b4e",
+  "elapsed_seconds": 68.20299999999952,
+  "stdout": "136eb321-01f4-4da2-8aa3-9a13f49a7b4e\nactive\nactive\nquic quic healthy=true elapsed_ms=928.934\ntls tls healthy=true elapsed_ms=76.849\n"
+}

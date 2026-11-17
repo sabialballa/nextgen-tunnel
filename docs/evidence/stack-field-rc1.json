@@ -1,0 +1,2026 @@
+{
+  "scope": "Two isolated WireGuard sites; outer connection initiated from Turkey. No physical LAN or host Internet routing.",
+  "selected_carrier": "REALITY with smux",
+  "nodes": {
+    "iran": {
+      "soak-early-failed": {
+        "started_wall_time": 1794868326.2672577,
+        "duration_requested_seconds": 10800,
+        "elapsed_seconds": 220.62926406999998,
+        "complete": false,
+        "scope": "TCP 1 round/s and UDP at most 10 rounds/s per IP family, 1024/160-byte payloads",
+        "acceptance_criteria": {
+          "tcp_timeouts": 0,
+          "tcp_reconnects": 0,
+          "corrupted": 0,
+          "udp_max_loss_percent": 0.5,
+          "udp_max_consecutive_failures": 3,
+          "unplanned_engine_pid_changes": 0
+        },
+        "flows": {
+          "ipv4_tcp": {
+            "sent": 165,
+            "received": 163,
+            "timeouts": 2,
+            "corrupted": 0,
+            "late": 0,
+            "reconnects": 2,
+            "connect_errors": 14,
+            "rtt_sum_ms": 18439.89386899966,
+            "rtt_max_ms": 1560.1585109999974,
+            "max_consecutive_failures": 1,
+            "loss_percent": 1.2121212121212122,
+            "rtt_mean_ms": 113.1281832453967,
+            "rtt_p50_ms": 83,
+            "rtt_p95_ms": 95,
+            "rtt_p99_ms": 993
+          },
+          "ipv4_udp": {
+            "sent": 1665,
+            "received": 1541,
+            "timeouts": 122,
+            "corrupted": 1,
+            "late": 15,
+            "reconnects": 0,
+            "connect_errors": 0,
+            "rtt_sum_ms": 131583.36383600134,
+            "rtt_max_ms": 994.7643009999751,
+            "max_consecutive_failures": 107,
+            "loss_percent": 7.4474474474474475,
+            "rtt_mean_ms": 85.38829580532209,
+            "rtt_p50_ms": 82,
+            "rtt_p95_ms": 90,
+            "rtt_p99_ms": 98
+          },
+          "ipv6_tcp": {
+            "sent": 165,
+            "received": 163,
+            "timeouts": 2,
+            "corrupted": 0,
+            "late": 0,
+            "reconnects": 2,
+            "connect_errors": 14,
+            "rtt_sum_ms": 18422.518410999834,
+            "rtt_max_ms": 1236.8484090000038,
+            "max_consecutive_failures": 1,
+            "loss_percent": 1.2121212121212122,
+            "rtt_mean_ms": 113.02158534355726,
+            "rtt_p50_ms": 83,
+            "rtt_p95_ms": 95,
+            "rtt_p99_ms": 1065
+          },
+          "ipv6_udp": {
+            "sent": 1662,
+            "received": 1536,
+            "timeouts": 124,
+            "corrupted": 1,
+            "late": 17,
+            "reconnects": 0,
+            "connect_errors": 0,
+            "rtt_sum_ms": 130304.04292099955,
+            "rtt_max_ms": 587.9908939999723,
+            "max_consecutive_failures": 107,
+            "loss_percent": 7.581227436823105,
+            "rtt_mean_ms": 84.83336127669241,
+            "rtt_p50_ms": 83,
+            "rtt_p95_ms": 89,
+            "rtt_p99_ms": 96
+          }
+        },
+        "binary_sha256": {
+          "nextgen-tunnel": "84701a7c40ae8cdd4582f2303f7b335edf24e44d2dca923320bea007fe660c26",
+          "sing-box": "606f883d1aa3c624f38aa3f99bf0df02e3999f9aa0ff5826e0dd9c1b9f964baf"
+        },
+        "driver_sha256": "df78086e5b2ec052699449c8c82bea41656bac22048551a13cfffbb9d56ce47d",
+        "raw_sha256": "df5ae707d06b59b5b36cdbe980b6761a1973caba4de24aed4bd00ea9eb0e458d"
+      },
+      "soak-smux-smoke": {
+        "started_wall_time": 1794868929.7597144,
+        "finished_wall_time": 1794869230.3476877,
+        "duration_requested_seconds": 300,
+        "elapsed_seconds": 300.57380796200016,
+        "complete": true,
+        "success": false,
+        "scope": "TCP 1 round/s and UDP at most 10 rounds/s per IP family, 1024/160-byte payloads",
+        "acceptance_criteria": {
+          "tcp_timeouts": 0,
+          "tcp_reconnects": 0,
+          "corrupted": 0,
+          "udp_max_loss_percent": 0.5,
+          "udp_max_consecutive_failures": 3,
+          "unplanned_engine_pid_changes": 0
+        },
+        "flows": {
+          "ipv4_tcp": {
+            "sent": 300,
+            "received": 300,
+            "timeouts": 0,
+            "corrupted": 0,
+            "late": 0,
+            "reconnects": 0,
+            "connect_errors": 0,
+            "rtt_sum_ms": 30887.802598999442,
+            "rtt_max_ms": 1353.8534049999953,
+            "max_consecutive_failures": 0,
+            "loss_percent": 0.0,
+            "rtt_mean_ms": 102.9593419966648,
+            "rtt_p50_ms": 82,
+            "rtt_p95_ms": 87,
+            "rtt_p99_ms": 799
+          },
+          "ipv4_udp": {
+            "sent": 2891,
+            "received": 2883,
+            "timeouts": 8,
+            "corrupted": 0,
+            "late": 8,
+            "reconnects": 0,
+            "connect_errors": 0,
+            "rtt_sum_ms": 244044.2947490031,
+            "rtt_max_ms": 517.3362379999844,
+            "max_consecutive_failures": 3,
+            "loss_percent": 0.2767208578346593,
+            "rtt_mean_ms": 84.64942585813496,
+            "rtt_p50_ms": 83,
+            "rtt_p95_ms": 84,
+            "rtt_p99_ms": 191
+          },
+          "ipv6_tcp": {
+            "sent": 300,
+            "received": 300,
+            "timeouts": 0,
+            "corrupted": 0,
+            "late": 0,
+            "reconnects": 0,
+            "connect_errors": 0,
+            "rtt_sum_ms": 31359.96057599802,
+            "rtt_max_ms": 1114.4511559999728,
+            "max_consecutive_failures": 0,
+            "loss_percent": 0.0,
+            "rtt_mean_ms": 104.5332019199934,
+            "rtt_p50_ms": 83,
+            "rtt_p95_ms": 87,
+            "rtt_p99_ms": 710
+          },
+          "ipv6_udp": {
+            "sent": 2892,
+            "received": 2881,
+            "timeouts": 11,
+            "corrupted": 0,
+            "late": 11,
+            "reconnects": 0,
+            "connect_errors": 0,
+            "rtt_sum_ms": 241683.58620500448,
+            "rtt_max_ms": 550.9819909998441,
+            "max_consecutive_failures": 5,
+            "loss_percent": 0.38035961272475793,
+            "rtt_mean_ms": 83.8887838267978,
+            "rtt_p50_ms": 82,
+            "rtt_p95_ms": 83,
+            "rtt_p99_ms": 141
+          }
+        },
+        "network_unchanged": true,
+        "boot_unchanged": true,
+        "binary_sha256": {
+          "nextgen-tunnel": "84701a7c40ae8cdd4582f2303f7b335edf24e44d2dca923320bea007fe660c26",
+          "sing-box": "606f883d1aa3c624f38aa3f99bf0df02e3999f9aa0ff5826e0dd9c1b9f964baf"
+        },
+        "driver_sha256": "30599b638e6d9c6d1067d47a38076a6537f7667cadcfec52df9c1ae48f55bcc7",
+        "raw_sha256": "754bbf4a054ed806e6eb19541a17d56895cfdda7ba632b556a225c277ddfe41b"
+      },
+      "soak-hy-gecko-smoke": {
+        "started_wall_time": 1794869951.5161145,
+        "finished_wall_time": 1794870252.2109468,
+        "duration_requested_seconds": 300,
+        "elapsed_seconds": 300.68184872000006,
+        "complete": true,
+        "success": true,
+        "scope": "TCP 1 round/s and UDP at most 10 rounds/s per IP family, 1024/160-byte payloads",
+        "acceptance_criteria": {
+          "tcp_timeouts": 0,
+          "tcp_reconnects": 0,
+          "corrupted": 0,
+          "udp_max_loss_percent": 0.5,
+          "udp_max_consecutive_failures": 3,
+          "unplanned_engine_pid_changes": 0
+        },
+        "flows": {
+          "ipv4_tcp": {
+            "sent": 300,
+            "received": 300,
+            "timeouts": 0,
+            "corrupted": 0,
+            "late": 0,
+            "reconnects": 0,
+            "connect_errors": 0,
+            "rtt_sum_ms": 25643.627427997217,
+            "rtt_max_ms": 491.9816169999649,
+            "max_consecutive_failures": 0,
+            "loss_percent": 0.0,
+            "rtt_mean_ms": 85.47875809332406,
+            "rtt_p50_ms": 79,
+            "rtt_p95_ms": 97,
+            "rtt_p99_ms": 296
+          },
+          "ipv4_udp": {
+            "sent": 2932,
+            "received": 2927,
+            "timeouts": 5,
+            "corrupted": 0,
+            "late": 1,
+            "reconnects": 0,
+            "connect_errors": 0,
+            "rtt_sum_ms": 233907.54444798315,
+            "rtt_max_ms": 576.0249599998133,
+            "max_consecutive_failures": 1,
+            "loss_percent": 0.17053206002728513,
+            "rtt_mean_ms": 79.91374938434683,
+            "rtt_p50_ms": 78,
+            "rtt_p95_ms": 81,
+            "rtt_p99_ms": 97
+          },
+          "ipv6_tcp": {
+            "sent": 300,
+            "received": 300,
+            "timeouts": 0,
+            "corrupted": 0,
+            "late": 0,
+            "reconnects": 0,
+            "connect_errors": 0,
+            "rtt_sum_ms": 25808.41532699651,
+            "rtt_max_ms": 568.381570999918,
+            "max_consecutive_failures": 0,
+            "loss_percent": 0.0,
+            "rtt_mean_ms": 86.02805108998837,
+            "rtt_p50_ms": 78,
+            "rtt_p95_ms": 99,
+            "rtt_p99_ms": 331
+          },
+          "ipv6_udp": {
+            "sent": 2931,
+            "received": 2926,
+            "timeouts": 5,
+            "corrupted": 0,
+            "late": 1,
+            "reconnects": 0,
+            "connect_errors": 0,
+            "rtt_sum_ms": 233784.62444799408,
+            "rtt_max_ms": 702.0185629999105,
+            "max_consecutive_failures": 1,
+            "loss_percent": 0.17059024223814398,
+            "rtt_mean_ms": 79.89905141763298,
+            "rtt_p50_ms": 78,
+            "rtt_p95_ms": 80,
+            "rtt_p99_ms": 96
+          }
+        },
+        "network_unchanged": true,
+        "boot_unchanged": true,
+        "binary_sha256": {
+          "nextgen-tunnel": "84701a7c40ae8cdd4582f2303f7b335edf24e44d2dca923320bea007fe660c26",
+          "sing-box": "606f883d1aa3c624f38aa3f99bf0df02e3999f9aa0ff5826e0dd9c1b9f964baf"
+        },
+        "driver_sha256": "e0ce7d22f1f99b9a3bb7f45e85c25a5b6e9d41e9ca448c130a071a8229dedc31",
+        "raw_sha256": "ef59f3fe4efe09c9488e556a4233485c8527d6ed0a6ee36c1a7c542d95232628"
+      },
+      "soak-fixed-mtu-smoke": {
+        "started_wall_time": 1794871216.9898052,
+        "finished_wall_time": 1794871817.6604652,
+        "duration_requested_seconds": 600,
+        "elapsed_seconds": 600.653976407,
+        "complete": true,
+        "success": true,
+        "scope": "TCP 1 round/s and UDP at most 10 rounds/s per IP family, 1024/160-byte payloads",
+        "acceptance_criteria": {
+          "tcp_timeouts": 0,
+          "tcp_reconnects": 0,
+          "corrupted": 0,
+          "udp_max_loss_percent": 0.5,
+          "udp_max_consecutive_failures": 3,
+          "unplanned_engine_pid_changes": 0
+        },
+        "flows": {
+          "ipv4_tcp": {
+            "sent": 600,
+            "received": 600,
+            "timeouts": 0,
+            "corrupted": 0,
+            "late": 0,
+            "reconnects": 0,
+            "connect_errors": 0,
+            "rtt_sum_ms": 55410.241656998915,
+            "rtt_max_ms": 1442.7496480000173,
+            "max_consecutive_failures": 0,
+            "loss_percent": 0.0,
+            "rtt_mean_ms": 92.35040276166485,
+            "rtt_p50_ms": 79,
+            "rtt_p95_ms": 84,
+            "rtt_p99_ms": 492
+          },
+          "ipv4_udp": {
+            "sent": 5826,
+            "received": 5811,
+            "timeouts": 15,
+            "corrupted": 0,
+            "late": 10,
+            "reconnects": 0,
+            "connect_errors": 0,
+            "rtt_sum_ms": 465578.94644799666,
+            "rtt_max_ms": 696.9631800000116,
+            "max_consecutive_failures": 3,
+            "loss_percent": 0.25746652935118436,
+            "rtt_mean_ms": 80.12027989124017,
+            "rtt_p50_ms": 78,
+            "rtt_p95_ms": 80,
+            "rtt_p99_ms": 102
+          },
+          "ipv6_tcp": {
+            "sent": 600,
+            "received": 600,
+            "timeouts": 0,
+            "corrupted": 0,
+            "late": 0,
+            "reconnects": 0,
+            "connect_errors": 0,
+            "rtt_sum_ms": 55657.59479200109,
+            "rtt_max_ms": 1453.1816910000543,
+            "max_consecutive_failures": 0,
+            "loss_percent": 0.0,
+            "rtt_mean_ms": 92.76265798666849,
+            "rtt_p50_ms": 78,
+            "rtt_p95_ms": 82,
+            "rtt_p99_ms": 481
+          },
+          "ipv6_udp": {
+            "sent": 5832,
+            "received": 5819,
+            "timeouts": 13,
+            "corrupted": 0,
+            "late": 8,
+            "reconnects": 0,
+            "connect_errors": 0,
+            "rtt_sum_ms": 466783.14866699965,
+            "rtt_max_ms": 706.0023880000017,
+            "max_consecutive_failures": 2,
+            "loss_percent": 0.22290809327846364,
+            "rtt_mean_ms": 80.21707315122867,
+            "rtt_p50_ms": 79,
+            "rtt_p95_ms": 80,
+            "rtt_p99_ms": 102
+          }
+        },
+        "network_unchanged": true,
+        "boot_unchanged": true,
+        "binary_sha256": {
+          "nextgen-tunnel": "84701a7c40ae8cdd4582f2303f7b335edf24e44d2dca923320bea007fe660c26",
+          "sing-box": "606f883d1aa3c624f38aa3f99bf0df02e3999f9aa0ff5826e0dd9c1b9f964baf"
+        },
+        "driver_sha256": "e0ce7d22f1f99b9a3bb7f45e85c25a5b6e9d41e9ca448c130a071a8229dedc31",
+        "raw_sha256": "63c08ce35d66585ead8e1bdc32a9e7be46938d4e47aefadd0a249347f47e20fe"
+      },
+      "soak-3h-final": {
+        "started_wall_time": 1794872718.0529687,
+        "finished_wall_time": 1794883518.771199,
+        "duration_requested_seconds": 10800,
+        "elapsed_seconds": 10800.69732416,
+        "complete": true,
+        "success": false,
+        "scope": "TCP 1 round/s and UDP at most 10 rounds/s per IP family, 1024/160-byte payloads",
+        "acceptance_criteria": {
+          "tcp_timeouts": 0,
+          "tcp_reconnects": 0,
+          "corrupted": 0,
+          "udp_max_loss_percent": 0.5,
+          "udp_max_consecutive_failures": 3,
+          "unplanned_engine_pid_changes": 0
+        },
+        "flows": {
+          "ipv4_tcp": {
+            "sent": 10763,
+            "received": 10760,
+            "timeouts": 3,
+            "corrupted": 0,
+            "late": 0,
+            "reconnects": 3,
+            "connect_errors": 7,
+            "rtt_sum_ms": 876309.6906249599,
+            "rtt_max_ms": 2629.806333000033,
+            "max_consecutive_failures": 1,
+            "loss_percent": 0.0278732695345164,
+            "rtt_mean_ms": 81.44142106179925,
+            "rtt_p50_ms": 79,
+            "rtt_p95_ms": 82,
+            "rtt_p99_ms": 110
+          },
+          "ipv4_udp": {
+            "sent": 106988,
+            "received": 106869,
+            "timeouts": 119,
+            "corrupted": 0,
+            "late": 88,
+            "reconnects": 0,
+            "connect_errors": 0,
+            "rtt_sum_ms": 8533596.102719914,
+            "rtt_max_ms": 696.8328629999405,
+            "max_consecutive_failures": 39,
+            "loss_percent": 0.11122742737503272,
+            "rtt_mean_ms": 79.85099610476297,
+            "rtt_p50_ms": 79,
+            "rtt_p95_ms": 90,
+            "rtt_p99_ms": 107
+          },
+          "ipv6_tcp": {
+            "sent": 10761,
+            "received": 10758,
+            "timeouts": 3,
+            "corrupted": 0,
+            "late": 0,
+            "reconnects": 3,
+            "connect_errors": 8,
+            "rtt_sum_ms": 874348.3426420438,
+            "rtt_max_ms": 1833.9195859998654,
+            "max_consecutive_failures": 1,
+            "loss_percent": 0.027878449958182325,
+            "rtt_mean_ms": 81.27424638799441,
+            "rtt_p50_ms": 79,
+            "rtt_p95_ms": 82,
+            "rtt_p99_ms": 116
+          },
+          "ipv6_udp": {
+            "sent": 106988,
+            "received": 106870,
+            "timeouts": 118,
+            "corrupted": 0,
+            "late": 86,
+            "reconnects": 0,
+            "connect_errors": 0,
+            "rtt_sum_ms": 8536385.665312963,
+            "rtt_max_ms": 970.0339099999837,
+            "max_consecutive_failures": 39,
+            "loss_percent": 0.11029274311137698,
+            "rtt_mean_ms": 79.87635131760983,
+            "rtt_p50_ms": 79,
+            "rtt_p95_ms": 90,
+            "rtt_p99_ms": 107
+          }
+        },
+        "network_unchanged": true,
+        "boot_unchanged": true,
+        "binary_sha256": {
+          "nextgen-tunnel": "84701a7c40ae8cdd4582f2303f7b335edf24e44d2dca923320bea007fe660c26",
+          "sing-box": "606f883d1aa3c624f38aa3f99bf0df02e3999f9aa0ff5826e0dd9c1b9f964baf"
+        },
+        "driver_sha256": "e0ce7d22f1f99b9a3bb7f45e85c25a5b6e9d41e9ca448c130a071a8229dedc31",
+        "raw_sha256": "3bf3a291d6caa4bb2bdeed434aa0dfcec3a2275d60ce68c81aa21e928bac7738"
+      },
+      "hy-permanent-warm-pass": {
+        "timestamp": 1794870929.7783873,
+        "boot_id": "3eefe89b-91a0-4456-a9f7-4531f6a3524f",
+        "boot_id_changed": true,
+        "success": true,
+        "ownership_verified": true,
+        "private_material_root_only": true,
+        "host_routes_unchanged": true,
+        "host_firewall_unchanged": true,
+        "host_forwarding_unchanged": true,
+        "peer_endpoint_loopback": true,
+        "handshake_present": true,
+        "site_interfaces": [
+          "lo",
+          "wg0"
+        ],
+        "units": {
+          "nextgen-site.service": {
+            "MainPID": "0",
+            "NRestarts": "0",
+            "User": "",
+            "DynamicUser": "no",
+            "ActiveState": "active",
+            "SubState": "exited",
+            "enabled": true
+          },
+          "nextgen-engine.service": {
+            "MainPID": "4196",
+            "NRestarts": "0",
+            "User": "nextgen-engine",
+            "DynamicUser": "yes",
+            "ActiveState": "active",
+            "SubState": "running",
+            "enabled": true
+          },
+          "nextgen-site-watchdog.timer": {
+            "ActiveState": "active",
+            "SubState": "waiting",
+            "enabled": true
+          },
+          "nextgen-acceptance-echo.service": {
+            "MainPID": "4073",
+            "NRestarts": "0",
+            "User": "nextgen-acceptance",
+            "DynamicUser": "yes",
+            "ActiveState": "active",
+            "SubState": "running",
+            "enabled": true
+          }
+        },
+        "binary_sha256": {
+          "nextgen-tunnel": "84701a7c40ae8cdd4582f2303f7b335edf24e44d2dca923320bea007fe660c26",
+          "sing-box": "606f883d1aa3c624f38aa3f99bf0df02e3999f9aa0ff5826e0dd9c1b9f964baf"
+        },
+        "probe": {
+          "started": 1794870930.7997878,
+          "checks": [
+            {
+              "protocol": "tcp",
+              "success": true,
+              "rounds": 20,
+              "payload_bytes": 1024,
+              "rtt_min_ms": 81.15399600001183,
+              "rtt_mean_ms": 99.46460640001078,
+              "rtt_max_ms": 115.57207000032577,
+              "family": "ipv4"
+            },
+            {
+              "protocol": "udp",
+              "success": true,
+              "rounds": 20,
+              "payload_bytes": 1024,
+              "rtt_min_ms": 81.48712499996691,
+              "rtt_mean_ms": 95.83014965000984,
+              "rtt_max_ms": 115.26723400038463,
+              "family": "ipv4"
+            },
+            {
+              "protocol": "tcp",
+              "success": true,
+              "rounds": 20,
+              "payload_bytes": 1024,
+              "rtt_min_ms": 81.42880100012917,
+              "rtt_mean_ms": 102.0052279500078,
+              "rtt_max_ms": 145.60249599981034,
+              "family": "ipv6"
+            },
+            {
+              "protocol": "udp",
+              "success": true,
+              "rounds": 20,
+              "payload_bytes": 1024,
+              "rtt_min_ms": 81.47531900021932,
+              "rtt_mean_ms": 134.12658650004232,
+              "rtt_max_ms": 350.3763990001971,
+              "family": "ipv6"
+            }
+          ],
+          "finished": 1794870939.6411936,
+          "success": true
+        },
+        "raw_sha256": "21a13ec8da02e2021032119af11a25b5952220fc0892457495c0b487f9f2280f"
+      },
+      "hy-final-reboot": {
+        "timestamp": 1794871053.0115097,
+        "boot_id": "6e3391ff-2c7c-4a43-b806-0c8afbba1e1a",
+        "success": false,
+        "ownership_verified": true,
+        "private_material_root_only": true,
+        "host_routes_unchanged": true,
+        "host_firewall_unchanged": true,
+        "host_forwarding_unchanged": true,
+        "peer_endpoint_loopback": true,
+        "handshake_present": true,
+        "site_interfaces": [
+          "lo",
+          "wg0"
+        ],
+        "units": {
+          "nextgen-site.service": {
+            "MainPID": "0",
+            "NRestarts": "0",
+            "User": "",
+            "DynamicUser": "no",
+            "ActiveState": "active",
+            "SubState": "exited",
+            "enabled": true
+          },
+          "nextgen-engine.service": {
+            "MainPID": "805",
+            "NRestarts": "0",
+            "User": "nextgen-engine",
+            "DynamicUser": "yes",
+            "ActiveState": "active",
+            "SubState": "running",
+            "enabled": true
+          },
+          "nextgen-site-watchdog.timer": {
+            "ActiveState": "active",
+            "SubState": "waiting",
+            "enabled": true
+          },
+          "nextgen-acceptance-echo.service": {
+            "MainPID": "804",
+            "NRestarts": "0",
+            "User": "nextgen-acceptance",
+            "DynamicUser": "yes",
+            "ActiveState": "active",
+            "SubState": "running",
+            "enabled": true
+          }
+        },
+        "binary_sha256": {
+          "nextgen-tunnel": "84701a7c40ae8cdd4582f2303f7b335edf24e44d2dca923320bea007fe660c26",
+          "sing-box": "606f883d1aa3c624f38aa3f99bf0df02e3999f9aa0ff5826e0dd9c1b9f964baf"
+        },
+        "raw_sha256": "071085cb51845a8697ec7449ed09986580a9f022a1c166388ffadcaf9069e361",
+        "failed_check_recorded_privately": true
+      },
+      "hy-fixed-mtu-reboot": {
+        "timestamp": 1794872417.0122757,
+        "boot_id": "b273a997-ea7b-462d-b778-3568af08dc94",
+        "boot_id_changed": true,
+        "success": false,
+        "ownership_verified": true,
+        "private_material_root_only": true,
+        "host_routes_unchanged": true,
+        "host_firewall_unchanged": true,
+        "host_forwarding_unchanged": true,
+        "peer_endpoint_loopback": true,
+        "handshake_present": true,
+        "site_interfaces": [
+          "lo",
+          "wg0"
+        ],
+        "units": {
+          "nextgen-site.service": {
+            "MainPID": "0",
+            "NRestarts": "0",
+            "User": "",
+            "DynamicUser": "no",
+            "ActiveState": "active",
+            "SubState": "exited",
+            "enabled": true
+          },
+          "nextgen-engine.service": {
+            "MainPID": "799",
+            "NRestarts": "0",
+            "User": "nextgen-engine",
+            "DynamicUser": "yes",
+            "ActiveState": "active",
+            "SubState": "running",
+            "enabled": true
+          },
+          "nextgen-site-watchdog.timer": {
+            "ActiveState": "active",
+            "SubState": "running",
+            "enabled": true
+          },
+          "nextgen-acceptance-echo.service": {
+            "MainPID": "798",
+            "NRestarts": "0",
+            "User": "nextgen-acceptance",
+            "DynamicUser": "yes",
+            "ActiveState": "active",
+            "SubState": "running",
+            "enabled": true
+          }
+        },
+        "binary_sha256": {
+          "nextgen-tunnel": "84701a7c40ae8cdd4582f2303f7b335edf24e44d2dca923320bea007fe660c26",
+          "sing-box": "606f883d1aa3c624f38aa3f99bf0df02e3999f9aa0ff5826e0dd9c1b9f964baf"
+        },
+        "probe": {
+          "started": 1794872417.9562294,
+          "checks": [
+            {
+              "protocol": "tcp",
+              "success": false,
+              "error": "timed out",
+              "family": "ipv4"
+            },
+            {
+              "protocol": "udp",
+              "success": false,
+              "error": "timed out",
+              "family": "ipv4"
+            },
+            {
+              "protocol": "tcp",
+              "success": false,
+              "error": "timed out",
+              "family": "ipv6"
+            },
+            {
+              "protocol": "udp",
+              "success": false,
+              "error": "timed out",
+              "family": "ipv6"
+            }
+          ],
+          "finished": 1794872449.9907289,
+          "success": false
+        },
+        "raw_sha256": "40876f0e2b0cd06ed9c535baf23d76f9ac7b3c284a22c830945c8d402542f377"
+      },
+      "final-carrier-reboot": {
+        "timestamp": 1794872662.0375009,
+        "boot_id": "798d66e7-33b8-4def-9131-56250fdb561e",
+        "boot_id_changed": true,
+        "success": true,
+        "ownership_verified": true,
+        "private_material_root_only": true,
+        "host_routes_unchanged": true,
+        "host_firewall_unchanged": true,
+        "host_forwarding_unchanged": true,
+        "peer_endpoint_loopback": true,
+        "handshake_present": true,
+        "site_interfaces": [
+          "lo",
+          "wg0"
+        ],
+        "units": {
+          "nextgen-site.service": {
+            "MainPID": "0",
+            "NRestarts": "0",
+            "User": "",
+            "DynamicUser": "no",
+            "ActiveState": "active",
+            "SubState": "exited",
+            "enabled": true
+          },
+          "nextgen-engine.service": {
+            "MainPID": "803",
+            "NRestarts": "0",
+            "User": "nextgen-engine",
+            "DynamicUser": "yes",
+            "ActiveState": "active",
+            "SubState": "running",
+            "enabled": true
+          },
+          "nextgen-site-watchdog.timer": {
+            "ActiveState": "active",
+            "SubState": "waiting",
+            "enabled": true
+          },
+          "nextgen-acceptance-echo.service": {
+            "MainPID": "802",
+            "NRestarts": "0",
+            "User": "nextgen-acceptance",
+            "DynamicUser": "yes",
+            "ActiveState": "active",
+            "SubState": "running",
+            "enabled": true
+          }
+        },
+        "binary_sha256": {
+          "nextgen-tunnel": "84701a7c40ae8cdd4582f2303f7b335edf24e44d2dca923320bea007fe660c26",
+          "sing-box": "606f883d1aa3c624f38aa3f99bf0df02e3999f9aa0ff5826e0dd9c1b9f964baf"
+        },
+        "probe": {
+          "started": 1794872663.1085992,
+          "checks": [
+            {
+              "protocol": "tcp",
+              "success": true,
+              "rounds": 20,
+              "payload_bytes": 1024,
+              "rtt_min_ms": 77.7998249999996,
+              "rtt_mean_ms": 182.73679780000123,
+              "rtt_max_ms": 359.8821180000016,
+              "family": "ipv4"
+            },
+            {
+              "protocol": "udp",
+              "success": true,
+              "rounds": 20,
+              "payload_bytes": 1024,
+              "rtt_min_ms": 78.83161699999164,
+              "rtt_mean_ms": 202.9538749999965,
+              "rtt_max_ms": 552.1499749999919,
+              "family": "ipv4"
+            },
+            {
+              "protocol": "tcp",
+              "success": true,
+              "rounds": 20,
+              "payload_bytes": 1024,
+              "rtt_min_ms": 77.95430999999553,
+              "rtt_mean_ms": 78.89602454999789,
+              "rtt_max_ms": 84.5576620000088,
+              "family": "ipv6"
+            },
+            {
+              "protocol": "udp",
+              "success": true,
+              "rounds": 20,
+              "payload_bytes": 1024,
+              "rtt_min_ms": 77.83021800000256,
+              "rtt_mean_ms": 84.30536279999998,
+              "rtt_max_ms": 196.3817509999899,
+              "family": "ipv6"
+            }
+          ],
+          "finished": 1794872674.4122183,
+          "success": true
+        },
+        "raw_sha256": "774ccb43da113b02a53882d679b91654b195b8c5ed4af0bd5daeb152d4ec5537"
+      },
+      "post-soak-final": {
+        "timestamp": 1794901275.8366604,
+        "boot_id": "798d66e7-33b8-4def-9131-56250fdb561e",
+        "boot_id_changed": true,
+        "success": true,
+        "ownership_verified": true,
+        "private_material_root_only": true,
+        "host_routes_unchanged": true,
+        "host_firewall_unchanged": true,
+        "host_forwarding_unchanged": true,
+        "peer_endpoint_loopback": true,
+        "handshake_present": true,
+        "site_interfaces": [
+          "lo",
+          "wg0"
+        ],
+        "units": {
+          "nextgen-site.service": {
+            "MainPID": "0",
+            "NRestarts": "0",
+            "User": "",
+            "DynamicUser": "no",
+            "ActiveState": "active",
+            "SubState": "exited",
+            "enabled": true
+          },
+          "nextgen-engine.service": {
+            "MainPID": "803",
+            "NRestarts": "0",
+            "User": "nextgen-engine",
+            "DynamicUser": "yes",
+            "ActiveState": "active",
+            "SubState": "running",
+            "enabled": true
+          },
+          "nextgen-site-watchdog.timer": {
+            "ActiveState": "active",
+            "SubState": "waiting",
+            "enabled": true
+          },
+          "nextgen-acceptance-echo.service": {
+            "MainPID": "802",
+            "NRestarts": "0",
+            "User": "nextgen-acceptance",
+            "DynamicUser": "yes",
+            "ActiveState": "active",
+            "SubState": "running",
+            "enabled": true
+          }
+        },
+        "binary_sha256": {
+          "nextgen-tunnel": "84701a7c40ae8cdd4582f2303f7b335edf24e44d2dca923320bea007fe660c26",
+          "sing-box": "606f883d1aa3c624f38aa3f99bf0df02e3999f9aa0ff5826e0dd9c1b9f964baf"
+        },
+        "probe": {
+          "started": 1794901276.9508977,
+          "checks": [
+            {
+              "protocol": "tcp",
+              "success": true,
+              "rounds": 20,
+              "payload_bytes": 1024,
+              "rtt_min_ms": 78.1522799989034,
+              "rtt_mean_ms": 94.07414125016658,
+              "rtt_max_ms": 127.45509199885419,
+              "family": "ipv4"
+            },
+            {
+              "protocol": "udp",
+              "success": true,
+              "rounds": 20,
+              "payload_bytes": 1024,
+              "rtt_min_ms": 78.78873599838698,
+              "rtt_mean_ms": 98.86326220021147,
+              "rtt_max_ms": 129.0678149998712,
+              "family": "ipv4"
+            },
+            {
+              "protocol": "tcp",
+              "success": true,
+              "rounds": 20,
+              "payload_bytes": 1024,
+              "rtt_min_ms": 78.10239100217586,
+              "rtt_mean_ms": 93.69405209981778,
+              "rtt_max_ms": 111.27377899902058,
+              "family": "ipv6"
+            },
+            {
+              "protocol": "udp",
+              "success": true,
+              "rounds": 20,
+              "payload_bytes": 1024,
+              "rtt_min_ms": 78.56212600017898,
+              "rtt_mean_ms": 96.64970414996787,
+              "rtt_max_ms": 115.13543000182835,
+              "family": "ipv6"
+            }
+          ],
+          "finished": 1794901284.8102605,
+          "success": true
+        },
+        "raw_sha256": "f3ff43ee700953d0aea4e7292bf81004e6f0a199164d8cd4d07a6e762d4b2a33"
+      },
+      "post-cleanup-final": {
+        "timestamp": 1794901510.5972886,
+        "boot_id": "798d66e7-33b8-4def-9131-56250fdb561e",
+        "boot_id_changed": true,
+        "success": true,
+        "ownership_verified": true,
+        "private_material_root_only": true,
+        "host_routes_unchanged": true,
+        "host_firewall_unchanged": true,
+        "host_forwarding_unchanged": true,
+        "peer_endpoint_loopback": true,
+        "handshake_present": true,
+        "site_interfaces": [
+          "lo",
+          "wg0"
+        ],
+        "units": {
+          "nextgen-site.service": {
+            "MainPID": "0",
+            "NRestarts": "0",
+            "User": "",
+            "DynamicUser": "no",
+            "ActiveState": "active",
+            "SubState": "exited",
+            "enabled": true
+          },
+          "nextgen-engine.service": {
+            "MainPID": "803",
+            "NRestarts": "0",
+            "User": "nextgen-engine",
+            "DynamicUser": "yes",
+            "ActiveState": "active",
+            "SubState": "running",
+            "enabled": true
+          },
+          "nextgen-site-watchdog.timer": {
+            "ActiveState": "active",
+            "SubState": "waiting",
+            "enabled": true
+          }
+        },
+        "binary_sha256": {
+          "nextgen-tunnel": "84701a7c40ae8cdd4582f2303f7b335edf24e44d2dca923320bea007fe660c26",
+          "sing-box": "606f883d1aa3c624f38aa3f99bf0df02e3999f9aa0ff5826e0dd9c1b9f964baf"
+        },
+        "probe": {
+          "checks": [
+            {
+              "family": "ipv4",
+              "protocol": "icmp",
+              "payload_bytes": 1152,
+              "success": true
+            },
+            {
+              "family": "ipv6",
+              "protocol": "icmp",
+              "payload_bytes": 1152,
+              "success": true
+            }
+          ],
+          "success": true
+        },
+        "test_helpers_removed": true,
+        "raw_sha256": "b2d17e0b17ab2eee416f6150e493c446a151f7e8a1335a852a6439b674a1ea6a"
+      },
+      "watchdog_final": {
+        "rekeys": 0,
+        "engine_restarts": 0,
+        "mode": "passive_listener",
+        "checked_at": 1794901248.8405857,
+        "raw_sha256": "cc374bcfa8c3d40ea01cea39f1e160a3634d5e9b59011d85b397796caf4eacbe"
+      },
+      "passive_diagnostics": {
+        "raw_sha256": "d293b68e9473a8ca7b2b48869666ed6fcd51ea77bc59071c8288ff2e3686754f",
+        "samples": 116,
+        "contains_peer_addresses": true,
+        "private_evidence_only": true
+      }
+    },
+    "turkey": {
+      "soak-early-failed": {
+        "started_wall_time": 1794868327.532156,
+        "duration_requested_seconds": 10800,
+        "elapsed_seconds": 220.43635324299999,
+        "complete": false,
+        "scope": "TCP 1 round/s and UDP at most 10 rounds/s per IP family, 1024/160-byte payloads",
+        "acceptance_criteria": {
+          "tcp_timeouts": 0,
+          "tcp_reconnects": 0,
+          "corrupted": 0,
+          "udp_max_loss_percent": 0.5,
+          "udp_max_consecutive_failures": 3,
+          "unplanned_engine_pid_changes": 0
+        },
+        "flows": {
+          "ipv4_tcp": {
+            "sent": 165,
+            "received": 163,
+            "timeouts": 2,
+            "corrupted": 0,
+            "late": 0,
+            "reconnects": 2,
+            "connect_errors": 14,
+            "rtt_sum_ms": 18548.06017300035,
+            "rtt_max_ms": 1064.005280999993,
+            "max_consecutive_failures": 1,
+            "loss_percent": 1.2121212121212122,
+            "rtt_mean_ms": 113.79178020245614,
+            "rtt_p50_ms": 83,
+            "rtt_p95_ms": 101,
+            "rtt_p99_ms": 982
+          },
+          "ipv4_udp": {
+            "sent": 1667,
+            "received": 1541,
+            "timeouts": 123,
+            "corrupted": 2,
+            "late": 37,
+            "reconnects": 0,
+            "connect_errors": 0,
+            "rtt_sum_ms": 131558.3946240003,
+            "rtt_max_ms": 598.8904759999514,
+            "max_consecutive_failures": 108,
+            "loss_percent": 7.558488302339532,
+            "rtt_mean_ms": 85.37209255288793,
+            "rtt_p50_ms": 82,
+            "rtt_p95_ms": 90,
+            "rtt_p99_ms": 109
+          },
+          "ipv6_tcp": {
+            "sent": 165,
+            "received": 163,
+            "timeouts": 2,
+            "corrupted": 0,
+            "late": 0,
+            "reconnects": 2,
+            "connect_errors": 14,
+            "rtt_sum_ms": 18589.26055899994,
+            "rtt_max_ms": 1015.7438219999904,
+            "max_consecutive_failures": 1,
+            "loss_percent": 1.2121212121212122,
+            "rtt_mean_ms": 114.0445433067481,
+            "rtt_p50_ms": 83,
+            "rtt_p95_ms": 100,
+            "rtt_p99_ms": 924
+          },
+          "ipv6_udp": {
+            "sent": 1666,
+            "received": 1539,
+            "timeouts": 124,
+            "corrupted": 2,
+            "late": 38,
+            "reconnects": 0,
+            "connect_errors": 0,
+            "rtt_sum_ms": 130537.4712250025,
+            "rtt_max_ms": 713.8121760000331,
+            "max_consecutive_failures": 108,
+            "loss_percent": 7.623049219687875,
+            "rtt_mean_ms": 84.81966941195745,
+            "rtt_p50_ms": 82,
+            "rtt_p95_ms": 89,
+            "rtt_p99_ms": 102
+          }
+        },
+        "binary_sha256": {
+          "nextgen-tunnel": "84701a7c40ae8cdd4582f2303f7b335edf24e44d2dca923320bea007fe660c26",
+          "sing-box": "606f883d1aa3c624f38aa3f99bf0df02e3999f9aa0ff5826e0dd9c1b9f964baf"
+        },
+        "driver_sha256": "df78086e5b2ec052699449c8c82bea41656bac22048551a13cfffbb9d56ce47d",
+        "raw_sha256": "9d6adaad70959803d23adcc3a31b4a0934b38d6624be4cb9352a3724b588c743"
+      },
+      "soak-smux-smoke": {
+        "started_wall_time": 1794868930.7916713,
+        "finished_wall_time": 1794869231.3264334,
+        "duration_requested_seconds": 300,
+        "elapsed_seconds": 300.52240368800005,
+        "complete": true,
+        "success": false,
+        "scope": "TCP 1 round/s and UDP at most 10 rounds/s per IP family, 1024/160-byte payloads",
+        "acceptance_criteria": {
+          "tcp_timeouts": 0,
+          "tcp_reconnects": 0,
+          "corrupted": 0,
+          "udp_max_loss_percent": 0.5,
+          "udp_max_consecutive_failures": 3,
+          "unplanned_engine_pid_changes": 0
+        },
+        "flows": {
+          "ipv4_tcp": {
+            "sent": 300,
+            "received": 300,
+            "timeouts": 0,
+            "corrupted": 0,
+            "late": 0,
+            "reconnects": 0,
+            "connect_errors": 0,
+            "rtt_sum_ms": 30386.44680800031,
+            "rtt_max_ms": 1459.8352149999982,
+            "max_consecutive_failures": 0,
+            "loss_percent": 0.0,
+            "rtt_mean_ms": 101.28815602666769,
+            "rtt_p50_ms": 83,
+            "rtt_p95_ms": 101,
+            "rtt_p99_ms": 654
+          },
+          "ipv4_udp": {
+            "sent": 2894,
+            "received": 2882,
+            "timeouts": 12,
+            "corrupted": 0,
+            "late": 12,
+            "reconnects": 0,
+            "connect_errors": 0,
+            "rtt_sum_ms": 243323.70785699514,
+            "rtt_max_ms": 492.21829199996137,
+            "max_consecutive_failures": 7,
+            "loss_percent": 0.414651002073255,
+            "rtt_mean_ms": 84.42876747293377,
+            "rtt_p50_ms": 83,
+            "rtt_p95_ms": 84,
+            "rtt_p99_ms": 142
+          },
+          "ipv6_tcp": {
+            "sent": 300,
+            "received": 300,
+            "timeouts": 0,
+            "corrupted": 0,
+            "late": 0,
+            "reconnects": 0,
+            "connect_errors": 0,
+            "rtt_sum_ms": 30531.63665300108,
+            "rtt_max_ms": 1483.928639999931,
+            "max_consecutive_failures": 0,
+            "loss_percent": 0.0,
+            "rtt_mean_ms": 101.77212217667027,
+            "rtt_p50_ms": 83,
+            "rtt_p95_ms": 117,
+            "rtt_p99_ms": 654
+          },
+          "ipv6_udp": {
+            "sent": 2895,
+            "received": 2882,
+            "timeouts": 13,
+            "corrupted": 0,
+            "late": 13,
+            "reconnects": 0,
+            "connect_errors": 0,
+            "rtt_sum_ms": 242707.5625410022,
+            "rtt_max_ms": 497.8262980000636,
+            "max_consecutive_failures": 7,
+            "loss_percent": 0.44905008635578586,
+            "rtt_mean_ms": 84.21497659299175,
+            "rtt_p50_ms": 83,
+            "rtt_p95_ms": 84,
+            "rtt_p99_ms": 141
+          }
+        },
+        "network_unchanged": true,
+        "boot_unchanged": true,
+        "binary_sha256": {
+          "nextgen-tunnel": "84701a7c40ae8cdd4582f2303f7b335edf24e44d2dca923320bea007fe660c26",
+          "sing-box": "606f883d1aa3c624f38aa3f99bf0df02e3999f9aa0ff5826e0dd9c1b9f964baf"
+        },
+        "driver_sha256": "30599b638e6d9c6d1067d47a38076a6537f7667cadcfec52df9c1ae48f55bcc7",
+        "raw_sha256": "22a5b9cdce3a8f46a530e7f0022f7cf7f674a6f6bffd6492ea577dd263a07469"
+      },
+      "soak-hy-gecko-smoke": {
+        "started_wall_time": 1794869952.6238434,
+        "finished_wall_time": 1794870253.1367276,
+        "duration_requested_seconds": 300,
+        "elapsed_seconds": 300.5024812280001,
+        "complete": true,
+        "success": true,
+        "scope": "TCP 1 round/s and UDP at most 10 rounds/s per IP family, 1024/160-byte payloads",
+        "acceptance_criteria": {
+          "tcp_timeouts": 0,
+          "tcp_reconnects": 0,
+          "corrupted": 0,
+          "udp_max_loss_percent": 0.5,
+          "udp_max_consecutive_failures": 3,
+          "unplanned_engine_pid_changes": 0
+        },
+        "flows": {
+          "ipv4_tcp": {
+            "sent": 300,
+            "received": 300,
+            "timeouts": 0,
+            "corrupted": 0,
+            "late": 0,
+            "reconnects": 0,
+            "connect_errors": 0,
+            "rtt_sum_ms": 25948.076258001267,
+            "rtt_max_ms": 719.6784780001053,
+            "max_consecutive_failures": 0,
+            "loss_percent": 0.0,
+            "rtt_mean_ms": 86.4935875266709,
+            "rtt_p50_ms": 79,
+            "rtt_p95_ms": 92,
+            "rtt_p99_ms": 291
+          },
+          "ipv4_udp": {
+            "sent": 2922,
+            "received": 2911,
+            "timeouts": 11,
+            "corrupted": 0,
+            "late": 3,
+            "reconnects": 0,
+            "connect_errors": 0,
+            "rtt_sum_ms": 231603.17294500401,
+            "rtt_max_ms": 424.87133800000265,
+            "max_consecutive_failures": 2,
+            "loss_percent": 0.37645448323066394,
+            "rtt_mean_ms": 79.56137854517486,
+            "rtt_p50_ms": 78,
+            "rtt_p95_ms": 80,
+            "rtt_p99_ms": 98
+          },
+          "ipv6_tcp": {
+            "sent": 300,
+            "received": 300,
+            "timeouts": 0,
+            "corrupted": 0,
+            "late": 0,
+            "reconnects": 0,
+            "connect_errors": 0,
+            "rtt_sum_ms": 25933.088520000634,
+            "rtt_max_ms": 713.4374250001656,
+            "max_consecutive_failures": 0,
+            "loss_percent": 0.0,
+            "rtt_mean_ms": 86.44362840000211,
+            "rtt_p50_ms": 78,
+            "rtt_p95_ms": 95,
+            "rtt_p99_ms": 319
+          },
+          "ipv6_udp": {
+            "sent": 2931,
+            "received": 2923,
+            "timeouts": 8,
+            "corrupted": 0,
+            "late": 3,
+            "reconnects": 0,
+            "connect_errors": 0,
+            "rtt_sum_ms": 233660.68579400252,
+            "rtt_max_ms": 448.67221000004065,
+            "max_consecutive_failures": 2,
+            "loss_percent": 0.27294438758103035,
+            "rtt_mean_ms": 79.93865405200224,
+            "rtt_p50_ms": 79,
+            "rtt_p95_ms": 80,
+            "rtt_p99_ms": 100
+          }
+        },
+        "network_unchanged": true,
+        "boot_unchanged": true,
+        "binary_sha256": {
+          "nextgen-tunnel": "84701a7c40ae8cdd4582f2303f7b335edf24e44d2dca923320bea007fe660c26",
+          "sing-box": "606f883d1aa3c624f38aa3f99bf0df02e3999f9aa0ff5826e0dd9c1b9f964baf"
+        },
+        "driver_sha256": "e0ce7d22f1f99b9a3bb7f45e85c25a5b6e9d41e9ca448c130a071a8229dedc31",
+        "raw_sha256": "a377a534846950fc1ff98d2dd2a4b5d33783ecca0505e046b54e1d75c2f8d8e8"
+      },
+      "soak-fixed-mtu-smoke": {
+        "started_wall_time": 1794871217.1042187,
+        "finished_wall_time": 1794871817.6191285,
+        "duration_requested_seconds": 600,
+        "elapsed_seconds": 600.503614721,
+        "complete": true,
+        "success": false,
+        "scope": "TCP 1 round/s and UDP at most 10 rounds/s per IP family, 1024/160-byte payloads",
+        "acceptance_criteria": {
+          "tcp_timeouts": 0,
+          "tcp_reconnects": 0,
+          "corrupted": 0,
+          "udp_max_loss_percent": 0.5,
+          "udp_max_consecutive_failures": 3,
+          "unplanned_engine_pid_changes": 0
+        },
+        "flows": {
+          "ipv4_tcp": {
+            "sent": 600,
+            "received": 600,
+            "timeouts": 0,
+            "corrupted": 0,
+            "late": 0,
+            "reconnects": 0,
+            "connect_errors": 0,
+            "rtt_sum_ms": 54594.84608499932,
+            "rtt_max_ms": 1407.0454029999837,
+            "max_consecutive_failures": 0,
+            "loss_percent": 0.0,
+            "rtt_mean_ms": 90.99141014166554,
+            "rtt_p50_ms": 79,
+            "rtt_p95_ms": 80,
+            "rtt_p99_ms": 484
+          },
+          "ipv4_udp": {
+            "sent": 5803,
+            "received": 5775,
+            "timeouts": 28,
+            "corrupted": 0,
+            "late": 16,
+            "reconnects": 0,
+            "connect_errors": 0,
+            "rtt_sum_ms": 460824.3618749972,
+            "rtt_max_ms": 489.2592819999777,
+            "max_consecutive_failures": 3,
+            "loss_percent": 0.4825090470446321,
+            "rtt_mean_ms": 79.79642629870081,
+            "rtt_p50_ms": 78,
+            "rtt_p95_ms": 79,
+            "rtt_p99_ms": 91
+          },
+          "ipv6_tcp": {
+            "sent": 600,
+            "received": 600,
+            "timeouts": 0,
+            "corrupted": 0,
+            "late": 0,
+            "reconnects": 0,
+            "connect_errors": 0,
+            "rtt_sum_ms": 55089.99180399851,
+            "rtt_max_ms": 1405.7838339999762,
+            "max_consecutive_failures": 0,
+            "loss_percent": 0.0,
+            "rtt_mean_ms": 91.81665300666418,
+            "rtt_p50_ms": 78,
+            "rtt_p95_ms": 80,
+            "rtt_p99_ms": 457
+          },
+          "ipv6_udp": {
+            "sent": 5821,
+            "received": 5797,
+            "timeouts": 24,
+            "corrupted": 0,
+            "late": 17,
+            "reconnects": 0,
+            "connect_errors": 0,
+            "rtt_sum_ms": 462214.00505300215,
+            "rtt_max_ms": 485.9468080000511,
+            "max_consecutive_failures": 4,
+            "loss_percent": 0.4123002920460402,
+            "rtt_mean_ms": 79.73331120458896,
+            "rtt_p50_ms": 78,
+            "rtt_p95_ms": 79,
+            "rtt_p99_ms": 94
+          }
+        },
+        "network_unchanged": true,
+        "boot_unchanged": true,
+        "binary_sha256": {
+          "nextgen-tunnel": "84701a7c40ae8cdd4582f2303f7b335edf24e44d2dca923320bea007fe660c26",
+          "sing-box": "606f883d1aa3c624f38aa3f99bf0df02e3999f9aa0ff5826e0dd9c1b9f964baf"
+        },
+        "driver_sha256": "e0ce7d22f1f99b9a3bb7f45e85c25a5b6e9d41e9ca448c130a071a8229dedc31",
+        "raw_sha256": "308ae964742d1824385c73c6cb98b8575aaa051f38ab6b119d623fbf50405069"
+      },
+      "soak-3h-final": {
+        "started_wall_time": 1794872718.1884155,
+        "finished_wall_time": 1794883518.722494,
+        "duration_requested_seconds": 10800,
+        "elapsed_seconds": 10800.521632314,
+        "complete": true,
+        "success": false,
+        "scope": "TCP 1 round/s and UDP at most 10 rounds/s per IP family, 1024/160-byte payloads",
+        "acceptance_criteria": {
+          "tcp_timeouts": 0,
+          "tcp_reconnects": 0,
+          "corrupted": 0,
+          "udp_max_loss_percent": 0.5,
+          "udp_max_consecutive_failures": 3,
+          "unplanned_engine_pid_changes": 0
+        },
+        "flows": {
+          "ipv4_tcp": {
+            "sent": 10763,
+            "received": 10760,
+            "timeouts": 3,
+            "corrupted": 0,
+            "late": 0,
+            "reconnects": 3,
+            "connect_errors": 7,
+            "rtt_sum_ms": 877332.3424999235,
+            "rtt_max_ms": 2385.2382770000986,
+            "max_consecutive_failures": 1,
+            "loss_percent": 0.0278732695345164,
+            "rtt_mean_ms": 81.53646305761372,
+            "rtt_p50_ms": 79,
+            "rtt_p95_ms": 83,
+            "rtt_p99_ms": 120
+          },
+          "ipv4_udp": {
+            "sent": 107041,
+            "received": 106916,
+            "timeouts": 125,
+            "corrupted": 0,
+            "late": 96,
+            "reconnects": 0,
+            "connect_errors": 0,
+            "rtt_sum_ms": 8535381.77646312,
+            "rtt_max_ms": 473.9152929996635,
+            "max_consecutive_failures": 38,
+            "loss_percent": 0.11677768331760727,
+            "rtt_mean_ms": 79.83259546244827,
+            "rtt_p50_ms": 79,
+            "rtt_p95_ms": 90,
+            "rtt_p99_ms": 106
+          },
+          "ipv6_tcp": {
+            "sent": 10763,
+            "received": 10760,
+            "timeouts": 3,
+            "corrupted": 0,
+            "late": 0,
+            "reconnects": 3,
+            "connect_errors": 7,
+            "rtt_sum_ms": 877637.5310079574,
+            "rtt_max_ms": 2382.390994999696,
+            "max_consecutive_failures": 1,
+            "loss_percent": 0.0278732695345164,
+            "rtt_mean_ms": 81.56482630185478,
+            "rtt_p50_ms": 79,
+            "rtt_p95_ms": 83,
+            "rtt_p99_ms": 122
+          },
+          "ipv6_udp": {
+            "sent": 107036,
+            "received": 106908,
+            "timeouts": 128,
+            "corrupted": 0,
+            "late": 99,
+            "reconnects": 0,
+            "connect_errors": 0,
+            "rtt_sum_ms": 8537756.477281068,
+            "rtt_max_ms": 486.1628020000808,
+            "max_consecutive_failures": 38,
+            "loss_percent": 0.11958593370454801,
+            "rtt_mean_ms": 79.86078195533607,
+            "rtt_p50_ms": 79,
+            "rtt_p95_ms": 90,
+            "rtt_p99_ms": 106
+          }
+        },
+        "network_unchanged": true,
+        "boot_unchanged": true,
+        "binary_sha256": {
+          "nextgen-tunnel": "84701a7c40ae8cdd4582f2303f7b335edf24e44d2dca923320bea007fe660c26",
+          "sing-box": "606f883d1aa3c624f38aa3f99bf0df02e3999f9aa0ff5826e0dd9c1b9f964baf"
+        },
+        "driver_sha256": "e0ce7d22f1f99b9a3bb7f45e85c25a5b6e9d41e9ca448c130a071a8229dedc31",
+        "raw_sha256": "d68605de3be32af259f74c42916bf98510dd3c2a59bb7dcf7af5411bf7b43811"
+      },
+      "hy-permanent-warm-pass": {
+        "timestamp": 1794870929.9360452,
+        "boot_id": "9d4f4685-e76e-4730-a924-24335be90bc3",
+        "boot_id_changed": true,
+        "success": true,
+        "ownership_verified": true,
+        "private_material_root_only": true,
+        "host_routes_unchanged": true,
+        "host_firewall_unchanged": true,
+        "host_forwarding_unchanged": true,
+        "peer_endpoint_loopback": true,
+        "handshake_present": true,
+        "site_interfaces": [
+          "lo",
+          "wg0"
+        ],
+        "units": {
+          "nextgen-site.service": {
+            "MainPID": "0",
+            "NRestarts": "0",
+            "User": "",
+            "DynamicUser": "no",
+            "ActiveState": "active",
+            "SubState": "exited",
+            "enabled": true
+          },
+          "nextgen-engine.service": {
+            "MainPID": "3783",
+            "NRestarts": "0",
+            "User": "nextgen-engine",
+            "DynamicUser": "yes",
+            "ActiveState": "active",
+            "SubState": "running",
+            "enabled": true
+          },
+          "nextgen-site-watchdog.timer": {
+            "ActiveState": "active",
+            "SubState": "running",
+            "enabled": true
+          },
+          "nextgen-acceptance-echo.service": {
+            "MainPID": "3396",
+            "NRestarts": "0",
+            "User": "nextgen-acceptance",
+            "DynamicUser": "yes",
+            "ActiveState": "active",
+            "SubState": "running",
+            "enabled": true
+          }
+        },
+        "binary_sha256": {
+          "nextgen-tunnel": "84701a7c40ae8cdd4582f2303f7b335edf24e44d2dca923320bea007fe660c26",
+          "sing-box": "606f883d1aa3c624f38aa3f99bf0df02e3999f9aa0ff5826e0dd9c1b9f964baf"
+        },
+        "probe": {
+          "started": 1794870930.749703,
+          "checks": [
+            {
+              "protocol": "tcp",
+              "success": true,
+              "rounds": 20,
+              "payload_bytes": 1024,
+              "rtt_min_ms": 82.34959099991102,
+              "rtt_mean_ms": 101.16284815003382,
+              "rtt_max_ms": 118.154185000094,
+              "family": "ipv4"
+            },
+            {
+              "protocol": "udp",
+              "success": true,
+              "rounds": 20,
+              "payload_bytes": 1024,
+              "rtt_min_ms": 81.16697400009798,
+              "rtt_mean_ms": 95.82706735000102,
+              "rtt_max_ms": 114.95216699995581,
+              "family": "ipv4"
+            },
+            {
+              "protocol": "tcp",
+              "success": true,
+              "rounds": 20,
+              "payload_bytes": 1024,
+              "rtt_min_ms": 81.50498600025458,
+              "rtt_mean_ms": 102.05658445001973,
+              "rtt_max_ms": 145.52924899999198,
+              "family": "ipv6"
+            },
+            {
+              "protocol": "udp",
+              "success": true,
+              "rounds": 20,
+              "payload_bytes": 1024,
+              "rtt_min_ms": 81.59635799984244,
+              "rtt_mean_ms": 137.29149724990748,
+              "rtt_max_ms": 283.25987499965777,
+              "family": "ipv6"
+            }
+          ],
+          "finished": 1794870939.676704,
+          "success": true
+        },
+        "raw_sha256": "8abb23570b829200d36e671745c51c716ba58c8a982acfe11a08691f0c2be910"
+      },
+      "hy-final-reboot": {
+        "timestamp": 1794871065.753222,
+        "boot_id": "8419d917-0d7a-4c02-9203-064f31b9bc71",
+        "success": false,
+        "ownership_verified": true,
+        "private_material_root_only": true,
+        "host_routes_unchanged": true,
+        "host_firewall_unchanged": true,
+        "host_forwarding_unchanged": true,
+        "peer_endpoint_loopback": true,
+        "handshake_present": true,
+        "site_interfaces": [
+          "lo",
+          "wg0"
+        ],
+        "units": {
+          "nextgen-site.service": {
+            "MainPID": "0",
+            "NRestarts": "0",
+            "User": "",
+            "DynamicUser": "no",
+            "ActiveState": "active",
+            "SubState": "exited",
+            "enabled": true
+          },
+          "nextgen-engine.service": {
+            "MainPID": "721",
+            "NRestarts": "0",
+            "User": "nextgen-engine",
+            "DynamicUser": "yes",
+            "ActiveState": "active",
+            "SubState": "running",
+            "enabled": true
+          },
+          "nextgen-site-watchdog.timer": {
+            "ActiveState": "active",
+            "SubState": "waiting",
+            "enabled": true
+          },
+          "nextgen-acceptance-echo.service": {
+            "MainPID": "713",
+            "NRestarts": "0",
+            "User": "nextgen-acceptance",
+            "DynamicUser": "yes",
+            "ActiveState": "active",
+            "SubState": "running",
+            "enabled": true
+          }
+        },
+        "binary_sha256": {
+          "nextgen-tunnel": "84701a7c40ae8cdd4582f2303f7b335edf24e44d2dca923320bea007fe660c26",
+          "sing-box": "606f883d1aa3c624f38aa3f99bf0df02e3999f9aa0ff5826e0dd9c1b9f964baf"
+        },
+        "raw_sha256": "1f96ed59f5d1c6d7449fbda4a54c8b6098c6e2709ecb616687ae33a8fb926b1f",
+        "failed_check_recorded_privately": true
+      },
+      "hy-fixed-mtu-reboot": {
+        "timestamp": 1794872428.07994,
+        "boot_id": "0900f1cc-5103-41a7-aa94-e3d18a91952c",
+        "boot_id_changed": true,
+        "success": false,
+        "ownership_verified": true,
+        "private_material_root_only": true,
+        "host_routes_unchanged": true,
+        "host_firewall_unchanged": true,
+        "host_forwarding_unchanged": true,
+        "peer_endpoint_loopback": true,
+        "handshake_present": false,
+        "site_interfaces": [
+          "lo",
+          "wg0"
+        ],
+        "units": {
+          "nextgen-site.service": {
+            "MainPID": "0",
+            "NRestarts": "0",
+            "User": "",
+            "DynamicUser": "no",
+            "ActiveState": "active",
+            "SubState": "exited",
+            "enabled": true
+          },
+          "nextgen-engine.service": {
+            "MainPID": "725",
+            "NRestarts": "0",
+            "User": "nextgen-engine",
+            "DynamicUser": "yes",
+            "ActiveState": "active",
+            "SubState": "running",
+            "enabled": true
+          },
+          "nextgen-site-watchdog.timer": {
+            "ActiveState": "active",
+            "SubState": "waiting",
+            "enabled": true
+          },
+          "nextgen-acceptance-echo.service": {
+            "MainPID": "716",
+            "NRestarts": "0",
+            "User": "nextgen-acceptance",
+            "DynamicUser": "yes",
+            "ActiveState": "active",
+            "SubState": "running",
+            "enabled": true
+          }
+        },
+        "binary_sha256": {
+          "nextgen-tunnel": "84701a7c40ae8cdd4582f2303f7b335edf24e44d2dca923320bea007fe660c26",
+          "sing-box": "606f883d1aa3c624f38aa3f99bf0df02e3999f9aa0ff5826e0dd9c1b9f964baf"
+        },
+        "probe": {
+          "started": 1794872429.058575,
+          "checks": [
+            {
+              "protocol": "tcp",
+              "success": false,
+              "error": "timed out",
+              "family": "ipv4"
+            },
+            {
+              "protocol": "udp",
+              "success": false,
+              "error": "timed out",
+              "family": "ipv4"
+            },
+            {
+              "protocol": "tcp",
+              "success": true,
+              "rounds": 20,
+              "payload_bytes": 1024,
+              "rtt_min_ms": 88.90562899999566,
+              "rtt_mean_ms": 89.6450019999989,
+              "rtt_max_ms": 91.11733199999605,
+              "family": "ipv6"
+            },
+            {
+              "protocol": "udp",
+              "success": true,
+              "rounds": 20,
+              "payload_bytes": 1024,
+              "rtt_min_ms": 88.7836949999894,
+              "rtt_mean_ms": 89.58588009999957,
+              "rtt_max_ms": 90.37624200000494,
+              "family": "ipv6"
+            }
+          ],
+          "finished": 1794872454.0674422,
+          "success": false
+        },
+        "raw_sha256": "36705aff19fa137c602d4bc7f7ef81c3e6bfad12f25922bbefeeb96c72e12e91"
+      },
+      "final-carrier-reboot": {
+        "timestamp": 1794872671.1609755,
+        "boot_id": "464324d3-d5e2-496a-a17c-570774ea1db6",
+        "boot_id_changed": true,
+        "success": true,
+        "ownership_verified": true,
+        "private_material_root_only": true,
+        "host_routes_unchanged": true,
+        "host_firewall_unchanged": true,
+        "host_forwarding_unchanged": true,
+        "peer_endpoint_loopback": true,
+        "handshake_present": true,
+        "site_interfaces": [
+          "lo",
+          "wg0"
+        ],
+        "units": {
+          "nextgen-site.service": {
+            "MainPID": "0",
+            "NRestarts": "0",
+            "User": "",
+            "DynamicUser": "no",
+            "ActiveState": "active",
+            "SubState": "exited",
+            "enabled": true
+          },
+          "nextgen-engine.service": {
+            "MainPID": "721",
+            "NRestarts": "0",
+            "User": "nextgen-engine",
+            "DynamicUser": "yes",
+            "ActiveState": "active",
+            "SubState": "running",
+            "enabled": true
+          },
+          "nextgen-site-watchdog.timer": {
+            "ActiveState": "active",
+            "SubState": "waiting",
+            "enabled": true
+          },
+          "nextgen-acceptance-echo.service": {
+            "MainPID": "718",
+            "NRestarts": "0",
+            "User": "nextgen-acceptance",
+            "DynamicUser": "yes",
+            "ActiveState": "active",
+            "SubState": "running",
+            "enabled": true
+          }
+        },
+        "binary_sha256": {
+          "nextgen-tunnel": "84701a7c40ae8cdd4582f2303f7b335edf24e44d2dca923320bea007fe660c26",
+          "sing-box": "606f883d1aa3c624f38aa3f99bf0df02e3999f9aa0ff5826e0dd9c1b9f964baf"
+        },
+        "probe": {
+          "started": 1794872672.0781734,
+          "checks": [
+            {
+              "protocol": "tcp",
+              "success": true,
+              "rounds": 20,
+              "payload_bytes": 1024,
+              "rtt_min_ms": 77.8236120000031,
+              "rtt_mean_ms": 82.34268419999893,
+              "rtt_max_ms": 155.0946979999992,
+              "family": "ipv4"
+            },
+            {
+              "protocol": "udp",
+              "success": true,
+              "rounds": 20,
+              "payload_bytes": 1024,
+              "rtt_min_ms": 78.12995899999464,
+              "rtt_mean_ms": 78.50668904999907,
+              "rtt_max_ms": 79.1233329999983,
+              "family": "ipv4"
+            },
+            {
+              "protocol": "tcp",
+              "success": true,
+              "rounds": 20,
+              "payload_bytes": 1024,
+              "rtt_min_ms": 78.00800799999763,
+              "rtt_mean_ms": 78.5940853000028,
+              "rtt_max_ms": 79.75615000000857,
+              "family": "ipv6"
+            },
+            {
+              "protocol": "udp",
+              "success": true,
+              "rounds": 20,
+              "payload_bytes": 1024,
+              "rtt_min_ms": 77.83638000000792,
+              "rtt_mean_ms": 78.40286665000207,
+              "rtt_max_ms": 79.05374399999232,
+              "family": "ipv6"
+            }
+          ],
+          "finished": 1794872678.5966697,
+          "success": true
+        },
+        "raw_sha256": "e825f2b8e927a8743134ee497a145f6ebba6c4979f923f37453d856bda13cfdc"
+      },
+      "post-soak-final": {
+        "timestamp": 1794901275.8788905,
+        "boot_id": "464324d3-d5e2-496a-a17c-570774ea1db6",
+        "boot_id_changed": true,
+        "success": true,
+        "ownership_verified": true,
+        "private_material_root_only": true,
+        "host_routes_unchanged": true,
+        "host_firewall_unchanged": true,
+        "host_forwarding_unchanged": true,
+        "peer_endpoint_loopback": true,
+        "handshake_present": true,
+        "site_interfaces": [
+          "lo",
+          "wg0"
+        ],
+        "units": {
+          "nextgen-site.service": {
+            "MainPID": "0",
+            "NRestarts": "0",
+            "User": "",
+            "DynamicUser": "no",
+            "ActiveState": "active",
+            "SubState": "exited",
+            "enabled": true
+          },
+          "nextgen-engine.service": {
+            "MainPID": "721",
+            "NRestarts": "0",
+            "User": "nextgen-engine",
+            "DynamicUser": "yes",
+            "ActiveState": "active",
+            "SubState": "running",
+            "enabled": true
+          },
+          "nextgen-site-watchdog.timer": {
+            "ActiveState": "active",
+            "SubState": "waiting",
+            "enabled": true
+          },
+          "nextgen-acceptance-echo.service": {
+            "MainPID": "43326",
+            "NRestarts": "0",
+            "User": "nextgen-acceptance",
+            "DynamicUser": "yes",
+            "ActiveState": "active",
+            "SubState": "running",
+            "enabled": true
+          }
+        },
+        "binary_sha256": {
+          "nextgen-tunnel": "84701a7c40ae8cdd4582f2303f7b335edf24e44d2dca923320bea007fe660c26",
+          "sing-box": "606f883d1aa3c624f38aa3f99bf0df02e3999f9aa0ff5826e0dd9c1b9f964baf"
+        },
+        "probe": {
+          "started": 1794901278.1711214,
+          "checks": [
+            {
+              "protocol": "tcp",
+              "success": true,
+              "rounds": 20,
+              "payload_bytes": 1024,
+              "rtt_min_ms": 78.32843399955891,
+              "rtt_mean_ms": 88.81878275024064,
+              "rtt_max_ms": 113.6333590002323,
+              "family": "ipv4"
+            },
+            {
+              "protocol": "udp",
+              "success": true,
+              "rounds": 20,
+              "payload_bytes": 1024,
+              "rtt_min_ms": 78.08411100268131,
+              "rtt_mean_ms": 95.6130327509527,
+              "rtt_max_ms": 128.74732100317487,
+              "family": "ipv4"
+            },
+            {
+              "protocol": "tcp",
+              "success": true,
+              "rounds": 20,
+              "payload_bytes": 1024,
+              "rtt_min_ms": 78.41178499802481,
+              "rtt_mean_ms": 94.85315964975598,
+              "rtt_max_ms": 107.79189000095357,
+              "family": "ipv6"
+            },
+            {
+              "protocol": "udp",
+              "success": true,
+              "rounds": 20,
+              "payload_bytes": 1024,
+              "rtt_min_ms": 78.20657599950209,
+              "rtt_mean_ms": 95.83030060002784,
+              "rtt_max_ms": 116.0999810017529,
+              "family": "ipv6"
+            }
+          ],
+          "finished": 1794901285.8675358,
+          "success": true
+        },
+        "raw_sha256": "3727aea8296295d82b2a951e466eb5b6cdc6fec42f5b3c4e257cc37b40de9fe0"
+      },
+      "post-cleanup-final": {
+        "timestamp": 1794901510.6501377,
+        "boot_id": "464324d3-d5e2-496a-a17c-570774ea1db6",
+        "boot_id_changed": true,
+        "success": true,
+        "ownership_verified": true,
+        "private_material_root_only": true,
+        "host_routes_unchanged": true,
+        "host_firewall_unchanged": true,
+        "host_forwarding_unchanged": true,
+        "peer_endpoint_loopback": true,
+        "handshake_present": true,
+        "site_interfaces": [
+          "lo",
+          "wg0"
+        ],
+        "units": {
+          "nextgen-site.service": {
+            "MainPID": "0",
+            "NRestarts": "0",
+            "User": "",
+            "DynamicUser": "no",
+            "ActiveState": "active",
+            "SubState": "exited",
+            "enabled": true
+          },
+          "nextgen-engine.service": {
+            "MainPID": "721",
+            "NRestarts": "0",
+            "User": "nextgen-engine",
+            "DynamicUser": "yes",
+            "ActiveState": "active",
+            "SubState": "running",
+            "enabled": true
+          },
+          "nextgen-site-watchdog.timer": {
+            "ActiveState": "active",
+            "SubState": "waiting",
+            "enabled": true
+          }
+        },
+        "binary_sha256": {
+          "nextgen-tunnel": "84701a7c40ae8cdd4582f2303f7b335edf24e44d2dca923320bea007fe660c26",
+          "sing-box": "606f883d1aa3c624f38aa3f99bf0df02e3999f9aa0ff5826e0dd9c1b9f964baf"
+        },
+        "probe": {
+          "checks": [
+            {
+              "family": "ipv4",
+              "protocol": "icmp",
+              "payload_bytes": 1152,
+              "success": true
+            },
+            {
+              "family": "ipv6",
+              "protocol": "icmp",
+              "payload_bytes": 1152,
+              "success": true
+            }
+          ],
+          "success": true
+        },
+        "test_helpers_removed": true,
+        "raw_sha256": "026348ae6bbbe42d1146adb71735ef1a7a2bdfc3b81a1cfd1d0e9c552b3759e7"
+      },
+      "watchdog_final": {
+        "rekeys": 1,
+        "engine_restarts": 0,
+        "healthy": true,
+        "healthy_streak": 3723,
+        "last_recovery_seconds": 24.28301043400006,
+        "last_recovered_at": 1794879281.7266183,
+        "mode": "initiating_client",
+        "checked_at": 1794901252.441707,
+        "raw_sha256": "1ca2ab26aeaa643b2df7cab9043fcbbc7a5cd00e877c014518773b6284ea53a6"
+      },
+      "passive_diagnostics": {
+        "raw_sha256": "f3232145d07c4a15ffe48089eb627d5765524aee1b2f229560c15c7902355875",
+        "samples": 115,
+        "contains_peer_addresses": true,
+        "private_evidence_only": true
+      }
+    }
+  },
+  "production_acceptance": false,
+  "three_hour_completed": true
+}

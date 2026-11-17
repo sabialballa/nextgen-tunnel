@@ -1,0 +1,12 @@
+{
+  "timestamp": "2026-11-16T20:51:57.536323+00:00",
+  "database_remote": "https://github.com/golang/vulndb.git",
+  "database_commit": "e91d8491530fd8782760dd3916cd2708182b9f10",
+  "osv_entries": 4801,
+  "scanner": "golang.org/x/vuln/cmd/govulncheck@v1.9.0",
+  "mode": "source",
+  "returncode": 0,
+  "stdout": "Fetching vulnerabilities from the database...\n\nChecking the code against the vulnerabilities...\n\nThe package pattern matched the following 7 root packages:\n  nextgen-tunnel/internal/config\n  nextgen-tunnel/internal/security\n  nextgen-tunnel/internal/engine\n  nextgen-tunnel/internal/transport\n  nextgen-tunnel/internal/manager\n  nextgen-tunnel/cmd/nextgen-tunnel\n  nextgen-tunnel/tests/integration\nGovulncheck scanned the following 4 modules and the go1.27.4 standard library:\n  nextgen-tunnel\n  github.com/quic-go/quic-go@v0.65.0\n  golang.org/x/crypto@v0.59.0\n  golang.org/x/sys@v0.50.0\n\nNo vulnerabilities found.\n",
+  "stderr": "",
+  "security_audit": false
+}

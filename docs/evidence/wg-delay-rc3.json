@@ -1,0 +1,130 @@
+{
+  "common_window_seconds": 163.81095504760742,
+  "directions": {
+    "iran_to_turkey": {
+      "emitted_unique": 7388,
+      "matched_unique": 7388,
+      "unmatched": 0,
+      "median_ms": 18.299460411071777,
+      "p99_additional_ms": 66.10739231109619,
+      "max_additional_ms": 519.6183919906616,
+      "additional_over_300ms": 6,
+      "additional_over_500ms": 1,
+      "largest_delays": [
+        {
+          "emitted_wall_time": 1794916294.257965,
+          "additional_ms": 519.618
+        },
+        {
+          "emitted_wall_time": 1794916290.361942,
+          "additional_ms": 357.218
+        },
+        {
+          "emitted_wall_time": 1794916290.361643,
+          "additional_ms": 351.952
+        },
+        {
+          "emitted_wall_time": 1794916290.444018,
+          "additional_ms": 338.699
+        },
+        {
+          "emitted_wall_time": 1794916290.443892,
+          "additional_ms": 332.341
+        },
+        {
+          "emitted_wall_time": 1794916290.443293,
+          "additional_ms": 308.866
+        },
+        {
+          "emitted_wall_time": 1794916290.441683,
+          "additional_ms": 299.249
+        },
+        {
+          "emitted_wall_time": 1794916290.360838,
+          "additional_ms": 290.353
+        },
+        {
+          "emitted_wall_time": 1794916293.598373,
+          "additional_ms": 288.445
+        },
+        {
+          "emitted_wall_time": 1794916293.505391,
+          "additional_ms": 288.065
+        },
+        {
+          "emitted_wall_time": 1794916290.565933,
+          "additional_ms": 276.306
+        },
+        {
+          "emitted_wall_time": 1794916290.566442,
+          "additional_ms": 276.02
+        }
+      ]
+    },
+    "turkey_to_iran": {
+      "emitted_unique": 7382,
+      "matched_unique": 7382,
+      "unmatched": 0,
+      "median_ms": 59.76414680480957,
+      "p99_additional_ms": 82.02576637268066,
+      "max_additional_ms": 793.3049201965332,
+      "additional_over_300ms": 21,
+      "additional_over_500ms": 7,
+      "largest_delays": [
+        {
+          "emitted_wall_time": 1794916294.180337,
+          "additional_ms": 793.305
+        },
+        {
+          "emitted_wall_time": 1794916294.212812,
+          "additional_ms": 776.741
+        },
+        {
+          "emitted_wall_time": 1794916294.296185,
+          "additional_ms": 694.605
+        },
+        {
+          "emitted_wall_time": 1794916294.504423,
+          "additional_ms": 519.946
+        },
+        {
+          "emitted_wall_time": 1794916294.491526,
+          "additional_ms": 502.587
+        },
+        {
+          "emitted_wall_time": 1794916294.490385,
+          "additional_ms": 502.407
+        },
+        {
+          "emitted_wall_time": 1794916289.704312,
+          "additional_ms": 500.713
+        },
+        {
+          "emitted_wall_time": 1794916289.720307,
+          "additional_ms": 489.95
+        },
+        {
+          "emitted_wall_time": 1794916289.776373,
+          "additional_ms": 461.37
+        },
+        {
+          "emitted_wall_time": 1794916289.776355,
+          "additional_ms": 435.082
+        },
+        {
+          "emitted_wall_time": 1794916289.885378,
+          "additional_ms": 407.964
+        },
+        {
+          "emitted_wall_time": 1794916294.634858,
+          "additional_ms": 390.922
+        }
+      ]
+    }
+  },
+  "interpretation": "Additional one-way delay relative to median removes fixed clock offset; no provider or DPI attribution",
+  "capture_sha256": {
+    "iran": "61c7446e9b37a18262d336ef714e1c6325d5c0de07c52a4a4907e988d6a1b4fc",
+    "turkey": "2c5ccdd8c410c9e0dd7a21ff8586d57a67b2670a549c7e4da67295158d128484"
+  }
+}

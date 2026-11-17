@@ -1,0 +1,89 @@
+{
+  "started": 1794871348.978732,
+  "checks": [
+    {
+      "name": "routes_before",
+      "returncode": 0,
+      "stdout": "[{\"dst\":\"default\",\"gateway\":\"10.0.2.2\",\"dev\":\"enp0s2\",\"protocol\":\"dhcp\",\"prefsrc\":\"10.0.2.15\",\"metric\":100,\"flags\":[]},{\"dst\":\"10.0.2.0/24\",\"dev\":\"enp0s2\",\"protocol\":\"kernel\",\"scope\":\"link\",\"prefsrc\":\"10.0.2.15\",\"metric\":100,\"flags\":[]},{\"dst\":\"10.0.2.2\",\"dev\":\"enp0s2\",\"protocol\":\"dhcp\",\"scope\":\"link\",\"prefsrc\":\"10.0.2.15\",\"metric\":100,\"flags\":[]},{\"dst\":\"10.0.2.3\",\"dev\":\"enp0s2\",\"protocol\":\"dhcp\",\"scope\":\"link\",\"prefsrc\":\"10.0.2.15\",\"metric\":100,\"flags\":[]}]\n",
+      "stderr": ""
+    },
+    {
+      "name": "create_peer",
+      "returncode": 0,
+      "stdout": "site namespace ready; peer handshake requires the loopback carrier\n",
+      "stderr": ""
+    },
+    {
+      "name": "update_site",
+      "returncode": 0,
+      "stdout": "installed and enabled; remote data plane still requires acceptance\n",
+      "stderr": ""
+    },
+    {
+      "name": "warmup",
+      "returncode": 0,
+      "stdout": "PING 10.79.0.2 (10.79.0.2) 56(84) bytes of data.\n64 bytes from 10.79.0.2: icmp_seq=1 ttl=64 time=6.18 ms\n\n--- 10.79.0.2 ping statistics ---\n1 packets transmitted, 1 received, 0% packet loss, time 0ms\nrtt min/avg/max/mdev = 6.180/6.180/6.180/0.000 ms\n",
+      "stderr": ""
+    },
+    {
+      "name": "initial_watchdog",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "recover_ping",
+      "returncode": 1,
+      "stdout": "PING 10.79.0.2 (10.79.0.2) 56(84) bytes of data.\n\n--- 10.79.0.2 ping statistics ---\n1 packets transmitted, 0 received, 100% packet loss, time 0ms\n\n",
+      "stderr": ""
+    },
+    {
+      "name": "recover_ping",
+      "returncode": 0,
+      "stdout": "PING 10.79.0.2 (10.79.0.2) 56(84) bytes of data.\n64 bytes from 10.79.0.2: icmp_seq=1 ttl=64 time=15.9 ms\n\n--- 10.79.0.2 ping statistics ---\n1 packets transmitted, 1 received, 0% packet loss, time 0ms\nrtt min/avg/max/mdev = 15.920/15.920/15.920/0.000 ms\n",
+      "stderr": ""
+    },
+    {
+      "name": "ipv6_recovered",
+      "returncode": 0,
+      "stdout": "PING fd79::2(fd79::2) 56 data bytes\n64 bytes from fd79::2: icmp_seq=1 ttl=64 time=20.0 ms\n64 bytes from fd79::2: icmp_seq=2 ttl=64 time=2.38 ms\n\n--- fd79::2 ping statistics ---\n2 packets transmitted, 2 received, 0% packet loss, time 1013ms\nrtt min/avg/max/mdev = 2.375/11.185/19.995/8.810 ms\n",
+      "stderr": ""
+    },
+    {
+      "name": "remove_peer",
+      "returncode": 0,
+      "stdout": "removed owned site\n",
+      "stderr": ""
+    },
+    {
+      "name": "update_site",
+      "returncode": 0,
+      "stdout": "installed and enabled; remote data plane still requires acceptance\n",
+      "stderr": ""
+    },
+    {
+      "name": "routes_after",
+      "returncode": 0,
+      "stdout": "[{\"dst\":\"default\",\"gateway\":\"10.0.2.2\",\"dev\":\"enp0s2\",\"protocol\":\"dhcp\",\"prefsrc\":\"10.0.2.15\",\"metric\":100,\"flags\":[]},{\"dst\":\"10.0.2.0/24\",\"dev\":\"enp0s2\",\"protocol\":\"kernel\",\"scope\":\"link\",\"prefsrc\":\"10.0.2.15\",\"metric\":100,\"flags\":[]},{\"dst\":\"10.0.2.2\",\"dev\":\"enp0s2\",\"protocol\":\"dhcp\",\"scope\":\"link\",\"prefsrc\":\"10.0.2.15\",\"metric\":100,\"flags\":[]},{\"dst\":\"10.0.2.3\",\"dev\":\"enp0s2\",\"protocol\":\"dhcp\",\"scope\":\"link\",\"prefsrc\":\"10.0.2.15\",\"metric\":100,\"flags\":[]}]\n",
+      "stderr": ""
+    }
+  ],
+  "watchdog_actions": {
+    "boot_id": "6b406b78-401f-4e47-9f1d-6771ab061454",
+    "config_sha256": "e0334dbaadf34b96b0c9e2c04ebca17fec072be25d210dd27119197c98ada44d",
+    "failures": 6,
+    "rekeys": 2,
+    "engine_restarts": 1,
+    "last_rekey": 8944.444456936,
+    "last_restart": 8944.444456936,
+    "last_success_at": 1794871415.7070088,
+    "mode": "initiating_client",
+    "checked_at": 1794871453.677115,
+    "healthy": false,
+    "outage_start_monotonic": 8914.449743538
+  },
+  "carrier_restore_to_ping_seconds": 3.2347989000008965,
+  "success": true,
+  "host_routes_unchanged": true,
+  "finished": 1794871501.686049
+}

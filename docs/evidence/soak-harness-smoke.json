@@ -1,0 +1,121 @@
+{
+  "started_wall_time": 1794866467.9961207,
+  "duration_requested_seconds": 60,
+  "boot_id": "6b406b78-401f-4e47-9f1d-6771ab061454",
+  "namespace": "ngt-site-main",
+  "scope": "TCP 1 round/s and UDP at most 10 rounds/s per IP family, 1024/160-byte payloads",
+  "route_comparison": "policy fields; ignores changing IPv6 RA expires countdown only",
+  "rtt_percentile_resolution_ms": 1,
+  "resource_samples": [
+    {
+      "elapsed_seconds": 0.4272793689997343,
+      "nextgen-engine.service": {
+        "MainPID": "7911",
+        "NRestarts": "0",
+        "MemoryCurrent": "17436672",
+        "CPUUsageNSec": "3513546000",
+        "ActiveState": "active"
+      },
+      "nextgen-site.service": {
+        "MainPID": "0",
+        "NRestarts": "0",
+        "MemoryCurrent": "[not set]",
+        "CPUUsageNSec": "655854000",
+        "ActiveState": "active"
+      }
+    },
+    {
+      "elapsed_seconds": 60.41983613299999,
+      "nextgen-engine.service": {
+        "MainPID": "7911",
+        "NRestarts": "0",
+        "MemoryCurrent": "18894848",
+        "CPUUsageNSec": "3518289000",
+        "ActiveState": "active"
+      },
+      "nextgen-site.service": {
+        "MainPID": "0",
+        "NRestarts": "0",
+        "MemoryCurrent": "[not set]",
+        "CPUUsageNSec": "655854000",
+        "ActiveState": "active"
+      }
+    }
+  ],
+  "flows": {
+    "ipv4_tcp": {
+      "sent": 60,
+      "received": 60,
+      "timeouts": 0,
+      "corrupted": 0,
+      "late": 0,
+      "reconnects": 0,
+      "connect_errors": 0,
+      "rtt_sum_ms": 280.11452100236056,
+      "rtt_max_ms": 13.094222000290756,
+      "max_consecutive_failures": 0,
+      "loss_percent": 0.0,
+      "rtt_mean_ms": 4.668575350039343,
+      "rtt_p50_ms": 5,
+      "rtt_p95_ms": 10,
+      "rtt_p99_ms": 14
+    },
+    "ipv4_udp": {
+      "sent": 600,
+      "received": 600,
+      "timeouts": 0,
+      "corrupted": 0,
+      "late": 0,
+      "reconnects": 0,
+      "connect_errors": 0,
+      "rtt_sum_ms": 1929.4063319944144,
+      "rtt_max_ms": 9.389142999680189,
+      "max_consecutive_failures": 0,
+      "loss_percent": 0.0,
+      "rtt_mean_ms": 3.2156772199906904,
+      "rtt_p50_ms": 3,
+      "rtt_p95_ms": 6,
+      "rtt_p99_ms": 8
+    },
+    "ipv6_tcp": {
+      "sent": 60,
+      "received": 60,
+      "timeouts": 0,
+      "corrupted": 0,
+      "late": 0,
+      "reconnects": 0,
+      "connect_errors": 0,
+      "rtt_sum_ms": 215.82080399957704,
+      "rtt_max_ms": 11.39122899985523,
+      "max_consecutive_failures": 0,
+      "loss_percent": 0.0,
+      "rtt_mean_ms": 3.5970133999929508,
+      "rtt_p50_ms": 3,
+      "rtt_p95_ms": 10,
+      "rtt_p99_ms": 12
+    },
+    "ipv6_udp": {
+      "sent": 600,
+      "received": 600,
+      "timeouts": 0,
+      "corrupted": 0,
+      "late": 0,
+      "reconnects": 0,
+      "connect_errors": 0,
+      "rtt_sum_ms": 1781.842805996348,
+      "rtt_max_ms": 8.02435500008869,
+      "max_consecutive_failures": 0,
+      "loss_percent": 0.0,
+      "rtt_mean_ms": 2.9697380099939132,
+      "rtt_p50_ms": 3,
+      "rtt_p95_ms": 5,
+      "rtt_p99_ms": 6
+    }
+  },
+  "complete": true,
+  "elapsed_seconds": 60.590635756999745,
+  "network_unchanged": true,
+  "boot_unchanged": true,
+  "success": true,
+  "finished_wall_time": 1794866528.6394262
+}

@@ -1,0 +1,28 @@
+{
+  "delayed_datagram_emitted_wall_time": 1794916294.180337,
+  "nodes": {
+    "iran": {
+      "before_wall_time": 1794916288.2934175,
+      "after_wall_time": 1794916303.388475,
+      "established_carriers_before": 2,
+      "established_carriers_after": 2,
+      "same_connections": true,
+      "additional_retransmitted_bytes": 837.0,
+      "additional_retransmitted_segments": 3.0,
+      "rto_after_ms": 284.0,
+      "raw_report_sha256": "4974cc7faf0f8f809ceef93b7a188d01ddddf002c1465539b1734fa8df3db58d"
+    },
+    "turkey": {
+      "before_wall_time": 1794916289.4862232,
+      "after_wall_time": 1794916299.487983,
+      "established_carriers_before": 2,
+      "established_carriers_after": 2,
+      "same_connections": true,
+      "additional_retransmitted_bytes": 9128.0,
+      "additional_retransmitted_segments": 11.0,
+      "rto_after_ms": 281.0,
+      "raw_report_sha256": "46355c34e563ca728cf46223041bbf1d5c1b2c1dc860d72bee7b8e15dfde4c9e"
+    }
+  },
+  "interpretation": "TCP retransmission counters around the capture delay window; temporal correlation does not identify the provider or DPI mechanism"
+}

@@ -1,0 +1,37 @@
+{
+  "nodes": {
+    "iran": {
+      "counts": {
+        "request_in": 15,
+        "reply_out": 15,
+        "request_out": 14
+      },
+      "captured": 44,
+      "first_timestamp": 1794932301.972153,
+      "last_timestamp": 1794932315.974727,
+      "pcap_sha256": "e2dd080bd179b50522e698a85c0999c665d59c75bd590d6db8622ea580086761"
+    },
+    "turkey": {
+      "counts": {
+        "request_out": 15
+      },
+      "captured": 15,
+      "first_timestamp": 1794932301.917785,
+      "last_timestamp": 1794932315.919966,
+      "pcap_sha256": "5e9c8754f221b3f2c45a6790f9317f59ad26a26f43eb2d551109a6146394f144"
+    }
+  },
+  "payload_prefix_identity_matches": {
+    "turkey_requests_matched_at_iran": 15,
+    "iran_replies_matched_to_received_requests": 15,
+    "iran_replies_matched_at_turkey": 0
+  },
+  "snapshot_bytes": 96,
+  "capture_seconds_requested": 15,
+  "observed_kernel_capture_drops_both_nodes": 0,
+  "limitations": [
+    "Short sample only; capture windows differ slightly",
+    "Missing packets cannot identify the responsible network device",
+    "Direction is Linux cooked v2 packet type; identity uses captured authenticated payload prefix without publishing it"
+  ]
+}

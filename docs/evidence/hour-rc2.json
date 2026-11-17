@@ -1,0 +1,436 @@
+{
+  "version": "0.3.0-rc2",
+  "nodes": {
+    "iran": {
+      "started_wall_time": 1794910771.8950293,
+      "finished_wall_time": 1794914372.4256783,
+      "elapsed_seconds": 3600.5306432220023,
+      "seconds_requested": 3600,
+      "complete": true,
+      "driver_sha256": "e9fc074e684f98feb847706afc1780eaca6c67e15bcd3dc64353d7537e50f4c0",
+      "raw_sha256": "f541d9afb3734fb98ecbade1484a0bb2c1a68bdae3d9b6c7b49ccf474feab7a2",
+      "paths": {
+        "direct": {
+          "complete": true,
+          "flows": {
+            "ipv4_tcp": {
+              "sent": 3253,
+              "received": 3101,
+              "timeouts": 152,
+              "reconnects": 152,
+              "connect_errors": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 1,
+              "rtt_sum_ms": 298104.52934807836,
+              "rtt_max_ms": 2702.9207319937996,
+              "deadline_loss_percent": 4.67260989855518
+            },
+            "ipv4_udp": {
+              "sent": 7270,
+              "received": 271,
+              "timeouts": 6999,
+              "reconnects": 0,
+              "connect_errors": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 4964,
+              "rtt_sum_ms": 21218.560050052474,
+              "rtt_max_ms": 97.45807400031481,
+              "deadline_loss_percent": 96.27235213204952
+            }
+          }
+        },
+        "site": {
+          "complete": true,
+          "flows": {
+            "ipv4_tcp": {
+              "sent": 3590,
+              "received": 3590,
+              "timeouts": 0,
+              "reconnects": 0,
+              "connect_errors": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 0,
+              "rtt_sum_ms": 349281.28358291724,
+              "rtt_max_ms": 1468.81138500612,
+              "deadline_loss_percent": 0.0
+            },
+            "ipv4_udp": {
+              "sent": 34669,
+              "received": 34610,
+              "timeouts": 59,
+              "reconnects": 0,
+              "connect_errors": 0,
+              "corrupted": 0,
+              "late": 59,
+              "max_burst": 4,
+              "rtt_sum_ms": 2920424.291594534,
+              "rtt_max_ms": 1481.3384980006958,
+              "deadline_loss_percent": 0.17018085321180304
+            },
+            "ipv6_tcp": {
+              "sent": 3589,
+              "received": 3589,
+              "timeouts": 0,
+              "reconnects": 0,
+              "connect_errors": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 0,
+              "rtt_sum_ms": 349282.86434404436,
+              "rtt_max_ms": 1416.0041759969317,
+              "deadline_loss_percent": 0.0
+            },
+            "ipv6_udp": {
+              "sent": 34681,
+              "received": 34618,
+              "timeouts": 63,
+              "reconnects": 0,
+              "connect_errors": 0,
+              "corrupted": 0,
+              "late": 63,
+              "max_burst": 4,
+              "rtt_sum_ms": 2922012.6149301324,
+              "rtt_max_ms": 1363.9599250018364,
+              "deadline_loss_percent": 0.18165566160145324
+            }
+          }
+        }
+      },
+      "engine_stable": true,
+      "site_acceptance": false
+    },
+    "turkey": {
+      "started_wall_time": 1794910773.0613642,
+      "finished_wall_time": 1794914373.6302648,
+      "elapsed_seconds": 3600.5688935360013,
+      "seconds_requested": 3600,
+      "complete": true,
+      "driver_sha256": "e9fc074e684f98feb847706afc1780eaca6c67e15bcd3dc64353d7537e50f4c0",
+      "raw_sha256": "c8e37ed8caf42198b0d6c2f5e684cde45b8ef252ece9395dbf91e97aadfb6a0d",
+      "paths": {
+        "direct": {
+          "complete": true,
+          "flows": {
+            "ipv4_tcp": {
+              "sent": 3600,
+              "received": 3600,
+              "timeouts": 0,
+              "reconnects": 0,
+              "connect_errors": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 0,
+              "rtt_sum_ms": 314458.912948925,
+              "rtt_max_ms": 708.7937489995966,
+              "deadline_loss_percent": 0.0
+            },
+            "ipv4_udp": {
+              "sent": 7409,
+              "received": 278,
+              "timeouts": 7131,
+              "reconnects": 0,
+              "connect_errors": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 5071,
+              "rtt_sum_ms": 24506.79240392492,
+              "rtt_max_ms": 91.68535900244024,
+              "deadline_loss_percent": 96.24780672155487
+            }
+          }
+        },
+        "site": {
+          "complete": true,
+          "flows": {
+            "ipv4_tcp": {
+              "sent": 3597,
+              "received": 3597,
+              "timeouts": 0,
+              "reconnects": 0,
+              "connect_errors": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 0,
+              "rtt_sum_ms": 354855.04160504934,
+              "rtt_max_ms": 1752.8858849982498,
+              "deadline_loss_percent": 0.0
+            },
+            "ipv4_udp": {
+              "sent": 34752,
+              "received": 34633,
+              "timeouts": 119,
+              "reconnects": 0,
+              "connect_errors": 0,
+              "corrupted": 0,
+              "late": 119,
+              "max_burst": 5,
+              "rtt_sum_ms": 2904379.1905430555,
+              "rtt_max_ms": 498.21268300001975,
+              "deadline_loss_percent": 0.34242633517495397
+            },
+            "ipv6_tcp": {
+              "sent": 3598,
+              "received": 3598,
+              "timeouts": 0,
+              "reconnects": 0,
+              "connect_errors": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 0,
+              "rtt_sum_ms": 354256.2101063013,
+              "rtt_max_ms": 1693.3553920025588,
+              "deadline_loss_percent": 0.0
+            },
+            "ipv6_udp": {
+              "sent": 34745,
+              "received": 34624,
+              "timeouts": 121,
+              "reconnects": 0,
+              "connect_errors": 0,
+              "corrupted": 0,
+              "late": 121,
+              "max_burst": 5,
+              "rtt_sum_ms": 2907967.177382779,
+              "rtt_max_ms": 500.9835459932219,
+              "deadline_loss_percent": 0.34825154698517774
+            }
+          }
+        }
+      },
+      "engine_stable": true,
+      "site_acceptance": false
+    }
+  },
+  "hour_complete": true,
+  "hour_site_acceptance": false,
+  "production_certified": false,
+  "reboots": {
+    "iran": {
+      "success": true,
+      "fresh_boot_changed": true,
+      "observation_elapsed_seconds": 43.42650628089905,
+      "permanent_services_manually_started": false,
+      "before_boot_id": "798d66e7-33b8-4def-9131-56250fdb561e",
+      "after_boot_id": "aba1405b-ddfd-4942-bfdc-6508005f251c",
+      "evidence_sha256": "0d51e04598cba1f3b8ee265dc6dc618621b3563e9bc0f315c82411e1e119a063"
+    },
+    "turkey": {
+      "success": true,
+      "fresh_boot_changed": true,
+      "observation_elapsed_seconds": 52.58124899864197,
+      "permanent_services_manually_started": false,
+      "before_boot_id": "464324d3-d5e2-496a-a17c-570774ea1db6",
+      "after_boot_id": "c0a8714e-b63e-4d1c-92ad-fd2f8b0db915",
+      "evidence_sha256": "8a4235c99df495b399f848592042843678fbd57a90d0b9593e23e6d95e95051d"
+    }
+  },
+  "postboot": {
+    "iran": {
+      "started_wall_time": 1794914590.390503,
+      "finished_wall_time": 1794914710.7334285,
+      "elapsed_seconds": 120.342920907,
+      "seconds_requested": 120,
+      "complete": true,
+      "driver_sha256": "e9fc074e684f98feb847706afc1780eaca6c67e15bcd3dc64353d7537e50f4c0",
+      "raw_sha256": "9f3e5f90083243fa36c5a7b4198e8f6b8c0ce3d9d07d41cd3027534bc80be900",
+      "paths": {
+        "site": {
+          "complete": true,
+          "flows": {
+            "ipv4_tcp": {
+              "sent": 120,
+              "received": 120,
+              "timeouts": 0,
+              "reconnects": 0,
+              "connect_errors": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 0,
+              "rtt_sum_ms": 9598.300043000105,
+              "rtt_max_ms": 159.31922699999745,
+              "deadline_loss_percent": 0.0
+            },
+            "ipv4_udp": {
+              "sent": 1198,
+              "received": 1198,
+              "timeouts": 0,
+              "reconnects": 0,
+              "connect_errors": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 0,
+              "rtt_sum_ms": 94390.58320099971,
+              "rtt_max_ms": 106.53475699999149,
+              "deadline_loss_percent": 0.0
+            },
+            "ipv6_tcp": {
+              "sent": 120,
+              "received": 120,
+              "timeouts": 0,
+              "reconnects": 0,
+              "connect_errors": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 0,
+              "rtt_sum_ms": 9542.729987000104,
+              "rtt_max_ms": 158.59378400000423,
+              "deadline_loss_percent": 0.0
+            },
+            "ipv6_udp": {
+              "sent": 1198,
+              "received": 1198,
+              "timeouts": 0,
+              "reconnects": 0,
+              "connect_errors": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 0,
+              "rtt_sum_ms": 94543.43211000018,
+              "rtt_max_ms": 110.01424399998427,
+              "deadline_loss_percent": 0.0
+            }
+          }
+        },
+        "direct": {
+          "complete": true,
+          "flows": {
+            "ipv4_tcp": {
+              "sent": 110,
+              "received": 105,
+              "timeouts": 5,
+              "reconnects": 5,
+              "connect_errors": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 1,
+              "rtt_sum_ms": 8848.853119999883,
+              "rtt_max_ms": 176.114038999998,
+              "deadline_loss_percent": 4.545454545454546
+            },
+            "ipv4_udp": {
+              "sent": 266,
+              "received": 33,
+              "timeouts": 233,
+              "reconnects": 0,
+              "connect_errors": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 233,
+              "rtt_sum_ms": 2572.29229500004,
+              "rtt_max_ms": 91.93739400001277,
+              "deadline_loss_percent": 87.59398496240601
+            }
+          }
+        }
+      },
+      "engine_stable": true,
+      "site_acceptance": true
+    },
+    "turkey": {
+      "started_wall_time": 1794914591.507346,
+      "finished_wall_time": 1794914712.1159625,
+      "elapsed_seconds": 120.60861179599999,
+      "seconds_requested": 120,
+      "complete": true,
+      "driver_sha256": "e9fc074e684f98feb847706afc1780eaca6c67e15bcd3dc64353d7537e50f4c0",
+      "raw_sha256": "9a10957319ae53d4f9937ef45e0e141ffb4d0c5fe8fc5f4b65022acee366d3fc",
+      "paths": {
+        "direct": {
+          "complete": true,
+          "flows": {
+            "ipv4_tcp": {
+              "sent": 120,
+              "received": 120,
+              "timeouts": 0,
+              "reconnects": 0,
+              "connect_errors": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 0,
+              "rtt_sum_ms": 9328.42111799998,
+              "rtt_max_ms": 156.8694420000014,
+              "deadline_loss_percent": 0.0
+            },
+            "ipv4_udp": {
+              "sent": 266,
+              "received": 32,
+              "timeouts": 234,
+              "reconnects": 0,
+              "connect_errors": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 234,
+              "rtt_sum_ms": 2571.446304999996,
+              "rtt_max_ms": 82.01803200000768,
+              "deadline_loss_percent": 87.96992481203007
+            }
+          }
+        },
+        "site": {
+          "complete": true,
+          "flows": {
+            "ipv4_tcp": {
+              "sent": 120,
+              "received": 120,
+              "timeouts": 0,
+              "reconnects": 0,
+              "connect_errors": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 0,
+              "rtt_sum_ms": 9529.363131000051,
+              "rtt_max_ms": 159.08211299999664,
+              "deadline_loss_percent": 0.0
+            },
+            "ipv4_udp": {
+              "sent": 1199,
+              "received": 1199,
+              "timeouts": 0,
+              "reconnects": 0,
+              "connect_errors": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 0,
+              "rtt_sum_ms": 93940.77136399994,
+              "rtt_max_ms": 89.5689400000208,
+              "deadline_loss_percent": 0.0
+            },
+            "ipv6_tcp": {
+              "sent": 120,
+              "received": 120,
+              "timeouts": 0,
+              "reconnects": 0,
+              "connect_errors": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 0,
+              "rtt_sum_ms": 9494.262986999895,
+              "rtt_max_ms": 157.20148500000164,
+              "deadline_loss_percent": 0.0
+            },
+            "ipv6_udp": {
+              "sent": 1199,
+              "received": 1199,
+              "timeouts": 0,
+              "reconnects": 0,
+              "connect_errors": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 0,
+              "rtt_sum_ms": 94581.25114599947,
+              "rtt_max_ms": 90.4711450000093,
+              "deadline_loss_percent": 0.0
+            }
+          }
+        }
+      },
+      "engine_stable": true,
+      "site_acceptance": true
+    }
+  },
+  "both_reboots_recovered": true,
+  "postboot_site_acceptance": true
+}

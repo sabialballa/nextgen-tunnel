@@ -1,0 +1,13 @@
+# Local validation history
+
+2026-11-16: the Windows laboratory revealed and helped correct these faults:
+
+- QUIC probe/rejection responses could be discarded when the server closed the connection immediately after asynchronously closing its stream. The server now allows bounded delivery time until the peer closes; authenticated stream/datagram tests pass.
+- Stopping a client with a live QUIC stream could wait for the idle deadline because stream `Close` is a half-close. Abort/cancellation now cancels both stream directions; the live-connection shutdown integration test passes.
+- Windows can deny atomic status replacement while a reader holds the previous file. A dedicated regression test reproduced `Access is denied`. Bounded retry of Windows sharing/access errors fixes that test; permanent status errors remain fatal and are logged with their cause.
+- Native QUIC datagrams from a peer bypassing the public send helper also require receive-side size enforcement. Oversized native packets are now rejected before backend forwarding, with a real authenticated-peer regression test.
+- The harness initially closed its temporary directory before all log handles/processes on Windows; cleanup order was corrected. Server ports are reserved distinctly for both protocols and server liveness is checked before benchmarking.
+
+A full laboratory run exceeded the failover deadline before the Windows status replacement correction. Its [raw failure](evidence/failed-failover-before-status-fix.json) is retained. That run did not preserve sufficient live status diagnostics to prove its exact cause. The harness now captures final logs and status even on failure. The final [full run](evidence/local-lab.json) after corrections completed without harness/resource errors, including primary outage, restart, backup outage and a 120-second TCP/UDP stability phase. One passing bounded run is not evidence of multi-hour reliability.
+
+The earlier `docs/evidence/validation.json` captured the original Windows-only run: race was blocked by missing cgo/compiler and hosted vulnerability database access returned 403. These failures remain as history. Subsequent Linux race, real installer/recovery/reboot and 20 Python tests passed. The official golang/vulndb source snapshot enabled scanning without suppressing advisories; core dependencies and a separately rebuilt engine were corrected and scanned without findings. Optional TUN and Site-to-Site acceptance also passed locally. Real Iran–Turkey testing did run and failed operational acceptance, including the direct baseline. [Current status](STATUS.md) links the newer evidence. Prepared CI has not run remotely because publication is deferred.

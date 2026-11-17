@@ -1,0 +1,18 @@
+[Unit]
+Description=Nextgen owned WireGuard site namespace
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/python3 /usr/local/lib/nextgen-stack/site.py create --config /etc/nextgen-stack/site.json --apply --recover-boot
+ExecStop=/usr/bin/python3 /usr/local/lib/nextgen-stack/site.py remove --name ngt-site-main --apply
+TimeoutStartSec=45
+TimeoutStopSec=45
+NoNewPrivileges=yes
+CapabilityBoundingSet=CAP_SYS_ADMIN CAP_NET_ADMIN CAP_NET_RAW
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target

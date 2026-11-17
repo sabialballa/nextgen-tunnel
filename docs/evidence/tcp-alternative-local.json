@@ -1,0 +1,14 @@
+{
+  "success": true,
+  "started": 1794922222.1049845,
+  "missing_client_certificate_rejected": true,
+  "untrusted_server_ca_rejected": true,
+  "opaque_udp_roundtrip": true,
+  "independent_tcp_carriers": 2,
+  "smux_enabled": false,
+  "tls_minimum": "1.3",
+  "main_stack_modified": false,
+  "core_sha256": "96cec972279a1d7a02f13aed4dd6fd3029b581576edd8f48bc598abb9726433f",
+  "engine_sha256": "606f883d1aa3c624f38aa3f99bf0df02e3999f9aa0ff5826e0dd9c1b9f964baf",
+  "finished": 1794922234.33745
+}

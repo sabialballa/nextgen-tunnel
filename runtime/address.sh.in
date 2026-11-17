@@ -1,0 +1,5 @@
+#!/bin/bash
+set -euo pipefail
+ip link show game-svc >/dev/null 2>&1 || ip link add game-svc type dummy
+ip link set game-svc up
+ip addr replace @SERVICE_LOCAL@/32 dev game-svc

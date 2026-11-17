@@ -1,0 +1,10 @@
+{
+  "success": true,
+  "started": 1794924140.0416546,
+  "real_5s_sampling_timeouts": 2,
+  "traffic_workers_completed": true,
+  "measurement_revision": 2,
+  "duration_seconds": 17.55961020299992,
+  "main_stack_modified": false,
+  "finished": 1794924158.5292711
+}

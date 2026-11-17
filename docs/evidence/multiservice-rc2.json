@@ -1,0 +1,7 @@
+{
+  "success": true,
+  "ordinary_multiple_udp_services_preserved": true,
+  "explicit_independent_carriers_enable_redundancy": true,
+  "generated_config_validated_by_real_core_and_engine": true,
+  "core_sha256": "a3a808352cf6a5942796bec535743e54a70d386b4e0002ddb71ef30872050b42"
+}

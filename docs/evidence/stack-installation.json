@@ -1,0 +1,128 @@
+{
+  "started": 1794865368.9602025,
+  "checks": [
+    {
+      "name": "install",
+      "returncode": 0,
+      "expected": 0,
+      "stdout": "installed and enabled; remote data plane still requires acceptance\n",
+      "stderr": ""
+    },
+    {
+      "name": "engine_pid",
+      "returncode": 0,
+      "expected": 0,
+      "stdout": "2840\n",
+      "stderr": ""
+    },
+    {
+      "name": "install",
+      "returncode": 0,
+      "expected": 0,
+      "stdout": "unchanged; engine and site active\n",
+      "stderr": ""
+    },
+    {
+      "name": "same_pid",
+      "returncode": 0,
+      "expected": 0,
+      "stdout": "2840\n",
+      "stderr": ""
+    },
+    {
+      "name": "unit_verify",
+      "returncode": 0,
+      "expected": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "update",
+      "returncode": 1,
+      "expected": 1,
+      "stdout": "",
+      "stderr": "stack operation failed: Command '['/usr/local/lib/nextgen-stack/nextgen-tunnel', 'engine-check', '-binary', '/usr/local/lib/nextgen-stack/sing-box', '-sha256', '606f883d1aa3c624f38aa3f99bf0df02e3999f9aa0ff5826e0dd9c1b9f964baf', '-config', '/etc/nextgen-stack/engine.json']' returned non-zero exit status 1.\n"
+    },
+    {
+      "name": "rollback_active",
+      "returncode": 0,
+      "expected": 0,
+      "stdout": "{\"active\": true, \"enabled\": {\"nextgen-site.service\": {\"active\": true, \"enabled\": true}, \"nextgen-engine.service\": {\"active\": true, \"enabled\": true}}, \"namespace\": \"ngt-site-main\"}\n",
+      "stderr": ""
+    },
+    {
+      "name": "update",
+      "returncode": 1,
+      "expected": 1,
+      "stdout": "",
+      "stderr": "stack operation failed: engine-owned listener not ready\n"
+    },
+    {
+      "name": "rollback_after_bind_conflict",
+      "returncode": 0,
+      "expected": 0,
+      "stdout": "{\"active\": true, \"enabled\": {\"nextgen-site.service\": {\"active\": true, \"enabled\": true}, \"nextgen-engine.service\": {\"active\": true, \"enabled\": true}}, \"namespace\": \"ngt-site-main\"}\n",
+      "stderr": ""
+    },
+    {
+      "name": "crash_after_journal",
+      "returncode": 73,
+      "expected": 73,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "recover",
+      "returncode": 0,
+      "expected": 0,
+      "stdout": "recovery complete\n",
+      "stderr": ""
+    },
+    {
+      "name": "recover_idempotent",
+      "returncode": 0,
+      "expected": 0,
+      "stdout": "recovery complete\n",
+      "stderr": ""
+    },
+    {
+      "name": "recovered_status",
+      "returncode": 0,
+      "expected": 0,
+      "stdout": "{\"active\": true, \"enabled\": {\"nextgen-site.service\": {\"active\": true, \"enabled\": true}, \"nextgen-engine.service\": {\"active\": true, \"enabled\": true}}, \"namespace\": \"ngt-site-main\"}\n",
+      "stderr": ""
+    },
+    {
+      "name": "refuse_modified_uninstall",
+      "returncode": 1,
+      "expected": 1,
+      "stdout": "",
+      "stderr": "stack operation failed: managed file changed outside installer\n"
+    },
+    {
+      "name": "uninstall",
+      "returncode": 0,
+      "expected": 0,
+      "stdout": "owned stack removed; protected backups retained\n",
+      "stderr": ""
+    },
+    {
+      "name": "uninstall_again",
+      "returncode": 0,
+      "expected": 0,
+      "stdout": "absent\n",
+      "stderr": ""
+    },
+    {
+      "name": "install",
+      "returncode": 0,
+      "expected": 0,
+      "stdout": "installed and enabled; remote data plane still requires acceptance\n",
+      "stderr": ""
+    }
+  ],
+  "success": true,
+  "host_routes_unchanged": true,
+  "host_firewall_unchanged": true,
+  "finished": 1794865602.576754
+}

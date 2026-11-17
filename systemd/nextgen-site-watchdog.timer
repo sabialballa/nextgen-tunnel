@@ -1,0 +1,14 @@
+[Unit]
+Description=Nextgen site health and bounded recovery timer
+After=nextgen-site.service
+Requires=nextgen-site.service
+PartOf=nextgen-site.service
+
+[Timer]
+OnActiveSec=5s
+OnUnitActiveSec=5s
+AccuracySec=1s
+Unit=nextgen-site-watchdog.service
+
+[Install]
+WantedBy=multi-user.target nextgen-site.service

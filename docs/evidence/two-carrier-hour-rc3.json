@@ -1,0 +1,331 @@
+{
+  "version": "0.3.0-rc3",
+  "carriers": 2,
+  "measurement_revision": 2,
+  "udp_deadline_ms": 500,
+  "nodes": {
+    "iran": {
+      "started_wall_time": 1794922889.4399424,
+      "finished_wall_time": 1794926490.8352256,
+      "elapsed_seconds": 3601.395274364,
+      "seconds_requested": 3600,
+      "complete": true,
+      "driver_sha256": "545feab6c0c88ee2cd61220a00701bf6795515a777947a13ab7e6bf1b3dd696f",
+      "measurement_revision": 2,
+      "udp_deadline_ms": 500,
+      "raw_sha256": "8818d6899afabea6b17fb7dbc40199b52a3e362b591dd21cbb5235ada5ff23c5",
+      "paths": {
+        "direct": {
+          "complete": true,
+          "flows": {
+            "ipv4_tcp": {
+              "sent": 3212,
+              "received": 3039,
+              "timeouts": 175,
+              "reconnects": 175,
+              "connect_errors": 2,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 2,
+              "rtt_sum_ms": 287594.15499896393,
+              "rtt_max_ms": 1732.0470410013513,
+              "deadline_loss_percent": 5.386052303860523
+            },
+            "ipv4_udp": {
+              "sent": 7075,
+              "received": 35,
+              "timeouts": 7040,
+              "reconnects": 0,
+              "connect_errors": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 7031,
+              "rtt_sum_ms": 2711.08575400649,
+              "rtt_max_ms": 78.60734300084005,
+              "deadline_loss_percent": 99.50530035335689
+            }
+          }
+        },
+        "site": {
+          "complete": true,
+          "flows": {
+            "ipv4_tcp": {
+              "sent": 3581,
+              "received": 3581,
+              "timeouts": 2,
+              "reconnects": 2,
+              "connect_errors": 2,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 2,
+              "rtt_sum_ms": 372301.6546640439,
+              "rtt_max_ms": 2042.394490001243,
+              "deadline_loss_percent": 0.0
+            },
+            "ipv4_udp": {
+              "sent": 34163,
+              "received": 34004,
+              "timeouts": 159,
+              "reconnects": 0,
+              "connect_errors": 0,
+              "corrupted": 0,
+              "late": 143,
+              "max_burst": 10,
+              "rtt_sum_ms": 2791447.5434469734,
+              "rtt_max_ms": 499.5547300004546,
+              "deadline_loss_percent": 0.46541580072007727
+            },
+            "ipv6_tcp": {
+              "sent": 3580,
+              "received": 3580,
+              "timeouts": 2,
+              "reconnects": 2,
+              "connect_errors": 2,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 2,
+              "rtt_sum_ms": 375549.90755504457,
+              "rtt_max_ms": 2026.5781250000146,
+              "deadline_loss_percent": 0.0
+            },
+            "ipv6_udp": {
+              "sent": 34164,
+              "received": 34001,
+              "timeouts": 163,
+              "reconnects": 0,
+              "connect_errors": 0,
+              "corrupted": 0,
+              "late": 140,
+              "max_burst": 10,
+              "rtt_sum_ms": 2790670.802683061,
+              "rtt_max_ms": 497.19400399953884,
+              "deadline_loss_percent": 0.47711040861725795
+            }
+          }
+        }
+      },
+      "engine_stable": true,
+      "sampling_error_count": 0,
+      "site_acceptance": false,
+      "resources": {
+        "max_cpu_steal_percent": 64.8950626604258,
+        "weighted_cpu_steal_percent": 4.126672631169038,
+        "max_sampling_gap_seconds": 12.445613384246826,
+        "invalid_resource_intervals": 0,
+        "peak_windows": [
+          {
+            "start": 1794924731.3490403,
+            "end": 1794924739.8412757,
+            "total_ticks": 6623,
+            "steal_ticks": 4298,
+            "steal_percent": 64.8950626604258,
+            "udp_error_events_near": 7
+          },
+          {
+            "start": 1794923757.2253604,
+            "end": 1794923767.4528067,
+            "total_ticks": 8040,
+            "steal_ticks": 5196,
+            "steal_percent": 64.6268656716418,
+            "udp_error_events_near": 19
+          },
+          {
+            "start": 1794925615.3167884,
+            "end": 1794925623.348165,
+            "total_ticks": 6334,
+            "steal_ticks": 3988,
+            "steal_percent": 62.96179349542153,
+            "udp_error_events_near": 10
+          },
+          {
+            "start": 1794923064.9388008,
+            "end": 1794923070.4444788,
+            "total_ticks": 4129,
+            "steal_ticks": 2378,
+            "steal_percent": 57.59263744248002,
+            "udp_error_events_near": 6
+          },
+          {
+            "start": 1794924572.7273111,
+            "end": 1794924580.6678271,
+            "total_ticks": 5981,
+            "steal_ticks": 3346,
+            "steal_percent": 55.9438221033272,
+            "udp_error_events_near": 13
+          }
+        ],
+        "definition_source": "https://man7.org/linux/man-pages/man5/proc_stat.5.html",
+        "interpretation": "Guest-reported CPU steal accounting; timing correlation is not exclusive proof of every outage cause"
+      },
+      "tcp_startup_connection_refusals": 4,
+      "tcp_error_events_after_initial_5_seconds": 0
+    },
+    "turkey": {
+      "started_wall_time": 1794922891.3270843,
+      "finished_wall_time": 1794926491.9909983,
+      "elapsed_seconds": 3600.663910346,
+      "seconds_requested": 3600,
+      "complete": true,
+      "driver_sha256": "545feab6c0c88ee2cd61220a00701bf6795515a777947a13ab7e6bf1b3dd696f",
+      "measurement_revision": 2,
+      "udp_deadline_ms": 500,
+      "raw_sha256": "c363ead69001170dba799cc029bb7330a40d968560232adbc1f7a0fa4f72bb07",
+      "paths": {
+        "direct": {
+          "complete": true,
+          "flows": {
+            "ipv4_tcp": {
+              "sent": 3599,
+              "received": 3599,
+              "timeouts": 0,
+              "reconnects": 0,
+              "connect_errors": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 0,
+              "rtt_sum_ms": 348348.6958059916,
+              "rtt_max_ms": 1602.3127829994337,
+              "deadline_loss_percent": 0.0
+            },
+            "ipv4_udp": {
+              "sent": 7211,
+              "received": 32,
+              "timeouts": 7179,
+              "reconnects": 0,
+              "connect_errors": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 7179,
+              "rtt_sum_ms": 2484.0647379987786,
+              "rtt_max_ms": 78.578517999631,
+              "deadline_loss_percent": 99.55623353210373
+            }
+          }
+        },
+        "site": {
+          "complete": true,
+          "flows": {
+            "ipv4_tcp": {
+              "sent": 3592,
+              "received": 3592,
+              "timeouts": 0,
+              "reconnects": 0,
+              "connect_errors": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 0,
+              "rtt_sum_ms": 382227.79103195557,
+              "rtt_max_ms": 2100.713313000597,
+              "deadline_loss_percent": 0.0
+            },
+            "ipv4_udp": {
+              "sent": 34255,
+              "received": 34063,
+              "timeouts": 192,
+              "reconnects": 0,
+              "connect_errors": 0,
+              "corrupted": 0,
+              "late": 192,
+              "max_burst": 9,
+              "rtt_sum_ms": 2798329.5238839407,
+              "rtt_max_ms": 496.39655700048024,
+              "deadline_loss_percent": 0.5605021164793461
+            },
+            "ipv6_tcp": {
+              "sent": 3593,
+              "received": 3593,
+              "timeouts": 0,
+              "reconnects": 0,
+              "connect_errors": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 0,
+              "rtt_sum_ms": 386363.88624398236,
+              "rtt_max_ms": 1976.1883880000823,
+              "deadline_loss_percent": 0.0
+            },
+            "ipv6_udp": {
+              "sent": 34243,
+              "received": 34032,
+              "timeouts": 211,
+              "reconnects": 0,
+              "connect_errors": 0,
+              "corrupted": 0,
+              "late": 211,
+              "max_burst": 11,
+              "rtt_sum_ms": 2792410.7108342047,
+              "rtt_max_ms": 499.01874199895246,
+              "deadline_loss_percent": 0.6161843296440148
+            }
+          }
+        }
+      },
+      "engine_stable": true,
+      "sampling_error_count": 0,
+      "site_acceptance": false,
+      "resources": {
+        "max_cpu_steal_percent": 3.6988110964332894,
+        "weighted_cpu_steal_percent": 0.46356019903318635,
+        "max_sampling_gap_seconds": 10.003660440444946,
+        "invalid_resource_intervals": 0,
+        "peak_windows": [
+          {
+            "start": 1794925199.5315144,
+            "end": 1794925207.0303133,
+            "total_ticks": 757,
+            "steal_ticks": 28,
+            "steal_percent": 3.6988110964332894,
+            "udp_error_events_near": 0
+          },
+          {
+            "start": 1794924001.7691002,
+            "end": 1794924007.433802,
+            "total_ticks": 569,
+            "steal_ticks": 18,
+            "steal_percent": 3.1634446397188047,
+            "udp_error_events_near": 0
+          },
+          {
+            "start": 1794925797.1902816,
+            "end": 1794925806.029916,
+            "total_ticks": 881,
+            "steal_ticks": 22,
+            "steal_percent": 2.497162315550511,
+            "udp_error_events_near": 0
+          },
+          {
+            "start": 1794923396.6732485,
+            "end": 1794923401.8038993,
+            "total_ticks": 511,
+            "steal_ticks": 12,
+            "steal_percent": 2.3483365949119372,
+            "udp_error_events_near": 0
+          },
+          {
+            "start": 1794924901.955999,
+            "end": 1794924908.911102,
+            "total_ticks": 693,
+            "steal_ticks": 16,
+            "steal_percent": 2.3088023088023086,
+            "udp_error_events_near": 0
+          }
+        ],
+        "definition_source": "https://man7.org/linux/man-pages/man5/proc_stat.5.html",
+        "interpretation": "Guest-reported CPU steal accounting; timing correlation is not exclusive proof of every outage cause"
+      },
+      "tcp_startup_connection_refusals": 0,
+      "tcp_error_events_after_initial_5_seconds": 0
+    }
+  },
+  "hour_complete": true,
+  "hour_site_acceptance": false,
+  "current_profile_hour_tested": true,
+  "production_certified": false,
+  "initial_aborted_attempt_counted": false,
+  "measurement_changes": [
+    "Ancillary monitor failures do not kill traffic workers",
+    "Process identity read from kernel cgroups/PID start ticks",
+    "Absolute application UDP deadline includes scheduling delay"
+  ],
+  "startup_note": "Four Iran TCP connection refusals occurred in the initial echo-server startup window; retained in full-run counters and separated from later errors"
+}

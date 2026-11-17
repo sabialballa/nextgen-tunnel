@@ -1,0 +1,33 @@
+#!/bin/bash
+set -u
+exec 9>/run/gaming-monitor.lock
+flock -n 9 || exit 0
+state=/var/lib/gaming-monitor
+mkdir -p "$state"
+fails=$(cat "$state/fails" 2>/dev/null || echo 0)
+last=$(cat "$state/last-restart" 2>/dev/null || echo 0)
+now=$(date +%s)
+systemctl is-active --quiet gaming-raw || systemctl start gaming-raw
+/usr/bin/python3 /usr/local/sbin/gaming-receive-buffer 8192
+systemctl is-active --quiet wg-quick@@IFACE@ || systemctl start wg-quick@@IFACE@
+/usr/local/sbin/gaming-address
+if ip link show @IFACE@ >/dev/null 2>&1; then
+ ip route replace @SERVICE_PEER@/32 dev @IFACE@ src @SERVICE_LOCAL@
+ ip link set @IFACE@ mtu @MTU@ up
+ /usr/local/sbin/gaming-qos
+fi
+result=$(ping -n -q -c 5 -i 0.2 -W 2 -I @SERVICE_LOCAL@ @SERVICE_PEER@ 2>&1)
+if echo "$result" | grep -q " 0% packet loss"; then
+ echo 0 > "$state/fails"
+ printf "%s healthy %s\n" "$(date -Is)" "$(echo "$result" | tail -1)" > "$state/status"
+ exit 0
+fi
+fails=$((fails+1)); echo "$fails" > "$state/fails"
+printf "%s degraded failures=%s\n" "$(date -Is)" "$fails" > "$state/status"
+logger -t gaming-monitor "Datagram tunnel degraded: $fails consecutive checks; $result"
+if [ "$fails" -ge 3 ] && [ "$((now-last))" -ge 300 ]; then
+ echo "$now" > "$state/last-restart"
+ logger -t gaming-monitor "Recovering dedicated datagram carrier after consecutive failures"
+ systemctl restart gaming-raw
+ systemctl is-active --quiet wg-quick@@IFACE@ || systemctl start wg-quick@@IFACE@
+fi

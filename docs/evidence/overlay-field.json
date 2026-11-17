@@ -1,0 +1,314 @@
+{
+  "nodes": {
+    "iran": {
+      "checks": {
+        "gre": {
+          "mtu_ping_success": true,
+          "probe_seconds_requested": 30,
+          "flows": {
+            "ipv4_tcp": {
+              "sent": 15,
+              "received": 15,
+              "timeouts": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 0,
+              "rtt_max_ms": 578.8697680000041
+            },
+            "ipv4_udp": {
+              "sent": 30,
+              "received": 28,
+              "timeouts": 2,
+              "corrupted": 0,
+              "late": 2,
+              "max_burst": 2,
+              "rtt_max_ms": 420.7666510010313
+            }
+          }
+        },
+        "vxlan": {
+          "mtu_ping_success": true,
+          "probe_seconds_requested": 30,
+          "flows": {
+            "ipv4_tcp": {
+              "sent": 15,
+              "received": 15,
+              "timeouts": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 0,
+              "rtt_max_ms": 158.46534999946016
+            },
+            "ipv4_udp": {
+              "sent": 30,
+              "received": 30,
+              "timeouts": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 0,
+              "rtt_max_ms": 83.14401899770019
+            }
+          }
+        }
+      },
+      "cleanup": {
+        "success": true,
+        "main_unchanged": true,
+        "temporary_echo_stopped": true,
+        "test_credentials_removed": true,
+        "overlay_recreate_success": {
+          "gre": true,
+          "vxlan": true
+        },
+        "timestamp": 1794933494.9396758
+      },
+      "recovery": {
+        "checks": {
+          "gre": {
+            "service_status": {
+              "owned": true,
+              "active": "active",
+              "enabled": true
+            },
+            "config_mismatch_rejected": true,
+            "owned_interface_preserved": true,
+            "uninstall_reinstall_tested": true,
+            "restart_tested": false
+          },
+          "vxlan": {
+            "service_status": {
+              "owned": true,
+              "active": "active",
+              "enabled": true
+            },
+            "config_mismatch_rejected": true,
+            "owned_interface_preserved": true,
+            "uninstall_reinstall_tested": false,
+            "restart_tested": true
+          }
+        },
+        "reboot_tested": false,
+        "success": true,
+        "main_unchanged": true,
+        "timestamp": 1794933564.9173913
+      },
+      "final": {
+        "reboot_tested": false,
+        "checks": {
+          "gre": {
+            "success": true,
+            "payload_bytes": 1172
+          },
+          "vxlan": {
+            "success": true,
+            "payload_bytes": 1172
+          },
+          "main4": {
+            "success": true,
+            "payload_bytes": 1152
+          },
+          "main6": {
+            "success": true,
+            "payload_bytes": 1152
+          }
+        },
+        "public_gre_vxlan_wg_packets_observed": 0,
+        "public_capture_sha256": "e6e921a5f8b60a91e54000028fff8b2e467771814f752355a25dc336a56b0f95",
+        "main_unchanged": true,
+        "units": {
+          "nextgen-engine.service": {
+            "active": true,
+            "enabled": true
+          },
+          "nextgen-site.service": {
+            "active": true,
+            "enabled": true
+          },
+          "nextgen-site-watchdog.timer": {
+            "active": true,
+            "enabled": true
+          },
+          "nextgen-overlay-ngo-gre.service": {
+            "active": true,
+            "enabled": true
+          },
+          "nextgen-overlay-ngo-vxlan.service": {
+            "active": true,
+            "enabled": true
+          }
+        },
+        "success": true,
+        "timestamp": 1794933611.9450183,
+        "public_capture_kernel_drops": 0
+      },
+      "raw_sha256": {
+        "probe": "231e081709d81c1a4674127f3e03b03c04f4d5b37ad44d4023afc765bec7d255",
+        "finish": "5012aa0f99060300b7d2872043838c8429a4841cf9d7a63429f19fe3043b1da2",
+        "recovery": "c81430ecc5b8a7b2d3ec3080fd5b038122bcbaabdd3be9f0919b31cbb79525ec",
+        "final": "58e71d5280ebba200656a8f6657dcaace2f4aa6be8086047298ff1393b9d9886"
+      }
+    },
+    "turkey": {
+      "checks": {
+        "gre": {
+          "mtu_ping_success": true,
+          "probe_seconds_requested": 30,
+          "flows": {
+            "ipv4_tcp": {
+              "sent": 15,
+              "received": 15,
+              "timeouts": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 0,
+              "rtt_max_ms": 576.2185860003228
+            },
+            "ipv4_udp": {
+              "sent": 30,
+              "received": 28,
+              "timeouts": 2,
+              "corrupted": 0,
+              "late": 2,
+              "max_burst": 1,
+              "rtt_max_ms": 468.0776759996661
+            }
+          }
+        },
+        "vxlan": {
+          "mtu_ping_success": true,
+          "probe_seconds_requested": 30,
+          "flows": {
+            "ipv4_tcp": {
+              "sent": 15,
+              "received": 15,
+              "timeouts": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 0,
+              "rtt_max_ms": 162.68169400063925
+            },
+            "ipv4_udp": {
+              "sent": 30,
+              "received": 30,
+              "timeouts": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 0,
+              "rtt_max_ms": 87.5462879994302
+            }
+          }
+        }
+      },
+      "cleanup": {
+        "success": true,
+        "main_unchanged": true,
+        "temporary_echo_stopped": true,
+        "test_credentials_removed": true,
+        "overlay_recreate_success": {
+          "gre": true,
+          "vxlan": true
+        },
+        "timestamp": 1794933496.8302624
+      },
+      "recovery": {
+        "checks": {
+          "gre": {
+            "service_status": {
+              "owned": true,
+              "active": "active",
+              "enabled": true
+            },
+            "config_mismatch_rejected": true,
+            "owned_interface_preserved": true,
+            "uninstall_reinstall_tested": true,
+            "restart_tested": false
+          },
+          "vxlan": {
+            "service_status": {
+              "owned": true,
+              "active": "active",
+              "enabled": true
+            },
+            "config_mismatch_rejected": true,
+            "owned_interface_preserved": true,
+            "uninstall_reinstall_tested": false,
+            "restart_tested": true
+          }
+        },
+        "reboot_tested": false,
+        "success": true,
+        "main_unchanged": true,
+        "timestamp": 1794933564.3973582
+      },
+      "final": {
+        "reboot_tested": false,
+        "checks": {
+          "gre": {
+            "success": true,
+            "payload_bytes": 1172
+          },
+          "vxlan": {
+            "success": true,
+            "payload_bytes": 1172
+          },
+          "main4": {
+            "success": true,
+            "payload_bytes": 1152
+          },
+          "main6": {
+            "success": true,
+            "payload_bytes": 1152
+          }
+        },
+        "public_gre_vxlan_wg_packets_observed": 0,
+        "public_capture_sha256": "e6e921a5f8b60a91e54000028fff8b2e467771814f752355a25dc336a56b0f95",
+        "main_unchanged": true,
+        "units": {
+          "nextgen-engine.service": {
+            "active": true,
+            "enabled": true
+          },
+          "nextgen-site.service": {
+            "active": true,
+            "enabled": true
+          },
+          "nextgen-site-watchdog.timer": {
+            "active": true,
+            "enabled": true
+          },
+          "nextgen-overlay-ngo-gre.service": {
+            "active": true,
+            "enabled": true
+          },
+          "nextgen-overlay-ngo-vxlan.service": {
+            "active": true,
+            "enabled": true
+          }
+        },
+        "success": true,
+        "timestamp": 1794933611.8434978,
+        "public_capture_kernel_drops": 0
+      },
+      "raw_sha256": {
+        "probe": "743821d2f60d1655d6e51a5c076776b26fdc3ea7d625c2ec99931b42c7392935",
+        "finish": "d053c7bd69583a8726c9a4e81b3aac5ba879b2e81c93aaa022a2b1faab741384",
+        "recovery": "8fb7107fee44deeea2cd57552cca89ef660974275be55933503d8e4fc0ab40aa",
+        "final": "76af6569a7b242cdf48b292b3e3af6dedd8b47e2a27106e07d3bc50095114e05"
+      }
+    }
+  },
+  "public_carrier": "REALITY/smux over TCP443",
+  "mtu": 1200,
+  "ipv4_only": true,
+  "production_certified": false,
+  "reboot_tested": false,
+  "github_published": false,
+  "limitations": [
+    "Thirty seconds per overlay per node; tests were sequential",
+    "No demonstrated stability improvement or repaired UDP deadlines",
+    "No physical LAN bridge, host routes, NAT or Internet egress configured",
+    "Boot ordering configured but no server reboot performed"
+  ],
+  "connectivity_acceptance": true,
+  "udp_deadline_acceptance": false
+}

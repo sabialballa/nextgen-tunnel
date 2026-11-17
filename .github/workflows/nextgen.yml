@@ -1,0 +1,54 @@
+name: nextgen-local-validation
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6
+        with:
+          go-version: '1.27.4'
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
+      - name: Format, vet and module integrity
+        run: |
+          test -z "$(gofmt -l cmd internal tests/integration)"
+          go vet ./...
+          go mod verify
+          mkdir -p dist
+          go build -trimpath -o dist/nextgen-tunnel ./cmd/nextgen-tunnel
+          sudo install -m 0755 dist/nextgen-tunnel /usr/local/bin/nextgen-tunnel
+      - name: Race, integration and frame fuzz tests
+        run: |
+          go test -race ./...
+          go test ./internal/transport -run '^$' -fuzz FuzzReadFrame -fuzztime=10s -parallel=2
+          python3 -m unittest discover -s tests -v
+          python3 -m py_compile agent.py model.py tunnelctl.py scripts/*.py
+          for script in scripts/*.sh; do sh -n "$script"; done
+          systemd-analyze verify systemd/nextgen-tunnel.service
+      - name: Dependency vulnerabilities
+        run: go run golang.org/x/vuln/cmd/govulncheck@v1.9.0 ./...
+      - name: Bounded local process lab
+        run: |
+          mkdir -p dist
+          go build -trimpath -o dist/nextgen-tunnel ./cmd/nextgen-tunnel
+          python3 scripts/local_lab.py --binary dist/nextgen-tunnel --output dist/local-lab.json --seconds 1 --samples 50 --repetitions 2
+      - name: Build offline Linux bundles
+        run: |
+          CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -trimpath -o dist/nextgen-tunnel-linux-amd64 ./cmd/nextgen-tunnel
+          CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build -trimpath -o dist/nextgen-tunnel-linux-arm64 ./cmd/nextgen-tunnel
+          python3 scripts/package.py --binary dist/nextgen-tunnel-linux-amd64 --os linux --arch amd64
+          python3 scripts/package.py --binary dist/nextgen-tunnel-linux-arm64 --os linux --arch arm64
+          python3 scripts/verify_bundle.py dist/*.tar.gz
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: offline-candidate-bundles
+          path: dist/

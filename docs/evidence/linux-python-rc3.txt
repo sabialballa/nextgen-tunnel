@@ -1,0 +1,11 @@
+....exit: prepared; private WireGuard key remains on that server
+entry: prepared; private WireGuard key remains on that server
+Detected backend transports: {"udp": [34569], "tcp": []}
+exit: unchanged
+entry: unchanged
+....................
+----------------------------------------------------------------------
+Ran 24 tests in 0.733s
+
+OK
+Deployment verified; rollback transaction: dddddddddddddddd

@@ -1,0 +1,17 @@
+{
+  "role": "server",
+  "listen": "0.0.0.0:8443",
+  "tls": {
+    "ca": "/etc/nextgen-tunnel/ca.crt",
+    "cert": "/etc/nextgen-tunnel/cert.crt",
+    "key": "/etc/nextgen-tunnel/endpoint.key",
+    "client_name": "entry"
+  },
+  "services": {
+    "web": {"protocol": "tcp", "target": "127.0.0.1:8080"},
+    "dns": {"protocol": "udp", "target": "127.0.0.1:5353"}
+  },
+  "max_sessions": 256,
+  "idle_seconds": 60,
+  "probe_seconds": 2
+}

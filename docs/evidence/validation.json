@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "started_at": "2026-11-16T13:09:40.536740+00:00",
+  "checks": [
+    {
+      "name": "toolchain",
+      "command": [
+        "go.exe",
+        "version"
+      ],
+      "returncode": 0,
+      "stdout": "go version go1.27.4 windows/amd64\n",
+      "stderr": "",
+      "classification": "required",
+      "elapsed_seconds": 0.06300000000010186
+    },
+    {
+      "name": "module_integrity",
+      "command": [
+        "go.exe",
+        "mod",
+        "verify"
+      ],
+      "returncode": 0,
+      "stdout": "all modules verified\n",
+      "stderr": "",
+      "classification": "required",
+      "elapsed_seconds": 12.468999999999141
+    },
+    {
+      "name": "go_tests",
+      "command": [
+        "go.exe",
+        "test",
+        "-count=1",
+        "-json",
+        "./..."
+      ],
+      "returncode": 0,
+      "stdout": "{\"Time\":\"2026-11-16T16:39:53.5747108+03:30\",\"Action\":\"start\",\"Package\":\"nextgen-tunnel/cmd/nextgen-tunnel\"}\n{\"Time\":\"2026-11-16T16:39:53.5747108+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/cmd/nextgen-tunnel\",\"Output\":\"?   \\tnextgen-tunnel/cmd/nextgen-tunnel\\t[no test files]\\n\"}\n{\"Time\":\"2026-11-16T16:39:53.5919799+03:30\",\"Action\":\"skip\",\"Package\":\"nextgen-tunnel/cmd/nextgen-tunnel\",\"Elapsed\":0.025}\n{\"Time\":\"2026-11-16T16:39:54.4710342+03:30\",\"Action\":\"start\",\"Package\":\"nextgen-tunnel/internal/config\"}\n{\"Time\":\"2026-11-16T16:39:54.5751087+03:30\",\"Action\":\"start\",\"Package\":\"nextgen-tunnel/internal/manager\"}\n{\"Time\":\"2026-11-16T16:39:54.5881672+03:30\",\"Action\":\"start\",\"Package\":\"nextgen-tunnel/internal/security\"}\n{\"Time\":\"2026-11-16T16:39:54.7011474+03:30\",\"Action\":\"start\",\"Package\":\"nextgen-tunnel/internal/transport\"}\n{\"Time\":\"2026-11-16T16:39:54.907861+03:30\",\"Action\":\"start\",\"Package\":\"nextgen-tunnel/tests/integration\"}\n{\"Time\":\"2026-11-16T16:39:55.6510729+03:30\",\"Action\":\"run\",\"Package\":\"nextgen-tunnel/internal/config\",\"Test\":\"TestRejectUnsafeAddresses\"}\n{\"Time\":\"2026-11-16T16:39:55.6571761+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/internal/config\",\"Test\":\"TestRejectUnsafeAddresses\",\"Output\":\"=== RUN   TestRejectUnsafeAddresses\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:55.657732+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/internal/config\",\"Test\":\"TestRejectUnsafeAddresses\",\"Output\":\"--- PASS: TestRejectUnsafeAddresses (0.00s)\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:55.657732+03:30\",\"Action\":\"pass\",\"Package\":\"nextgen-tunnel/internal/config\",\"Test\":\"TestRejectUnsafeAddresses\",\"Elapsed\":0}\n{\"Time\":\"2026-11-16T16:39:55.657732+03:30\",\"Action\":\"run\",\"Package\":\"nextgen-tunnel/internal/config\",\"Test\":\"TestRejectUnknownAndTrailing\"}\n{\"Time\":\"2026-11-16T16:39:55.657732+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/internal/config\",\"Test\":\"TestRejectUnknownAndTrailing\",\"Output\":\"=== RUN   TestRejectUnknownAndTrailing\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:55.6804594+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/internal/config\",\"Test\":\"TestRejectUnknownAndTrailing\",\"Output\":\"--- PASS: TestRejectUnknownAndTrailing (0.03s)\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:55.6804594+03:30\",\"Action\":\"pass\",\"Package\":\"nextgen-tunnel/internal/config\",\"Test\":\"TestRejectUnknownAndTrailing\",\"Elapsed\":0.03}\n{\"Time\":\"2026-11-16T16:39:55.6804594+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/internal/config\",\"Output\":\"PASS\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:55.6840563+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/internal/config\",\"Output\":\"ok  \\tnextgen-tunnel/internal/config\\t1.213s\\n\"}\n{\"Time\":\"2026-11-16T16:39:55.6840563+03:30\",\"Action\":\"pass\",\"Package\":\"nextgen-tunnel/internal/config\",\"Elapsed\":1.213}\n{\"Time\":\"2026-11-16T16:39:55.8676513+03:30\",\"Action\":\"run\",\"Package\":\"nextgen-tunnel/internal/manager\",\"Test\":\"TestFailoverHysteresisAndStickySelection\"}\n{\"Time\":\"2026-11-16T16:39:55.8676513+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/internal/manager\",\"Test\":\"TestFailoverHysteresisAndStickySelection\",\"Output\":\"=== RUN   TestFailoverHysteresisAndStickySelection\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:55.8676513+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/internal/manager\",\"Test\":\"TestFailoverHysteresisAndStickySelection\",\"Output\":\"--- PASS: TestFailoverHysteresisAndStickySelection (0.00s)\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:55.8676513+03:30\",\"Action\":\"pass\",\"Package\":\"nextgen-tunnel/internal/manager\",\"Test\":\"TestFailoverHysteresisAndStickySelection\",\"Elapsed\":0}\n{\"Time\":\"2026-11-16T16:39:55.8676513+03:30\",\"Action\":\"run\",\"Package\":\"nextgen-tunnel/internal/manager\",\"Test\":\"TestBackoffBounded\"}\n{\"Time\":\"2026-11-16T16:39:55.8676513+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/internal/manager\",\"Test\":\"TestBackoffBounded\",\"Output\":\"=== RUN   TestBackoffBounded\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:55.8676513+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/internal/manager\",\"Test\":\"TestBackoffBounded\",\"Output\":\"--- PASS: TestBackoffBounded (0.00s)\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:55.8676513+03:30\",\"Action\":\"pass\",\"Package\":\"nextgen-tunnel/internal/manager\",\"Test\":\"TestBackoffBounded\",\"Elapsed\":0}\n{\"Time\":\"2026-11-16T16:39:55.8676513+03:30\",\"Action\":\"run\",\"Package\":\"nextgen-tunnel/internal/manager\",\"Test\":\"TestStatusReplaceWithConcurrentReader\"}\n{\"Time\":\"2026-11-16T16:39:55.8676513+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/internal/manager\",\"Test\":\"TestStatusReplaceWithConcurrentReader\",\"Output\":\"=== RUN   TestStatusReplaceWithConcurrentReader\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:55.876828+03:30\",\"Action\":\"run\",\"Package\":\"nextgen-tunnel/internal/security\",\"Test\":\"TestDedicatedPKIAndStrictTLS\"}\n{\"Time\":\"2026-11-16T16:39:55.8773354+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/internal/security\",\"Test\":\"TestDedicatedPKIAndStrictTLS\",\"Output\":\"=== RUN   TestDedicatedPKIAndStrictTLS\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:55.937544+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/internal/security\",\"Test\":\"TestDedicatedPKIAndStrictTLS\",\"Output\":\"--- PASS: TestDedicatedPKIAndStrictTLS (0.06s)\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:55.937544+03:30\",\"Action\":\"pass\",\"Package\":\"nextgen-tunnel/internal/security\",\"Test\":\"TestDedicatedPKIAndStrictTLS\",\"Elapsed\":0.06}\n{\"Time\":\"2026-11-16T16:39:55.9380774+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/internal/security\",\"Output\":\"PASS\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:55.9426478+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/internal/security\",\"Output\":\"ok  \\tnextgen-tunnel/internal/security\\t1.354s\\n\"}\n{\"Time\":\"2026-11-16T16:39:55.9426478+03:30\",\"Action\":\"pass\",\"Package\":\"nextgen-tunnel/internal/security\",\"Elapsed\":1.354}\n{\"Time\":\"2026-11-16T16:39:55.9623272+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/internal/manager\",\"Test\":\"TestStatusReplaceWithConcurrentReader\",\"Output\":\"--- PASS: TestStatusReplaceWithConcurrentReader (0.09s)\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:55.9623272+03:30\",\"Action\":\"pass\",\"Package\":\"nextgen-tunnel/internal/manager\",\"Test\":\"TestStatusReplaceWithConcurrentReader\",\"Elapsed\":0.09}\n{\"Time\":\"2026-11-16T16:39:55.9623272+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/internal/manager\",\"Output\":\"PASS\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:55.9669568+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/internal/manager\",\"Output\":\"ok  \\tnextgen-tunnel/internal/manager\\t1.392s\\n\"}\n{\"Time\":\"2026-11-16T16:39:55.9669568+03:30\",\"Action\":\"pass\",\"Package\":\"nextgen-tunnel/internal/manager\",\"Elapsed\":1.392}\n{\"Time\":\"2026-11-16T16:39:56.3382744+03:30\",\"Action\":\"run\",\"Package\":\"nextgen-tunnel/internal/transport\",\"Test\":\"TestTLSFramedReceiveHonorsCancellation\"}\n{\"Time\":\"2026-11-16T16:39:56.3382744+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/internal/transport\",\"Test\":\"TestTLSFramedReceiveHonorsCancellation\",\"Output\":\"=== RUN   TestTLSFramedReceiveHonorsCancellation\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:56.3388136+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/internal/transport\",\"Test\":\"TestTLSFramedReceiveHonorsCancellation\",\"Output\":\"--- PASS: TestTLSFramedReceiveHonorsCancellation (0.00s)\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:56.3388136+03:30\",\"Action\":\"pass\",\"Package\":\"nextgen-tunnel/internal/transport\",\"Test\":\"TestTLSFramedReceiveHonorsCancellation\",\"Elapsed\":0}\n{\"Time\":\"2026-11-16T16:39:56.3388136+03:30\",\"Action\":\"run\",\"Package\":\"nextgen-tunnel/internal/transport\",\"Test\":\"TestFrameBounds\"}\n{\"Time\":\"2026-11-16T16:39:56.3388136+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/internal/transport\",\"Test\":\"TestFrameBounds\",\"Output\":\"=== RUN   TestFrameBounds\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:56.3388136+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/internal/transport\",\"Test\":\"TestFrameBounds\",\"Output\":\"--- PASS: TestFrameBounds (0.00s)\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:56.3388136+03:30\",\"Action\":\"pass\",\"Package\":\"nextgen-tunnel/internal/transport\",\"Test\":\"TestFrameBounds\",\"Elapsed\":0}\n{\"Time\":\"2026-11-16T16:39:56.3388136+03:30\",\"Action\":\"run\",\"Package\":\"nextgen-tunnel/internal/transport\",\"Test\":\"FuzzReadFrame\"}\n{\"Time\":\"2026-11-16T16:39:56.3388136+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/internal/transport\",\"Test\":\"FuzzReadFrame\",\"Output\":\"=== RUN   FuzzReadFrame\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:56.3393751+03:30\",\"Action\":\"run\",\"Package\":\"nextgen-tunnel/internal/transport\",\"Test\":\"FuzzReadFrame/seed#0\"}\n{\"Time\":\"2026-11-16T16:39:56.3393751+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/internal/transport\",\"Test\":\"FuzzReadFrame/seed#0\",\"Output\":\"=== RUN   FuzzReadFrame/seed#0\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:56.3393751+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/internal/transport\",\"Test\":\"FuzzReadFrame/seed#0\",\"Output\":\"--- PASS: FuzzReadFrame/seed#0 (0.00s)\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:56.3393751+03:30\",\"Action\":\"pass\",\"Package\":\"nextgen-tunnel/internal/transport\",\"Test\":\"FuzzReadFrame/seed#0\",\"Elapsed\":0}\n{\"Time\":\"2026-11-16T16:39:56.3393751+03:30\",\"Action\":\"run\",\"Package\":\"nextgen-tunnel/internal/transport\",\"Test\":\"FuzzReadFrame/seed#1\"}\n{\"Time\":\"2026-11-16T16:39:56.3393751+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/internal/transport\",\"Test\":\"FuzzReadFrame/seed#1\",\"Output\":\"=== RUN   FuzzReadFrame/seed#1\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:56.3393751+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/internal/transport\",\"Test\":\"FuzzReadFrame/seed#1\",\"Output\":\"--- PASS: FuzzReadFrame/seed#1 (0.00s)\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:56.3393751+03:30\",\"Action\":\"pass\",\"Package\":\"nextgen-tunnel/internal/transport\",\"Test\":\"FuzzReadFrame/seed#1\",\"Elapsed\":0}\n{\"Time\":\"2026-11-16T16:39:56.3393751+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/internal/transport\",\"Test\":\"FuzzReadFrame\",\"Output\":\"--- PASS: FuzzReadFrame (0.00s)\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:56.3399301+03:30\",\"Action\":\"pass\",\"Package\":\"nextgen-tunnel/internal/transport\",\"Test\":\"FuzzReadFrame\",\"Elapsed\":0}\n{\"Time\":\"2026-11-16T16:39:56.3399301+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/internal/transport\",\"Output\":\"PASS\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:56.3437345+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/internal/transport\",\"Output\":\"ok  \\tnextgen-tunnel/internal/transport\\t1.643s\\n\"}\n{\"Time\":\"2026-11-16T16:39:56.3437345+03:30\",\"Action\":\"pass\",\"Package\":\"nextgen-tunnel/internal/transport\",\"Elapsed\":1.643}\n{\"Time\":\"2026-11-16T16:39:56.8886398+03:30\",\"Action\":\"run\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestPeerCannotBypassServerDatagramBound\"}\n{\"Time\":\"2026-11-16T16:39:56.8886398+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestPeerCannotBypassServerDatagramBound\",\"Output\":\"=== RUN   TestPeerCannotBypassServerDatagramBound\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:56.9399704+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestPeerCannotBypassServerDatagramBound\",\"Output\":\"--- PASS: TestPeerCannotBypassServerDatagramBound (0.05s)\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:56.9410962+03:30\",\"Action\":\"pass\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestPeerCannotBypassServerDatagramBound\",\"Elapsed\":0.05}\n{\"Time\":\"2026-11-16T16:39:56.9410962+03:30\",\"Action\":\"run\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestEncryptedTCPAndUDP\"}\n{\"Time\":\"2026-11-16T16:39:56.9410962+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestEncryptedTCPAndUDP\",\"Output\":\"=== RUN   TestEncryptedTCPAndUDP\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:56.9834259+03:30\",\"Action\":\"run\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestEncryptedTCPAndUDP/quic\"}\n{\"Time\":\"2026-11-16T16:39:56.9839328+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestEncryptedTCPAndUDP/quic\",\"Output\":\"=== RUN   TestEncryptedTCPAndUDP/quic\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:56.9870075+03:30\",\"Action\":\"run\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestEncryptedTCPAndUDP/quic/tcp\"}\n{\"Time\":\"2026-11-16T16:39:56.9870075+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestEncryptedTCPAndUDP/quic/tcp\",\"Output\":\"=== RUN   TestEncryptedTCPAndUDP/quic/tcp\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:56.991651+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestEncryptedTCPAndUDP/quic/tcp\",\"Output\":\"--- PASS: TestEncryptedTCPAndUDP/quic/tcp (0.00s)\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:56.991651+03:30\",\"Action\":\"pass\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestEncryptedTCPAndUDP/quic/tcp\",\"Elapsed\":0}\n{\"Time\":\"2026-11-16T16:39:56.991651+03:30\",\"Action\":\"run\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestEncryptedTCPAndUDP/quic/udp\"}\n{\"Time\":\"2026-11-16T16:39:56.991651+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestEncryptedTCPAndUDP/quic/udp\",\"Output\":\"=== RUN   TestEncryptedTCPAndUDP/quic/udp\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:56.9953549+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestEncryptedTCPAndUDP/quic/udp\",\"Output\":\"--- PASS: TestEncryptedTCPAndUDP/quic/udp (0.00s)\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:56.9953549+03:30\",\"Action\":\"pass\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestEncryptedTCPAndUDP/quic/udp\",\"Elapsed\":0}\n{\"Time\":\"2026-11-16T16:39:56.9953549+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestEncryptedTCPAndUDP/quic\",\"Output\":\"--- PASS: TestEncryptedTCPAndUDP/quic (0.01s)\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:56.9953549+03:30\",\"Action\":\"pass\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestEncryptedTCPAndUDP/quic\",\"Elapsed\":0.01}\n{\"Time\":\"2026-11-16T16:39:56.9953549+03:30\",\"Action\":\"run\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestEncryptedTCPAndUDP/tls\"}\n{\"Time\":\"2026-11-16T16:39:56.9953549+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestEncryptedTCPAndUDP/tls\",\"Output\":\"=== RUN   TestEncryptedTCPAndUDP/tls\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:56.9986148+03:30\",\"Action\":\"run\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestEncryptedTCPAndUDP/tls/tcp\"}\n{\"Time\":\"2026-11-16T16:39:56.9986148+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestEncryptedTCPAndUDP/tls/tcp\",\"Output\":\"=== RUN   TestEncryptedTCPAndUDP/tls/tcp\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:57.0013688+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestEncryptedTCPAndUDP/tls/tcp\",\"Output\":\"--- PASS: TestEncryptedTCPAndUDP/tls/tcp (0.00s)\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:57.0013688+03:30\",\"Action\":\"pass\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestEncryptedTCPAndUDP/tls/tcp\",\"Elapsed\":0}\n{\"Time\":\"2026-11-16T16:39:57.0013688+03:30\",\"Action\":\"run\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestEncryptedTCPAndUDP/tls/udp\"}\n{\"Time\":\"2026-11-16T16:39:57.0013688+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestEncryptedTCPAndUDP/tls/udp\",\"Output\":\"=== RUN   TestEncryptedTCPAndUDP/tls/udp\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:57.0046729+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestEncryptedTCPAndUDP/tls/udp\",\"Output\":\"--- PASS: TestEncryptedTCPAndUDP/tls/udp (0.00s)\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:57.0046729+03:30\",\"Action\":\"pass\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestEncryptedTCPAndUDP/tls/udp\",\"Elapsed\":0}\n{\"Time\":\"2026-11-16T16:39:57.0046729+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestEncryptedTCPAndUDP/tls\",\"Output\":\"--- PASS: TestEncryptedTCPAndUDP/tls (0.01s)\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:57.0046729+03:30\",\"Action\":\"pass\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestEncryptedTCPAndUDP/tls\",\"Elapsed\":0.01}\n{\"Time\":\"2026-11-16T16:39:57.006807+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestEncryptedTCPAndUDP\",\"Output\":\"--- PASS: TestEncryptedTCPAndUDP (0.07s)\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:57.0073541+03:30\",\"Action\":\"pass\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestEncryptedTCPAndUDP\",\"Elapsed\":0.07}\n{\"Time\":\"2026-11-16T16:39:57.0073541+03:30\",\"Action\":\"run\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestAuthenticationAndServiceAllowlist\"}\n{\"Time\":\"2026-11-16T16:39:57.0073541+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestAuthenticationAndServiceAllowlist\",\"Output\":\"=== RUN   TestAuthenticationAndServiceAllowlist\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:57.0502653+03:30\",\"Action\":\"run\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestAuthenticationAndServiceAllowlist/tls\"}\n{\"Time\":\"2026-11-16T16:39:57.0502653+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestAuthenticationAndServiceAllowlist/tls\",\"Output\":\"=== RUN   TestAuthenticationAndServiceAllowlist/tls\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:57.0523956+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestAuthenticationAndServiceAllowlist/tls\",\"Output\":\"2026/11/16 16:39:57 WARN TLS handshake rejected\\n\"}\n{\"Time\":\"2026-11-16T16:39:57.0540238+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestAuthenticationAndServiceAllowlist/tls\",\"Output\":\"2026/11/16 16:39:57 WARN TLS handshake rejected\\n\"}\n{\"Time\":\"2026-11-16T16:39:57.0562152+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestAuthenticationAndServiceAllowlist/tls\",\"Output\":\"2026/11/16 16:39:57 WARN TLS handshake rejected\\n\"}\n{\"Time\":\"2026-11-16T16:39:57.0589049+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestAuthenticationAndServiceAllowlist/tls\",\"Output\":\"2026/11/16 16:39:57 WARN session rejected by service policy\\n\"}\n{\"Time\":\"2026-11-16T16:39:57.0611268+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestAuthenticationAndServiceAllowlist/tls\",\"Output\":\"2026/11/16 16:39:57 WARN session rejected by service policy\\n\"}\n{\"Time\":\"2026-11-16T16:39:57.0611268+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestAuthenticationAndServiceAllowlist/tls\",\"Output\":\"--- PASS: TestAuthenticationAndServiceAllowlist/tls (0.01s)\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:57.0611268+03:30\",\"Action\":\"pass\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestAuthenticationAndServiceAllowlist/tls\",\"Elapsed\":0.01}\n{\"Time\":\"2026-11-16T16:39:57.0611268+03:30\",\"Action\":\"run\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestAuthenticationAndServiceAllowlist/quic\"}\n{\"Time\":\"2026-11-16T16:39:57.0611268+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestAuthenticationAndServiceAllowlist/quic\",\"Output\":\"=== RUN   TestAuthenticationAndServiceAllowlist/quic\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:57.0703922+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestAuthenticationAndServiceAllowlist/quic\",\"Output\":\"2026/11/16 16:39:57 WARN session rejected by service policy\\n\"}\n{\"Time\":\"2026-11-16T16:39:57.0730621+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestAuthenticationAndServiceAllowlist/quic\",\"Output\":\"2026/11/16 16:39:57 WARN session rejected by service policy\\n\"}\n{\"Time\":\"2026-11-16T16:39:57.0730621+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestAuthenticationAndServiceAllowlist/quic\",\"Output\":\"--- PASS: TestAuthenticationAndServiceAllowlist/quic (0.01s)\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:57.0730621+03:30\",\"Action\":\"pass\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestAuthenticationAndServiceAllowlist/quic\",\"Elapsed\":0.01}\n{\"Time\":\"2026-11-16T16:39:57.0751825+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestAuthenticationAndServiceAllowlist\",\"Output\":\"--- PASS: TestAuthenticationAndServiceAllowlist (0.07s)\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:57.0751825+03:30\",\"Action\":\"pass\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestAuthenticationAndServiceAllowlist\",\"Elapsed\":0.07}\n{\"Time\":\"2026-11-16T16:39:57.0751825+03:30\",\"Action\":\"run\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestExpiredAndUnauthorizedClientCertificates\"}\n{\"Time\":\"2026-11-16T16:39:57.0751825+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestExpiredAndUnauthorizedClientCertificates\",\"Output\":\"=== RUN   TestExpiredAndUnauthorizedClientCertificates\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:57.1277357+03:30\",\"Action\":\"run\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestExpiredAndUnauthorizedClientCertificates/expired/tls\"}\n{\"Time\":\"2026-11-16T16:39:57.1277357+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestExpiredAndUnauthorizedClientCertificates/expired/tls\",\"Output\":\"=== RUN   TestExpiredAndUnauthorizedClientCertificates/expired/tls\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:57.1303925+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestExpiredAndUnauthorizedClientCertificates/expired/tls\",\"Output\":\"2026/11/16 16:39:57 WARN TLS handshake rejected\\n\"}\n{\"Time\":\"2026-11-16T16:39:57.1303925+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestExpiredAndUnauthorizedClientCertificates/expired/tls\",\"Output\":\"--- PASS: TestExpiredAndUnauthorizedClientCertificates/expired/tls (0.00s)\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:57.1303925+03:30\",\"Action\":\"pass\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestExpiredAndUnauthorizedClientCertificates/expired/tls\",\"Elapsed\":0}\n{\"Time\":\"2026-11-16T16:39:57.1303925+03:30\",\"Action\":\"run\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestExpiredAndUnauthorizedClientCertificates/expired/quic\"}\n{\"Time\":\"2026-11-16T16:39:57.1303925+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestExpiredAndUnauthorizedClientCertificates/expired/quic\",\"Output\":\"=== RUN   TestExpiredAndUnauthorizedClientCertificates/expired/quic\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:57.132522+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestExpiredAndUnauthorizedClientCertificates/expired/quic\",\"Output\":\"--- PASS: TestExpiredAndUnauthorizedClientCertificates/expired/quic (0.00s)\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:57.132522+03:30\",\"Action\":\"pass\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestExpiredAndUnauthorizedClientCertificates/expired/quic\",\"Elapsed\":0}\n{\"Time\":\"2026-11-16T16:39:57.1330623+03:30\",\"Action\":\"run\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestExpiredAndUnauthorizedClientCertificates/wrong-client-name/tls\"}\n{\"Time\":\"2026-11-16T16:39:57.1330623+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestExpiredAndUnauthorizedClientCertificates/wrong-client-name/tls\",\"Output\":\"=== RUN   TestExpiredAndUnauthorizedClientCertificates/wrong-client-name/tls\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:57.1351928+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestExpiredAndUnauthorizedClientCertificates/wrong-client-name/tls\",\"Output\":\"2026/11/16 16:39:57 WARN TLS handshake rejected\\n\"}\n{\"Time\":\"2026-11-16T16:39:57.1351928+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestExpiredAndUnauthorizedClientCertificates/wrong-client-name/tls\",\"Output\":\"--- PASS: TestExpiredAndUnauthorizedClientCertificates/wrong-client-name/tls (0.00s)\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:57.1351928+03:30\",\"Action\":\"pass\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestExpiredAndUnauthorizedClientCertificates/wrong-client-name/tls\",\"Elapsed\":0}\n{\"Time\":\"2026-11-16T16:39:57.1351928+03:30\",\"Action\":\"run\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestExpiredAndUnauthorizedClientCertificates/wrong-client-name/quic\"}\n{\"Time\":\"2026-11-16T16:39:57.1351928+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestExpiredAndUnauthorizedClientCertificates/wrong-client-name/quic\",\"Output\":\"=== RUN   TestExpiredAndUnauthorizedClientCertificates/wrong-client-name/quic\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:57.1383909+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestExpiredAndUnauthorizedClientCertificates/wrong-client-name/quic\",\"Output\":\"--- PASS: TestExpiredAndUnauthorizedClientCertificates/wrong-client-name/quic (0.00s)\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:57.1383909+03:30\",\"Action\":\"pass\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestExpiredAndUnauthorizedClientCertificates/wrong-client-name/quic\",\"Elapsed\":0}\n{\"Time\":\"2026-11-16T16:39:57.1405207+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestExpiredAndUnauthorizedClientCertificates\",\"Output\":\"--- PASS: TestExpiredAndUnauthorizedClientCertificates (0.07s)\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:57.1405207+03:30\",\"Action\":\"pass\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestExpiredAndUnauthorizedClientCertificates\",\"Elapsed\":0.07}\n{\"Time\":\"2026-11-16T16:39:57.1405207+03:30\",\"Action\":\"run\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestClientForwardingAndShutdown\"}\n{\"Time\":\"2026-11-16T16:39:57.1405207+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestClientForwardingAndShutdown\",\"Output\":\"=== RUN   TestClientForwardingAndShutdown\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:57.1835018+03:30\",\"Action\":\"run\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestClientForwardingAndShutdown/quic\"}\n{\"Time\":\"2026-11-16T16:39:57.1835018+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestClientForwardingAndShutdown/quic\",\"Output\":\"=== RUN   TestClientForwardingAndShutdown/quic\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:57.1978504+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestClientForwardingAndShutdown/quic\",\"Output\":\"--- PASS: TestClientForwardingAndShutdown/quic (0.01s)\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:57.1978504+03:30\",\"Action\":\"pass\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestClientForwardingAndShutdown/quic\",\"Elapsed\":0.01}\n{\"Time\":\"2026-11-16T16:39:57.1978504+03:30\",\"Action\":\"run\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestClientForwardingAndShutdown/tls\"}\n{\"Time\":\"2026-11-16T16:39:57.1978504+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestClientForwardingAndShutdown/tls\",\"Output\":\"=== RUN   TestClientForwardingAndShutdown/tls\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:57.2095672+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestClientForwardingAndShutdown/tls\",\"Output\":\"--- PASS: TestClientForwardingAndShutdown/tls (0.01s)\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:57.2095672+03:30\",\"Action\":\"pass\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestClientForwardingAndShutdown/tls\",\"Elapsed\":0.01}\n{\"Time\":\"2026-11-16T16:39:57.2117121+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestClientForwardingAndShutdown\",\"Output\":\"--- PASS: TestClientForwardingAndShutdown (0.07s)\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:57.2122484+03:30\",\"Action\":\"pass\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestClientForwardingAndShutdown\",\"Elapsed\":0.07}\n{\"Time\":\"2026-11-16T16:39:57.2122484+03:30\",\"Action\":\"run\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestFailoverWithRealAuthenticatedProbes\"}\n{\"Time\":\"2026-11-16T16:39:57.2122484+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestFailoverWithRealAuthenticatedProbes\",\"Output\":\"=== RUN   TestFailoverWithRealAuthenticatedProbes\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:57.5737743+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestFailoverWithRealAuthenticatedProbes\",\"Output\":\"--- PASS: TestFailoverWithRealAuthenticatedProbes (0.36s)\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:57.5737743+03:30\",\"Action\":\"pass\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"TestFailoverWithRealAuthenticatedProbes\",\"Elapsed\":0.36}\n{\"Time\":\"2026-11-16T16:39:57.5737743+03:30\",\"Action\":\"run\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"Example_limits\"}\n{\"Time\":\"2026-11-16T16:39:57.5737743+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"Example_limits\",\"Output\":\"=== RUN   Example_limits\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:57.574307+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"Example_limits\",\"Output\":\"--- PASS: Example_limits (0.00s)\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:57.574307+03:30\",\"Action\":\"pass\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Test\":\"Example_limits\",\"Elapsed\":0}\n{\"Time\":\"2026-11-16T16:39:57.574307+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Output\":\"PASS\\n\",\"OutputType\":\"frame\"}\n{\"Time\":\"2026-11-16T16:39:57.5795074+03:30\",\"Action\":\"output\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Output\":\"ok  \\tnextgen-tunnel/tests/integration\\t2.671s\\n\"}\n{\"Time\":\"2026-11-16T16:39:57.5795074+03:30\",\"Action\":\"pass\",\"Package\":\"nextgen-tunnel/tests/integration\",\"Elapsed\":2.672}\n",
+      "stderr": "",
+      "classification": "required",
+      "elapsed_seconds": 4.563000000000102
+    },
+    {
+      "name": "vet",
+      "command": [
+        "go.exe",
+        "vet",
+        "./..."
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "classification": "required",
+      "elapsed_seconds": 1.9219999999986612
+    },
+    {
+      "name": "frame_fuzz",
+      "command": [
+        "go.exe",
+        "test",
+        "./internal/transport",
+        "-run",
+        "^$",
+        "-fuzz",
+        "FuzzReadFrame",
+        "-fuzztime=5s",
+        "-parallel=2"
+      ],
+      "returncode": 0,
+      "stdout": "fuzz: elapsed: 0s, gathering baseline coverage: 0/5 completed\nfuzz: elapsed: 0s, gathering baseline coverage: 5/5 completed, now fuzzing with 2 workers\nfuzz: elapsed: 3s, execs: 83012 (27665/sec), new interesting: 0 (total: 5)\nfuzz: elapsed: 5s, execs: 155335 (35439/sec), new interesting: 0 (total: 5)\nPASS\nok  \tnextgen-tunnel/internal/transport\t6.142s\n",
+      "stderr": "",
+      "classification": "required",
+      "elapsed_seconds": 10.093000000000757
+    },
+    {
+      "name": "race",
+      "command": [
+        "go.exe",
+        "test",
+        "-race",
+        "./..."
+      ],
+      "returncode": 2,
+      "stdout": "",
+      "stderr": "go: -race requires cgo; enable cgo by setting CGO_ENABLED=1\n",
+      "classification": "environment_gate",
+      "elapsed_seconds": 0.0319999999992433
+    },
+    {
+      "name": "python_tests",
+      "command": [
+        "python.exe",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "returncode": 0,
+      "stdout": "exit: prepared; private WireGuard key remains on that server\nentry: prepared; private WireGuard key remains on that server\nDetected backend transports: {\"udp\": [34569], \"tcp\": []}\nexit: unchanged\nentry: unchanged\nDeployment verified; rollback transaction: dddddddddddddddd\n",
+      "stderr": "test_all_runtime_shell_parses (test_deployment.ProfileTests.test_all_runtime_shell_parses) ... skipped 'bash syntax validation requires bash'\ntest_auto_detected_tcp_openvpn_has_no_udp_forward (test_deployment.ProfileTests.test_auto_detected_tcp_openvpn_has_no_udp_forward) ... ok\ntest_backup_modes_and_scoped_rollback (test_deployment.ProfileTests.test_backup_modes_and_scoped_rollback) ... skipped 'POSIX permissions and paths require Linux'\ntest_boot_orders_firewall_carrier_wireguard_and_forwarding (test_deployment.ProfileTests.test_boot_orders_firewall_carrier_wireguard_and_forwarding) ... ok\ntest_controller_preserves_original_rollback_on_unchanged_pair (test_deployment.ProfileTests.test_controller_preserves_original_rollback_on_unchanged_pair) ... ok\ntest_isolated_full_transaction_and_idempotent_apply (test_deployment.ProfileTests.test_isolated_full_transaction_and_idempotent_apply) ... skipped 'isolated host transaction requires POSIX paths'\ntest_isolated_partial_install_can_be_rolled_back (test_deployment.ProfileTests.test_isolated_partial_install_can_be_rolled_back) ... skipped 'isolated host transaction requires POSIX paths'\ntest_l2tp_mss_handles_syn_ack_and_only_reduces (test_deployment.ProfileTests.test_l2tp_mss_handles_syn_ack_and_only_reduces) ... ok\ntest_monitor_retains_qos_and_capture_policy (test_deployment.ProfileTests.test_monitor_retains_qos_and_capture_policy) ... ok\ntest_overlap_loopback_and_mss_rejected (test_deployment.ProfileTests.test_overlap_loopback_and_mss_rejected) ... ok\ntest_prepare_does_not_run_on_import (test_deployment.ProfileTests.test_prepare_does_not_run_on_import) ... ok\ntest_private_keys_are_not_remote_command_arguments (test_deployment.ProfileTests.test_private_keys_are_not_remote_command_arguments) ... ok\ntest_reference_and_pair_addresses (test_deployment.ProfileTests.test_reference_and_pair_addresses) ... ok\ntest_remote_plan_recomputed (test_deployment.ProfileTests.test_remote_plan_recomputed) ... ok\ntest_rollback_nonexistent_transaction_is_noop (test_deployment.ProfileTests.test_rollback_nonexistent_transaction_is_noop) ... ok\ntest_shell_injection_rejected (test_deployment.ProfileTests.test_shell_injection_rejected) ... ok\ntest_atomic_replacement_and_rollback_of_partial_install (test_installer.InstallerSafetyTests.test_atomic_replacement_and_rollback_of_partial_install) ... ok\ntest_bad_checksum_rejected_before_executable_is_run (test_installer.InstallerSafetyTests.test_bad_checksum_rejected_before_executable_is_run) ... ok\ntest_recovery_refuses_unowned_paths (test_installer.InstallerSafetyTests.test_recovery_refuses_unowned_paths) ... ok\ntest_own_process_cpu_and_rss_are_real_nonnegative_values (test_process_metrics.ProcessMetricsTests.test_own_process_cpu_and_rss_are_real_nonnegative_values) ... ok\n\n----------------------------------------------------------------------\nRan 20 tests in 0.134s\n\nOK (skipped=4)\n",
+      "classification": "required",
+      "elapsed_seconds": 1.4369999999998981
+    },
+    {
+      "name": "python_compile",
+      "command": [
+        "python.exe",
+        "-m",
+        "py_compile",
+        "agent.py",
+        "model.py",
+        "tunnelctl.py",
+        "scripts\\check_shell.py",
+        "scripts\\host_install.py",
+        "scripts\\local_lab.py",
+        "scripts\\package.py",
+        "scripts\\process_metrics.py",
+        "scripts\\research.py",
+        "scripts\\summarize_lab.py",
+        "scripts\\validate.py",
+        "scripts\\verify_bundle.py"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "classification": "required",
+      "elapsed_seconds": 0.26600000000144064
+    },
+    {
+      "name": "shell_syntax",
+      "command": [
+        "python.exe",
+        "scripts/check_shell.py",
+        "--shell",
+        "C:\\Program Files\\WindowsApps\\OpenAI.CodexPrimaryRuntime.v26-1112-611-0_26.1112.611.0_x64__3k8sg7r9htsxt\\dependencies\\native\\git\\usr\\bin\\sh.exe"
+      ],
+      "returncode": 0,
+      "stdout": "{\"shell\": \"GNU bash, version 5.3.15(2)-release (x86_64-pc-cygwin)\", \"scripts_parsed\": 11, \"scripts_executed\": 0}\n",
+      "stderr": "",
+      "classification": "required",
+      "elapsed_seconds": 0.7189999999991414
+    },
+    {
+      "name": "host_build",
+      "command": [
+        "go.exe",
+        "build",
+        "-trimpath",
+        "-o",
+        "dist/nextgen-tunnel.exe",
+        "./cmd/nextgen-tunnel"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "classification": "required",
+      "elapsed_seconds": 0.4210000000002765
+    },
+    {
+      "name": "linux_amd64_build",
+      "command": [
+        "go.exe",
+        "build",
+        "-trimpath",
+        "-o",
+        "dist/nextgen-tunnel-linux-amd64",
+        "./cmd/nextgen-tunnel"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "classification": "required",
+      "elapsed_seconds": 3.5939999999991414
+    },
+    {
+      "name": "linux_arm64_build",
+      "command": [
+        "go.exe",
+        "build",
+        "-trimpath",
+        "-o",
+        "dist/nextgen-tunnel-linux-arm64",
+        "./cmd/nextgen-tunnel"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "classification": "required",
+      "elapsed_seconds": 2.7030000000013388
+    },
+    {
+      "name": "vulnerabilities",
+      "command": [
+        "go.exe",
+        "run",
+        "golang.org/x/vuln/cmd/govulncheck@v1.9.0",
+        "./..."
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "govulncheck: fetching vulnerabilities: HTTP GET https://vuln.go.dev/index/modules.json.gz returned unexpected status: 403 Forbidden\nexit status 1\n",
+      "classification": "security_gate",
+      "elapsed_seconds": 9.234999999998763
+    }
+  ],
+  "finished_at": "2026-11-16T13:10:28.070380+00:00",
+  "required_checks_passed": true,
+  "all_gates_passed": false
+}

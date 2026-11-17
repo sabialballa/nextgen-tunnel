@@ -1,0 +1,13 @@
+/deployment-records/
+/.private/
+/deployment.json
+*.key
+*.pem
+*.pcap
+*.tar.gz
+__pycache__/
+*.pyc
+/dist/
+*.crt
+/private-pki/
+/docs/CONTINUE.md

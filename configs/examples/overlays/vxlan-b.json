@@ -1,0 +1,1 @@
+{"name":"ngo-vxlan","namespace":"ngt-site-main","kind":"vxlan","local":"10.77.240.2","remote":"10.77.240.1","address":"10.78.251.2/30","mtu":1200,"vni":10771,"port":4789}

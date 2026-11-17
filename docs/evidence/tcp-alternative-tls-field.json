@@ -1,0 +1,7 @@
+{
+  "success": true,
+  "version": "TLSv1.3",
+  "cipher": "TLS_AES_128_GCM_SHA256",
+  "peer_certificate_sha256": "4a8827c87038a5fc04649b9d1a13dd5587a6af23b091542de0bbcb9ebdb1d558",
+  "matches_dedicated_expected_server_certificate": true
+}

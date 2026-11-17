@@ -1,0 +1,2 @@
+go version go1.27.4 linux/amd64
+606f883d1aa3c624f38aa3f99bf0df02e3999f9aa0ff5826e0dd9c1b9f964baf  /home/lab/engine-offline-rebuild/nextgen-engine-corresponding-source/sing-box

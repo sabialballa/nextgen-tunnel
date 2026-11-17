@@ -1,0 +1,2 @@
+unchanged; engine and site active
+{"active": true, "enabled": {"nextgen-site.service": {"active": true, "enabled": true}, "nextgen-engine.service": {"active": true, "enabled": true}, "nextgen-site-watchdog.timer": {"active": true, "enabled": true}, "nextgen-site-watchdog.service": {"active": false, "enabled": true}}, "namespace": "ngt-site-main"}

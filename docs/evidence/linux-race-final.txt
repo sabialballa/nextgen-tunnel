@@ -1,0 +1,7 @@
+?   	nextgen-tunnel/cmd/nextgen-tunnel	[no test files]
+ok  	nextgen-tunnel/internal/config	2.111s
+ok  	nextgen-tunnel/internal/engine	2.524s
+ok  	nextgen-tunnel/internal/manager	2.122s
+ok  	nextgen-tunnel/internal/security	2.451s
+ok  	nextgen-tunnel/internal/transport	2.102s
+ok  	nextgen-tunnel/tests/integration	12.947s

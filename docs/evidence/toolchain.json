@@ -1,0 +1,11 @@
+{
+  "checked_on": "2026-11-16",
+  "version": "go1.27.4 windows/amd64",
+  "official_metadata": "https://go.dev/dl/?mode=json",
+  "official_archive": "https://go.dev/dl/go1.27.4.windows-amd64.zip",
+  "download_mirror": "https://mirrors.hust.edu.cn/golang/go1.27.4.windows-amd64.zip",
+  "sha256": "178ab98950ac69ab25069307dc6ade79f3816e414cce95b4da166a115cde1e7e",
+  "archive_integrity_verified_before_execution": true,
+  "quic_go_version": "v0.65.0",
+  "security_scan_approval": false
+}

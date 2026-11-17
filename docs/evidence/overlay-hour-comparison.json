@@ -1,0 +1,864 @@
+{
+  "nodes": {
+    "iran": {
+      "complete": true,
+      "elapsed_seconds": 3600.5502499660033,
+      "started_wall_time": 1794934105.7334156,
+      "finished_wall_time": 1794937706.2836258,
+      "measurement_revision": 2,
+      "driver_sha256": "45e7d3bcdb2b88f0d14bc5e30abc08da9746d07975dc50bd377026c0c85af15c",
+      "worker_sha256": "1dede5d442161df94cd00e38318696d964b9bad57d5b3df9d5aa8c26ec4e9ed4",
+      "udp_deadline_ms": 500,
+      "udp_interval_seconds": 1,
+      "tcp_interval_seconds": 2,
+      "paths": {
+        "ipip": {
+          "complete": true,
+          "flows": {
+            "ipv4_tcp": {
+              "sent": 1798,
+              "received": 1798,
+              "timeouts": 0,
+              "connect_errors": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 0,
+              "rtt_max_ms": 2147.5833080003213,
+              "mean_timely_rtt_ms": 119.98750052784305,
+              "deadline_miss_percent": 0.0
+            },
+            "ipv4_udp": {
+              "sent": 3588,
+              "received": 3474,
+              "timeouts": 114,
+              "connect_errors": 0,
+              "corrupted": 0,
+              "late": 108,
+              "max_burst": 7,
+              "rtt_max_ms": 498.40586600112147,
+              "mean_timely_rtt_ms": 88.69608667676903,
+              "deadline_miss_percent": 3.177257525083612
+            }
+          },
+          "strict_acceptance": false
+        },
+        "base": {
+          "complete": true,
+          "flows": {
+            "ipv4_tcp": {
+              "sent": 1797,
+              "received": 1797,
+              "timeouts": 0,
+              "connect_errors": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 0,
+              "rtt_max_ms": 2646.8047269991075,
+              "mean_timely_rtt_ms": 117.11457500776571,
+              "deadline_miss_percent": 0.0
+            },
+            "ipv4_udp": {
+              "sent": 3589,
+              "received": 3475,
+              "timeouts": 114,
+              "connect_errors": 0,
+              "corrupted": 0,
+              "late": 112,
+              "max_burst": 7,
+              "rtt_max_ms": 497.1780760024558,
+              "mean_timely_rtt_ms": 88.75231081031501,
+              "deadline_miss_percent": 3.176372248537197
+            }
+          },
+          "strict_acceptance": false
+        },
+        "gre": {
+          "complete": true,
+          "flows": {
+            "ipv4_tcp": {
+              "sent": 1797,
+              "received": 1797,
+              "timeouts": 0,
+              "connect_errors": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 0,
+              "rtt_max_ms": 2204.448077998677,
+              "mean_timely_rtt_ms": 120.5378653923104,
+              "deadline_miss_percent": 0.0
+            },
+            "ipv4_udp": {
+              "sent": 3589,
+              "received": 3472,
+              "timeouts": 117,
+              "connect_errors": 0,
+              "corrupted": 0,
+              "late": 115,
+              "max_burst": 7,
+              "rtt_max_ms": 499.638892000803,
+              "mean_timely_rtt_ms": 88.49173352422982,
+              "deadline_miss_percent": 3.2599609919197547
+            }
+          },
+          "strict_acceptance": false
+        },
+        "vxlan": {
+          "complete": true,
+          "flows": {
+            "ipv4_tcp": {
+              "sent": 1798,
+              "received": 1798,
+              "timeouts": 0,
+              "connect_errors": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 0,
+              "rtt_max_ms": 2282.222677997197,
+              "mean_timely_rtt_ms": 120.12909974803352,
+              "deadline_miss_percent": 0.0
+            },
+            "ipv4_udp": {
+              "sent": 3588,
+              "received": 3472,
+              "timeouts": 116,
+              "connect_errors": 0,
+              "corrupted": 0,
+              "late": 113,
+              "max_burst": 7,
+              "rtt_max_ms": 496.6822489986953,
+              "mean_timely_rtt_ms": 88.57202891271689,
+              "deadline_miss_percent": 3.2329988851727984
+            }
+          },
+          "strict_acceptance": false
+        }
+      },
+      "stable_engine_identity": true,
+      "stable_overlay_identities": true,
+      "sampling_errors": 0,
+      "resources": {
+        "visible_cpus": 8,
+        "host_busy_average_percent": 1.7116547203909247,
+        "steal_average_percent": 3.949363823784155,
+        "steal_peak_window_percent": 58.94607843137255,
+        "engine_average_percent_of_one_core": 16.685530228758758,
+        "engine_peak_window_percent_of_one_core": 229.9065329738185,
+        "max_sampling_gap_seconds": 17.10595679283142
+      },
+      "udp_event_time_neighborhood": {
+        "gre": {
+          "udp_events": 117,
+          "events_with_base_event_within_one_second": 100
+        },
+        "vxlan": {
+          "udp_events": 116,
+          "events_with_base_event_within_one_second": 99
+        },
+        "ipip": {
+          "udp_events": 114,
+          "events_with_base_event_within_one_second": 101
+        }
+      },
+      "raw_sha256": "331987a030f2db795ffbb175160677a0fc72c3cda3b3ed72cdac006273ba3021",
+      "reboot-check_raw_sha256": "15f1ed465e249db7189118290c9d1d251d29724f30a15a261271bea25993d819",
+      "reboot-check": {
+        "before_boot_id": "aba1405b-ddfd-4942-bfdc-6508005f251c",
+        "after_boot_id": "062dcc8e-6d9a-484a-a5fc-c5df4e4291a9",
+        "fresh_boot_changed": true,
+        "units": {
+          "nextgen-engine.service": {
+            "active": true,
+            "enabled": true
+          },
+          "nextgen-site.service": {
+            "active": true,
+            "enabled": true
+          },
+          "nextgen-site-watchdog.timer": {
+            "active": true,
+            "enabled": true
+          },
+          "nextgen-overlay-ngo-gre.service": {
+            "active": true,
+            "enabled": true
+          },
+          "nextgen-overlay-ngo-vxlan.service": {
+            "active": true,
+            "enabled": true
+          },
+          "nextgen-overlay-ngo-ipip.service": {
+            "active": true,
+            "enabled": true
+          }
+        },
+        "owned_files_and_host_state_unchanged": true,
+        "observed_wall_time": 1794938148.0492895,
+        "permanent_services_manually_started": false,
+        "success": true
+      },
+      "cleanup_raw_sha256": "28f3b5880445014b3b43fa409b6f975cd5eaffbd496d533879ffd3ccc6cb0d25",
+      "cleanup": {
+        "success": true,
+        "temporary_secret_removed": true,
+        "temporary_helpers_removed": true,
+        "main_and_overlay_files_unchanged": true,
+        "timestamp": 1794938557.0556273
+      },
+      "postboot-turkey_raw_sha256": "ef36bf5c5ecfec043b4afd93470dfcb723e97b3204172178f38af739ac7b0822",
+      "postboot-turkey": {
+        "complete": true,
+        "elapsed_seconds": 30.298566412999207,
+        "paths": {
+          "vxlan": {
+            "ipv4_tcp": {
+              "sent": 15,
+              "received": 15,
+              "timeouts": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 0
+            },
+            "ipv4_udp": {
+              "sent": 30,
+              "received": 25,
+              "timeouts": 5,
+              "corrupted": 0,
+              "late": 4,
+              "max_burst": 2
+            }
+          },
+          "gre": {
+            "ipv4_tcp": {
+              "sent": 15,
+              "received": 15,
+              "timeouts": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 0
+            },
+            "ipv4_udp": {
+              "sent": 30,
+              "received": 24,
+              "timeouts": 6,
+              "corrupted": 0,
+              "late": 6,
+              "max_burst": 3
+            }
+          },
+          "base": {
+            "ipv4_tcp": {
+              "sent": 15,
+              "received": 15,
+              "timeouts": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 0
+            },
+            "ipv4_udp": {
+              "sent": 30,
+              "received": 25,
+              "timeouts": 5,
+              "corrupted": 0,
+              "late": 5,
+              "max_burst": 2
+            }
+          },
+          "ipip": {
+            "ipv4_tcp": {
+              "sent": 15,
+              "received": 15,
+              "timeouts": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 0
+            },
+            "ipv4_udp": {
+              "sent": 30,
+              "received": 25,
+              "timeouts": 5,
+              "corrupted": 0,
+              "late": 5,
+              "max_burst": 2
+            }
+          }
+        },
+        "connectivity_success": true,
+        "zero_deadline_errors": false
+      },
+      "postboot-iran_raw_sha256": "fe6580ae2ab12f51966e6ad02e86fc6e86410833486b00e66d2bfca82b8788b1",
+      "postboot-iran": {
+        "complete": true,
+        "elapsed_seconds": 34.645095906999984,
+        "paths": {
+          "gre": {
+            "ipv4_tcp": {
+              "sent": 15,
+              "received": 15,
+              "timeouts": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 0
+            },
+            "ipv4_udp": {
+              "sent": 30,
+              "received": 23,
+              "timeouts": 7,
+              "corrupted": 0,
+              "late": 6,
+              "max_burst": 4
+            }
+          },
+          "vxlan": {
+            "ipv4_tcp": {
+              "sent": 15,
+              "received": 15,
+              "timeouts": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 0
+            },
+            "ipv4_udp": {
+              "sent": 29,
+              "received": 25,
+              "timeouts": 4,
+              "corrupted": 0,
+              "late": 3,
+              "max_burst": 3
+            }
+          },
+          "ipip": {
+            "ipv4_tcp": {
+              "sent": 15,
+              "received": 15,
+              "timeouts": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 0
+            },
+            "ipv4_udp": {
+              "sent": 29,
+              "received": 22,
+              "timeouts": 7,
+              "corrupted": 0,
+              "late": 6,
+              "max_burst": 5
+            }
+          },
+          "base": {
+            "ipv4_tcp": {
+              "sent": 15,
+              "received": 15,
+              "timeouts": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 0
+            },
+            "ipv4_udp": {
+              "sent": 30,
+              "received": 21,
+              "timeouts": 9,
+              "corrupted": 0,
+              "late": 8,
+              "max_burst": 6
+            }
+          }
+        },
+        "connectivity_success": true,
+        "zero_deadline_errors": false
+      },
+      "final_raw_sha256": "56b10f4f03b7563866b657ebadefb430e5110b1e55a51489e7562a4e762e1630",
+      "final": {
+        "checks": {
+          "gre": {
+            "success": true,
+            "payload_bytes": 1172
+          },
+          "vxlan": {
+            "success": true,
+            "payload_bytes": 1172
+          },
+          "ipip": {
+            "success": true,
+            "payload_bytes": 1172
+          },
+          "base4": {
+            "success": true,
+            "payload_bytes": 1152
+          },
+          "base6": {
+            "success": true,
+            "payload_bytes": 1152
+          }
+        },
+        "native_public_overlay_packets": 0,
+        "capture_sha256": "e6e921a5f8b60a91e54000028fff8b2e467771814f752355a25dc336a56b0f95",
+        "capture_kernel_drops": 0,
+        "main_and_overlay_files_host_state_unchanged": true,
+        "timestamp": 1794938498.769519,
+        "success": true
+      },
+      "reboot_observation": {
+        "reboot_verified": true,
+        "observation_elapsed_seconds": 38.75,
+        "permanent_services_manually_started": false
+      },
+      "reboot_observation_raw_sha256": "ff08755ccc2b6849433fb54b210273cccfcea9f2cd9be512744df81800998b61"
+    },
+    "turkey": {
+      "complete": true,
+      "elapsed_seconds": 3600.825894387999,
+      "started_wall_time": 1794934105.686471,
+      "finished_wall_time": 1794937706.5123415,
+      "measurement_revision": 2,
+      "driver_sha256": "45e7d3bcdb2b88f0d14bc5e30abc08da9746d07975dc50bd377026c0c85af15c",
+      "worker_sha256": "1dede5d442161df94cd00e38318696d964b9bad57d5b3df9d5aa8c26ec4e9ed4",
+      "udp_deadline_ms": 500,
+      "udp_interval_seconds": 1,
+      "tcp_interval_seconds": 2,
+      "paths": {
+        "vxlan": {
+          "complete": true,
+          "flows": {
+            "ipv4_tcp": {
+              "sent": 1800,
+              "received": 1800,
+              "timeouts": 0,
+              "connect_errors": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 0,
+              "rtt_max_ms": 2612.148354000965,
+              "mean_timely_rtt_ms": 117.76861701726982,
+              "deadline_miss_percent": 0.0
+            },
+            "ipv4_udp": {
+              "sent": 3600,
+              "received": 3469,
+              "timeouts": 131,
+              "connect_errors": 0,
+              "corrupted": 0,
+              "late": 131,
+              "max_burst": 7,
+              "rtt_max_ms": 496.1098450003192,
+              "mean_timely_rtt_ms": 88.25198114443198,
+              "deadline_miss_percent": 3.638888888888889
+            }
+          },
+          "strict_acceptance": false
+        },
+        "base": {
+          "complete": true,
+          "flows": {
+            "ipv4_tcp": {
+              "sent": 1800,
+              "received": 1800,
+              "timeouts": 0,
+              "connect_errors": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 0,
+              "rtt_max_ms": 2683.6880409973674,
+              "mean_timely_rtt_ms": 118.54137394446298,
+              "deadline_miss_percent": 0.0
+            },
+            "ipv4_udp": {
+              "sent": 3600,
+              "received": 3468,
+              "timeouts": 132,
+              "connect_errors": 0,
+              "corrupted": 0,
+              "late": 132,
+              "max_burst": 7,
+              "rtt_max_ms": 499.53701199774514,
+              "mean_timely_rtt_ms": 90.79785157832578,
+              "deadline_miss_percent": 3.6666666666666665
+            }
+          },
+          "strict_acceptance": false
+        },
+        "gre": {
+          "complete": true,
+          "flows": {
+            "ipv4_tcp": {
+              "sent": 1800,
+              "received": 1800,
+              "timeouts": 0,
+              "connect_errors": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 0,
+              "rtt_max_ms": 2686.861731002864,
+              "mean_timely_rtt_ms": 126.47498186002647,
+              "deadline_miss_percent": 0.0
+            },
+            "ipv4_udp": {
+              "sent": 3600,
+              "received": 3469,
+              "timeouts": 131,
+              "connect_errors": 0,
+              "corrupted": 0,
+              "late": 131,
+              "max_burst": 7,
+              "rtt_max_ms": 498.4886509992066,
+              "mean_timely_rtt_ms": 90.62854427415668,
+              "deadline_miss_percent": 3.638888888888889
+            }
+          },
+          "strict_acceptance": false
+        },
+        "ipip": {
+          "complete": true,
+          "flows": {
+            "ipv4_tcp": {
+              "sent": 1800,
+              "received": 1800,
+              "timeouts": 0,
+              "connect_errors": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 0,
+              "rtt_max_ms": 2717.047927999374,
+              "mean_timely_rtt_ms": 127.77735828005663,
+              "deadline_miss_percent": 0.0
+            },
+            "ipv4_udp": {
+              "sent": 3600,
+              "received": 3471,
+              "timeouts": 129,
+              "connect_errors": 0,
+              "corrupted": 0,
+              "late": 129,
+              "max_burst": 7,
+              "rtt_max_ms": 495.3007539988903,
+              "mean_timely_rtt_ms": 89.23657690697404,
+              "deadline_miss_percent": 3.5833333333333335
+            }
+          },
+          "strict_acceptance": false
+        }
+      },
+      "stable_engine_identity": true,
+      "stable_overlay_identities": true,
+      "sampling_errors": 0,
+      "resources": {
+        "visible_cpus": 1,
+        "host_busy_average_percent": 6.586552915350188,
+        "steal_average_percent": 0.12933161647503275,
+        "steal_peak_window_percent": 0.8105369807497467,
+        "engine_average_percent_of_one_core": 1.198100168869283,
+        "engine_peak_window_percent_of_one_core": 1.7941438325108037,
+        "max_sampling_gap_seconds": 15.001968145370483
+      },
+      "udp_event_time_neighborhood": {
+        "gre": {
+          "udp_events": 131,
+          "events_with_base_event_within_one_second": 128
+        },
+        "vxlan": {
+          "udp_events": 131,
+          "events_with_base_event_within_one_second": 125
+        },
+        "ipip": {
+          "udp_events": 129,
+          "events_with_base_event_within_one_second": 126
+        }
+      },
+      "raw_sha256": "554d829ef97af06de3d8dfc79222f69e0553dbb51d6ded0ab5943e69033ebf56",
+      "reboot-check_raw_sha256": "978bcb4b83ff136b00ecb1c77651f36f72cb9c05789be8682ce36e9923384a4d",
+      "reboot-check": {
+        "before_boot_id": "c0a8714e-b63e-4d1c-92ad-fd2f8b0db915",
+        "after_boot_id": "db30dcce-119a-45be-b63c-3f9104e20374",
+        "fresh_boot_changed": true,
+        "units": {
+          "nextgen-engine.service": {
+            "active": true,
+            "enabled": true
+          },
+          "nextgen-site.service": {
+            "active": true,
+            "enabled": true
+          },
+          "nextgen-site-watchdog.timer": {
+            "active": true,
+            "enabled": true
+          },
+          "nextgen-overlay-ngo-gre.service": {
+            "active": true,
+            "enabled": true
+          },
+          "nextgen-overlay-ngo-vxlan.service": {
+            "active": true,
+            "enabled": true
+          },
+          "nextgen-overlay-ngo-ipip.service": {
+            "active": true,
+            "enabled": true
+          }
+        },
+        "owned_files_and_host_state_unchanged": true,
+        "observed_wall_time": 1794937894.487368,
+        "permanent_services_manually_started": false,
+        "success": true
+      },
+      "cleanup_raw_sha256": "6d3a6a34d4444de1e50774ba63692d60305d4458f7e797d946add4caa3e54e87",
+      "cleanup": {
+        "success": true,
+        "temporary_secret_removed": true,
+        "temporary_helpers_removed": true,
+        "main_and_overlay_files_unchanged": true,
+        "timestamp": 1794938556.8471398
+      },
+      "postboot-turkey_raw_sha256": "22e7b5f5fb8f6083d215fb4c5872fae438b5c22c89cdec427e17a273c47ea5a4",
+      "postboot-turkey": {
+        "complete": true,
+        "elapsed_seconds": 30.71761087899999,
+        "paths": {
+          "vxlan": {
+            "ipv4_tcp": {
+              "sent": 15,
+              "received": 15,
+              "timeouts": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 0
+            },
+            "ipv4_udp": {
+              "sent": 30,
+              "received": 25,
+              "timeouts": 5,
+              "corrupted": 0,
+              "late": 5,
+              "max_burst": 3
+            }
+          },
+          "gre": {
+            "ipv4_tcp": {
+              "sent": 15,
+              "received": 15,
+              "timeouts": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 0
+            },
+            "ipv4_udp": {
+              "sent": 30,
+              "received": 24,
+              "timeouts": 6,
+              "corrupted": 0,
+              "late": 6,
+              "max_burst": 3
+            }
+          },
+          "base": {
+            "ipv4_tcp": {
+              "sent": 15,
+              "received": 15,
+              "timeouts": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 0
+            },
+            "ipv4_udp": {
+              "sent": 30,
+              "received": 25,
+              "timeouts": 5,
+              "corrupted": 0,
+              "late": 5,
+              "max_burst": 3
+            }
+          },
+          "ipip": {
+            "ipv4_tcp": {
+              "sent": 15,
+              "received": 15,
+              "timeouts": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 0
+            },
+            "ipv4_udp": {
+              "sent": 30,
+              "received": 23,
+              "timeouts": 7,
+              "corrupted": 0,
+              "late": 7,
+              "max_burst": 3
+            }
+          }
+        },
+        "connectivity_success": true,
+        "zero_deadline_errors": false
+      },
+      "postboot-iran_raw_sha256": "c0802a7a707ea2b6d9eaa6b674dc9775b7e8dd4978d957cbf192f2e2abfeea8d",
+      "postboot-iran": {
+        "complete": true,
+        "elapsed_seconds": 30.635854111000015,
+        "paths": {
+          "gre": {
+            "ipv4_tcp": {
+              "sent": 15,
+              "received": 15,
+              "timeouts": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 0
+            },
+            "ipv4_udp": {
+              "sent": 30,
+              "received": 23,
+              "timeouts": 7,
+              "corrupted": 0,
+              "late": 7,
+              "max_burst": 6
+            }
+          },
+          "base": {
+            "ipv4_tcp": {
+              "sent": 15,
+              "received": 15,
+              "timeouts": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 0
+            },
+            "ipv4_udp": {
+              "sent": 30,
+              "received": 22,
+              "timeouts": 8,
+              "corrupted": 0,
+              "late": 8,
+              "max_burst": 6
+            }
+          },
+          "vxlan": {
+            "ipv4_tcp": {
+              "sent": 15,
+              "received": 15,
+              "timeouts": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 0
+            },
+            "ipv4_udp": {
+              "sent": 30,
+              "received": 22,
+              "timeouts": 8,
+              "corrupted": 0,
+              "late": 8,
+              "max_burst": 6
+            }
+          },
+          "ipip": {
+            "ipv4_tcp": {
+              "sent": 15,
+              "received": 15,
+              "timeouts": 0,
+              "corrupted": 0,
+              "late": 0,
+              "max_burst": 0
+            },
+            "ipv4_udp": {
+              "sent": 30,
+              "received": 22,
+              "timeouts": 8,
+              "corrupted": 0,
+              "late": 8,
+              "max_burst": 6
+            }
+          }
+        },
+        "connectivity_success": true,
+        "zero_deadline_errors": false
+      },
+      "final_raw_sha256": "3be110bd6ffbe340916f59eb5ca2480bfb4fa078b3e318708397b6d554f60e7c",
+      "final": {
+        "checks": {
+          "gre": {
+            "success": true,
+            "payload_bytes": 1172
+          },
+          "vxlan": {
+            "success": true,
+            "payload_bytes": 1172
+          },
+          "ipip": {
+            "success": true,
+            "payload_bytes": 1172
+          },
+          "base4": {
+            "success": true,
+            "payload_bytes": 1152
+          },
+          "base6": {
+            "success": true,
+            "payload_bytes": 1152
+          }
+        },
+        "native_public_overlay_packets": 0,
+        "capture_sha256": "e6e921a5f8b60a91e54000028fff8b2e467771814f752355a25dc336a56b0f95",
+        "capture_kernel_drops": 0,
+        "main_and_overlay_files_host_state_unchanged": true,
+        "timestamp": 1794938501.7674122,
+        "success": true
+      },
+      "reboot_observation": {
+        "reboot_verified": true,
+        "observation_elapsed_seconds": 35.40699999999924,
+        "permanent_services_manually_started": false
+      },
+      "reboot_observation_raw_sha256": "e48e7cd934ab337ff7b440e26e21fc9426d36edb155dd8a76f740bb4fdcd73f6"
+    }
+  },
+  "observed_ranking": [
+    {
+      "kind": "ipip",
+      "udp_sent": 7188,
+      "udp_deadline_misses": 243,
+      "udp_deadline_miss_percent": 3.380634390651085,
+      "max_udp_burst": 7,
+      "tcp_errors": 0,
+      "strict_acceptance_both_nodes": false
+    },
+    {
+      "kind": "base",
+      "udp_sent": 7189,
+      "udp_deadline_misses": 246,
+      "udp_deadline_miss_percent": 3.4218945611350673,
+      "max_udp_burst": 7,
+      "tcp_errors": 0,
+      "strict_acceptance_both_nodes": false
+    },
+    {
+      "kind": "vxlan",
+      "udp_sent": 7188,
+      "udp_deadline_misses": 247,
+      "udp_deadline_miss_percent": 3.436282693377852,
+      "max_udp_burst": 7,
+      "tcp_errors": 0,
+      "strict_acceptance_both_nodes": false
+    },
+    {
+      "kind": "gre",
+      "udp_sent": 7189,
+      "udp_deadline_misses": 248,
+      "udp_deadline_miss_percent": 3.4497148421199055,
+      "max_udp_burst": 7,
+      "tcp_errors": 0,
+      "strict_acceptance_both_nodes": false
+    }
+  ],
+  "production_certified": false,
+  "github_published": false,
+  "limitations": [
+    "One-hour concurrent low-rate trial on shared physical hosts and TCP carrier",
+    "No independent path diversity; overlay ranking cannot isolate causation",
+    "UDP statistics are500ms deadline misses, not proof of permanent loss",
+    "Time-neighborhood event matching does not match the same application packets",
+    "TCP timeout criterion differs from500ms UDP; latency can remain without TCP failures",
+    "UDP mean/max RTT describe timely successful responses and exclude deadline misses",
+    "Reboot recovery observation is an upper observation bound, not exact application downtime"
+  ],
+  "reboot_verified_both_nodes": true,
+  "postboot_connectivity_both_trials": true,
+  "common_hour_overlap_seconds": 3600.550210237503
+}

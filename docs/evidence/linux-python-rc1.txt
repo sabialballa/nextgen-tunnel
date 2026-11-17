@@ -1,0 +1,33 @@
+test_all_runtime_shell_parses (test_deployment.ProfileTests.test_all_runtime_shell_parses) ... ok
+test_auto_detected_tcp_openvpn_has_no_udp_forward (test_deployment.ProfileTests.test_auto_detected_tcp_openvpn_has_no_udp_forward) ... ok
+test_backup_modes_and_scoped_rollback (test_deployment.ProfileTests.test_backup_modes_and_scoped_rollback) ... ok
+test_boot_orders_firewall_carrier_wireguard_and_forwarding (test_deployment.ProfileTests.test_boot_orders_firewall_carrier_wireguard_and_forwarding) ... ok
+test_controller_preserves_original_rollback_on_unchanged_pair (test_deployment.ProfileTests.test_controller_preserves_original_rollback_on_unchanged_pair) ... exit: prepared; private WireGuard key remains on that server
+entry: prepared; private WireGuard key remains on that server
+Detected backend transports: {"udp": [34569], "tcp": []}
+exit: unchanged
+entry: unchanged
+ok
+test_isolated_full_transaction_and_idempotent_apply (test_deployment.ProfileTests.test_isolated_full_transaction_and_idempotent_apply) ... ok
+test_isolated_partial_install_can_be_rolled_back (test_deployment.ProfileTests.test_isolated_partial_install_can_be_rolled_back) ... ok
+test_l2tp_mss_handles_syn_ack_and_only_reduces (test_deployment.ProfileTests.test_l2tp_mss_handles_syn_ack_and_only_reduces) ... ok
+test_monitor_retains_qos_and_capture_policy (test_deployment.ProfileTests.test_monitor_retains_qos_and_capture_policy) ... ok
+test_overlap_loopback_and_mss_rejected (test_deployment.ProfileTests.test_overlap_loopback_and_mss_rejected) ... ok
+test_prepare_does_not_run_on_import (test_deployment.ProfileTests.test_prepare_does_not_run_on_import) ... ok
+test_private_keys_are_not_remote_command_arguments (test_deployment.ProfileTests.test_private_keys_are_not_remote_command_arguments) ... ok
+test_reference_and_pair_addresses (test_deployment.ProfileTests.test_reference_and_pair_addresses) ... ok
+test_remote_plan_recomputed (test_deployment.ProfileTests.test_remote_plan_recomputed) ... ok
+test_rollback_nonexistent_transaction_is_noop (test_deployment.ProfileTests.test_rollback_nonexistent_transaction_is_noop) ... ok
+test_shell_injection_rejected (test_deployment.ProfileTests.test_shell_injection_rejected) ... ok
+test_atomic_replacement_and_rollback_of_partial_install (test_installer.InstallerSafetyTests.test_atomic_replacement_and_rollback_of_partial_install) ... ok
+test_bad_checksum_rejected_before_executable_is_run (test_installer.InstallerSafetyTests.test_bad_checksum_rejected_before_executable_is_run) ... ok
+test_recovery_refuses_unowned_paths (test_installer.InstallerSafetyTests.test_recovery_refuses_unowned_paths) ... ok
+test_own_process_cpu_and_rss_are_real_nonnegative_values (test_process_metrics.ProcessMetricsTests.test_own_process_cpu_and_rss_are_real_nonnegative_values) ... ok
+test_current_and_foreign_responses (test_soak_packets.SoakPacketTests.test_current_and_foreign_responses) ... ok
+test_delayed_valid_response_is_not_corruption (test_soak_packets.SoakPacketTests.test_delayed_valid_response_is_not_corruption) ... ok
+
+----------------------------------------------------------------------
+Ran 22 tests in 1.331s
+
+OK
+Deployment verified; rollback transaction: dddddddddddddddd

@@ -1,0 +1,25 @@
+{
+  "entry": {
+    "public_ip": "192.0.2.10",
+    "ssh_port": 22,
+    "user": "root"
+  },
+  "exit": {
+    "public_ip": "198.51.100.20",
+    "ssh_port": 22,
+    "user": "root"
+  },
+  "tunnel": {
+    "interface": "wg-game",
+    "mtu": 1360,
+    "rate_mbit": 120,
+    "rtt_ms": 100,
+    "overhead": 100,
+    "receive_kib": 8192,
+    "link_subnet": "10.77.240.0/30",
+    "service_subnet": "10.77.242.0/30",
+    "ppp_subnet": "192.168.42.0/24",
+    "l2tp_mtu": 1240,
+    "l2tp_mss": 1200
+  }
+}

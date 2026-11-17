@@ -1,0 +1,136 @@
+{
+  "kind": "Passive kernel snapshots around third outage; no packet capture or proof of DPI",
+  "observation": "Client carrier TCP total retransmissions increased from 11 to 32 while the WireGuard endpoint port stayed fixed and its handshake remained recent. Consistent with TCP carrier delivery trouble; exact origin unproven.",
+  "nodes": {
+    "iran": {
+      "raw_progress_evidence_sha256": "81b053ace620adc56823690f2bc745fb0cfca6001e30d37178f6b935d86c71ab",
+      "samples": [
+        {
+          "elapsed_minutes": 107.227,
+          "wg_handshake_age_seconds": [
+            50
+          ],
+          "wg_loopback_endpoint_ports": [
+            55550
+          ],
+          "max_reported_tcp_total_retransmissions": 235
+        },
+        {
+          "elapsed_minutes": 107.995,
+          "wg_handshake_age_seconds": [
+            96
+          ],
+          "wg_loopback_endpoint_ports": [
+            55550
+          ],
+          "max_reported_tcp_total_retransmissions": 236
+        },
+        {
+          "elapsed_minutes": 108.764,
+          "wg_handshake_age_seconds": [
+            22
+          ],
+          "wg_loopback_endpoint_ports": [
+            55550
+          ],
+          "max_reported_tcp_total_retransmissions": 236
+        },
+        {
+          "elapsed_minutes": 109.533,
+          "wg_handshake_age_seconds": [
+            68
+          ],
+          "wg_loopback_endpoint_ports": [
+            55550
+          ],
+          "max_reported_tcp_total_retransmissions": 250
+        },
+        {
+          "elapsed_minutes": 110.302,
+          "wg_handshake_age_seconds": [
+            114
+          ],
+          "wg_loopback_endpoint_ports": [
+            55550
+          ],
+          "max_reported_tcp_total_retransmissions": 250
+        },
+        {
+          "elapsed_minutes": 111.071,
+          "wg_handshake_age_seconds": [
+            39
+          ],
+          "wg_loopback_endpoint_ports": [
+            55550
+          ],
+          "max_reported_tcp_total_retransmissions": 250
+        }
+      ]
+    },
+    "turkey": {
+      "raw_progress_evidence_sha256": "5a6cc623a0990c731dfc714c4b4076ef0c991385ee4d0ad0799ab851d07f33e5",
+      "samples": [
+        {
+          "elapsed_minutes": 107.226,
+          "wg_handshake_age_seconds": [
+            50
+          ],
+          "wg_loopback_endpoint_ports": [
+            51811
+          ],
+          "max_reported_tcp_total_retransmissions": 11
+        },
+        {
+          "elapsed_minutes": 107.995,
+          "wg_handshake_age_seconds": [
+            96
+          ],
+          "wg_loopback_endpoint_ports": [
+            51811
+          ],
+          "max_reported_tcp_total_retransmissions": 11
+        },
+        {
+          "elapsed_minutes": 108.764,
+          "wg_handshake_age_seconds": [
+            22
+          ],
+          "wg_loopback_endpoint_ports": [
+            51811
+          ],
+          "max_reported_tcp_total_retransmissions": 11
+        },
+        {
+          "elapsed_minutes": 109.533,
+          "wg_handshake_age_seconds": [
+            68
+          ],
+          "wg_loopback_endpoint_ports": [
+            51811
+          ],
+          "max_reported_tcp_total_retransmissions": 32
+        },
+        {
+          "elapsed_minutes": 110.301,
+          "wg_handshake_age_seconds": [
+            114
+          ],
+          "wg_loopback_endpoint_ports": [
+            51811
+          ],
+          "max_reported_tcp_total_retransmissions": 32
+        },
+        {
+          "elapsed_minutes": 111.071,
+          "wg_handshake_age_seconds": [
+            40
+          ],
+          "wg_loopback_endpoint_ports": [
+            51811
+          ],
+          "max_reported_tcp_total_retransmissions": 32
+        }
+      ]
+    }
+  }
+}

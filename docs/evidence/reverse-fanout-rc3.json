@@ -1,0 +1,21 @@
+{
+  "active_carriers_with_bidirectional_datagrams": 2,
+  "carrier_counts": [
+    {
+      "label": "carrier_1",
+      "toward_wireguard": 662,
+      "return_datagrams": 664
+    },
+    {
+      "label": "carrier_2",
+      "toward_wireguard": 662,
+      "return_datagrams": 664
+    }
+  ],
+  "kernel_capture_drop_counts": [
+    0
+  ],
+  "raw_sha256": "81231db844252a0f7e510c1c6951e424359a7132b07bb647d906b84e19486200",
+  "listener_wireguard_endpoint_pinned": true,
+  "endpoint_matches_owned_relay_socket": true
+}

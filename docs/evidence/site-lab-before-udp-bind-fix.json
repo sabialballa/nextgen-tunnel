@@ -1,0 +1,149 @@
+{
+  "started": 1794862754.9664483,
+  "checks": [
+    {
+      "name": "routes_before",
+      "returncode": 0,
+      "stdout": "[{\"dst\":\"default\",\"gateway\":\"10.0.2.2\",\"dev\":\"enp0s2\",\"protocol\":\"dhcp\",\"prefsrc\":\"10.0.2.15\",\"metric\":100,\"flags\":[]},{\"dst\":\"10.0.2.0/24\",\"dev\":\"enp0s2\",\"protocol\":\"kernel\",\"scope\":\"link\",\"prefsrc\":\"10.0.2.15\",\"metric\":100,\"flags\":[]},{\"dst\":\"10.0.2.2\",\"dev\":\"enp0s2\",\"protocol\":\"dhcp\",\"scope\":\"link\",\"prefsrc\":\"10.0.2.15\",\"metric\":100,\"flags\":[]},{\"dst\":\"10.0.2.3\",\"dev\":\"enp0s2\",\"protocol\":\"dhcp\",\"scope\":\"link\",\"prefsrc\":\"10.0.2.15\",\"metric\":100,\"flags\":[]}]\n",
+      "stderr": ""
+    },
+    {
+      "name": "firewall_before",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "keygen_ngt-site-lab-a",
+      "returncode": 0,
+      "stdout": "generated private key locally; public.key can be exchanged\n",
+      "stderr": ""
+    },
+    {
+      "name": "keygen_ngt-site-lab-b",
+      "returncode": 0,
+      "stdout": "generated private key locally; public.key can be exchanged\n",
+      "stderr": ""
+    },
+    {
+      "name": "create_ngt-site-lab-a",
+      "returncode": 0,
+      "stdout": "site namespace ready; peer handshake requires the loopback carrier\n",
+      "stderr": ""
+    },
+    {
+      "name": "idempotent_ngt-site-lab-a",
+      "returncode": 0,
+      "stdout": "unchanged\n",
+      "stderr": ""
+    },
+    {
+      "name": "lan_address",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "lan_address",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "create_ngt-site-lab-b",
+      "returncode": 0,
+      "stdout": "site namespace ready; peer handshake requires the loopback carrier\n",
+      "stderr": ""
+    },
+    {
+      "name": "idempotent_ngt-site-lab-b",
+      "returncode": 0,
+      "stdout": "unchanged\n",
+      "stderr": ""
+    },
+    {
+      "name": "lan_address",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "lan_address",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "handshake_warmup",
+      "returncode": 1,
+      "stdout": "PING 10.78.0.2 (10.78.0.2) 56(84) bytes of data.\n\n--- 10.78.0.2 ping statistics ---\n1 packets transmitted, 0 received, 100% packet loss, time 0ms\n\n",
+      "stderr": ""
+    },
+    {
+      "name": "handshake_warmup",
+      "returncode": 1,
+      "stdout": "PING 10.78.0.2 (10.78.0.2) 56(84) bytes of data.\n\n--- 10.78.0.2 ping statistics ---\n1 packets transmitted, 0 received, 100% packet loss, time 0ms\n\n",
+      "stderr": ""
+    },
+    {
+      "name": "handshake_warmup",
+      "returncode": 1,
+      "stdout": "PING 10.78.0.2 (10.78.0.2) 56(84) bytes of data.\n\n--- 10.78.0.2 ping statistics ---\n1 packets transmitted, 0 received, 100% packet loss, time 0ms\n\n",
+      "stderr": ""
+    },
+    {
+      "name": "handshake_warmup",
+      "returncode": 0,
+      "stdout": "PING 10.78.0.2 (10.78.0.2) 56(84) bytes of data.\n64 bytes from 10.78.0.2: icmp_seq=1 ttl=64 time=16.5 ms\n\n--- 10.78.0.2 ping statistics ---\n1 packets transmitted, 1 received, 0% packet loss, time 0ms\nrtt min/avg/max/mdev = 16.482/16.482/16.482/0.000 ms\n",
+      "stderr": ""
+    },
+    {
+      "name": "bidirectional_ngt-site-lab-a",
+      "returncode": 1,
+      "stdout": "{\"started\": 1794862762.741715, \"checks\": [{\"peer\": \"10.78.0.2\", \"protocol\": \"tcp\", \"success\": true, \"rounds\": 20, \"payload_bytes\": 1024, \"rtt_min_ms\": 2.1166239999956815, \"rtt_mean_ms\": 2.5345545500030653, \"rtt_max_ms\": 4.250748000004023}, {\"peer\": \"10.78.0.2\", \"protocol\": \"udp\", \"success\": true, \"rounds\": 20, \"payload_bytes\": 1024, \"rtt_min_ms\": 2.068926999982068, \"rtt_mean_ms\": 2.4188638499950343, \"rtt_max_ms\": 4.950922999995555}, {\"peer\": \"fd78::2\", \"protocol\": \"tcp\", \"success\": true, \"rounds\": 20, \"payload_bytes\": 1024, \"rtt_min_ms\": 1.9789300000070398, \"rtt_mean_ms\": 2.2407450999992307, \"rtt_max_ms\": 3.0183929999907377}, {\"peer\": \"fd78::2\", \"protocol\": \"udp\", \"success\": true, \"rounds\": 20, \"payload_bytes\": 1024, \"rtt_min_ms\": 2.1393229999944197, \"rtt_mean_ms\": 2.4794063500010566, \"rtt_max_ms\": 5.1967140000215295}, {\"peer\": \"198.51.100.1\", \"protocol\": \"tcp\", \"success\": true, \"rounds\": 20, \"payload_bytes\": 1024, \"rtt_min_ms\": 2.2047209999982442, \"rtt_mean_ms\": 2.4197200999992674, \"rtt_max_ms\": 3.3888789999991786}, {\"peer\": \"198.51.100.1\", \"protocol\": \"udp\", \"success\": false, \"error\": \"timed out\"}, {\"peer\": \"fd79:2::1\", \"protocol\": \"tcp\", \"success\": true, \"rounds\": 20, \"payload_bytes\": 1024, \"rtt_min_ms\": 2.300553999987187, \"rtt_mean_ms\": 2.7501151499961907, \"rtt_max_ms\": 4.6303069999567015}, {\"peer\": \"fd79:2::1\", \"protocol\": \"udp\", \"success\": false, \"error\": \"timed out\"}], \"finished\": 1794862779.108121, \"success\": false}\n",
+      "stderr": ""
+    },
+    {
+      "name": "remove_ngt-site-lab-b",
+      "returncode": 0,
+      "stdout": "removed owned site\n",
+      "stderr": ""
+    },
+    {
+      "name": "remove_again_ngt-site-lab-b",
+      "returncode": 0,
+      "stdout": "absent\n",
+      "stderr": ""
+    },
+    {
+      "name": "remove_ngt-site-lab-a",
+      "returncode": 0,
+      "stdout": "removed owned site\n",
+      "stderr": ""
+    },
+    {
+      "name": "remove_again_ngt-site-lab-a",
+      "returncode": 0,
+      "stdout": "absent\n",
+      "stderr": ""
+    },
+    {
+      "name": "routes_after",
+      "returncode": 0,
+      "stdout": "[{\"dst\":\"default\",\"gateway\":\"10.0.2.2\",\"dev\":\"enp0s2\",\"protocol\":\"dhcp\",\"prefsrc\":\"10.0.2.15\",\"metric\":100,\"flags\":[]},{\"dst\":\"10.0.2.0/24\",\"dev\":\"enp0s2\",\"protocol\":\"kernel\",\"scope\":\"link\",\"prefsrc\":\"10.0.2.15\",\"metric\":100,\"flags\":[]},{\"dst\":\"10.0.2.2\",\"dev\":\"enp0s2\",\"protocol\":\"dhcp\",\"scope\":\"link\",\"prefsrc\":\"10.0.2.15\",\"metric\":100,\"flags\":[]},{\"dst\":\"10.0.2.3\",\"dev\":\"enp0s2\",\"protocol\":\"dhcp\",\"scope\":\"link\",\"prefsrc\":\"10.0.2.15\",\"metric\":100,\"flags\":[]}]\n",
+      "stderr": ""
+    },
+    {
+      "name": "firewall_after",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "scope": "kernel WireGuard with loopback UDP carrier, routed namespace endpoints",
+  "success": false,
+  "error": "bidirectional_ngt-site-lab-a: ",
+  "host_routes_unchanged": true,
+  "host_firewall_unchanged": true,
+  "finished": 1794862781.7487564
+}
